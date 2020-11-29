@@ -1,0 +1,190 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+
+<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+    <div class="container mt-5">
+      <main class="Site-content">
+          <!-- Horizontal Steppers -->
+          <div class="container">
+            <div class="row Site-content">
+          {% if filled0 %}
+
+              <div class="col-md-12 mt-5 jumbotron">
+                  <div class="alert alert-success mt-5" role="alert">
+                    <!-- <p class="h2 text-center">Category selected successfully!!</p> -->
+                    {% if messages %}
+                      <ul class="messages my-4">
+                        {% for message in messages %}
+                          <li class="h4">{{ message }}</li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+                  <div class="container mt-5">
+                    <button class="btn btn-primary my-4"><a href="{% url 'BAI_app_v2:form1' %}" class="white-text">Next</a></button>
+                  </div>
+              </div>
+              
+          {% else %} 
+      
+              <div class="col-md-12">
+  
+                <!-- Stepers Wrapper -->
+                <ul class="stepper stepper-horizontal">
+  
+                  <li class="completed">
+                    <a href="#step-home">
+                      <span class="circle">1</span>
+                      <span class="label">First step</span>
+                    </a>
+                  </li>
+  
+                  <!-- First Step -->
+                  <li class="incomplete">
+                    <a class="nav-link" onclick="href='/BAI_app_v2/form1'">
+                      <span class="circle">2</span>
+                      <span class="label">Second step</span>
+                    </a>
+                  </li>
+  
+                  <!-- Second Step -->
+                  <li class="incomplete">
+                    <a class="nav-link" onclick="href='/BAI_app_v2/form2'">
+                      <span class="circle">3</span>
+                      <span class="label">Third step</span>
+                    </a>
+                  </li>
+  
+                  <!-- Third Step -->
+                  <li class="incomplete">
+                    <a class="nav-link" onclick="location.href='/BAI_app_v2/form3'">
+                      <span class="circle">4</span>
+                      <span class="label">Fourth step</span>
+                    </a>
+                  </li>
+  
+                </ul>
+                <!-- /.Stepers Wrapper -->
+              </div>
+            </div>
+  
+            <div class="container">
+              <div class="mt-2">
+                <div class="row">
+                  <div class="col-3">
+                    <div class="sticky-top">
+                      <div class="list-group">
+                        <ul id="list-example">
+                          <a class="list-group-item list-group-item-action " href="#list-item-1">Application Form Category</a>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="col-9">
+  
+                       <span> Hello, {{request.user}} </span>
+                      <span> <a href="/logout">Logout</a> </span>
+  
+                    <div id="list-item-1">
+                        <form class="border border-light p-5" action="{% url 'BAI_app_v2:form0' %}" method="POST">
+                            {% csrf_token %}
+                            <h1 class="display-5 font-weight-bold"> Select a category you <br> want to fill application
+                                for.</h1>
+                            <!-- Default unchecked -->
+                            <br>
+                            <strong>
+                                <!-- <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked"
+                                        name="cat1">
+                                    <label class="custom-control-label" for="defaultUnchecked">Residential (bungalow,
+                                        row houses, standalone buildings)</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked2"
+                                        name="cat2">
+                                    <label class="custom-control-label" for="defaultUnchecked2">Residential (housing
+                                        complex)</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked3"
+                                        name="cat3">
+                                    <label class="custom-control-label" for="defaultUnchecked3">Residential ( affordable
+                                        housing)</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked4"
+                                        name="cat4">
+                                    <label class="custom-control-label" for="defaultUnchecked4">Commercial (malls,
+                                        office, institution, hotel, hospital, cinema)</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked5"
+                                        name="cat5">
+                                    <label class="custom-control-label" for="defaultUnchecked5">Industrial (any size,
+                                        any type)</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked6"
+                                        name="cat6">
+                                    <label class="custom-control-label" for="defaultUnchecked6">Infrastructure (bridges,
+                                        flyovers, ESR etc.)</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked7"
+                                        name="cat7">
+                                    <label class="custom-control-label" for="defaultUnchecked7">Well equipped, well
+                                        mechanized site</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked8"
+                                        name="cat8">
+                                    <label class="custom-control-label" for="defaultUnchecked8">Government, Semi-Govt.,
+                                        Public Works</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked9"
+                                        name="cat9">
+                                    <label class="custom-control-label" for="defaultUnchecked9">Work upto Bare Shell
+                                        (includes RCC, Masonry and Plaster works)</label>
+                                </div> -->
+
+                                <select class="browser-default custom-select my-4">
+                                  <option selected>Categories Avaliable</option>
+                                  <option value="1" name="app_form_cat">Residential (bungalow, row houses, standalone buildings)</option>
+                                  <option value="2" name="app_form_cat">Residential (housing
+                                    complex)</option>
+                                  <option value="3" name="app_form_cat">Residential ( affordable
+                                    housing)</option>
+                                  <option value="4" name="app_form_cat">Commercial (malls,
+                                    office, institution, hotel, hospital, cinema)</option>
+                                  <option value="5" name="app_form_cat">Industrial (any size,
+                                    any type)</option>
+                                  <option value="6" name="app_form_cat">Infrastructure (bridges,
+                                    flyovers, ESR etc.)</option>
+                                  <option value="7" name="app_form_cat">Well equipped, well
+                                    mechanized site</option>
+                                  <option value="8" name="app_form_cat">Government, Semi-Govt.,
+                                    Public Works</option>
+                                  <option value="9" name="app_form_cat">Work upto Bare Shell
+                                    (includes RCC, Masonry and Plaster works)</option>
+                                </select>
+
+                            </strong>
+
+                            <button class="btn btn-info my-4 btn-block" type="Submit" value="Form0">Save & Next</button>
+                      </form>
+                        </div>
+                      <!-- step 1-4 -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+  
+          {% endif %}
+  
+              <!-- /.Horizontal Steppers -->
+      </main>
+  </div>
+  
+  {% endblock %}

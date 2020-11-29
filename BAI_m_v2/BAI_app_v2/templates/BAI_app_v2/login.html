@@ -1,0 +1,61 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+<div class="" style="background-image: url('../../static/assets/arch1.jpg');background-repeat: no-repeat;background-attachment: fixed;background-size: cover;">
+    <div class="view full-page-intro flex-center flex-column col-sm" >
+          <br><br><br>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm text-center col-md-6">
+
+              <hr style="color: black;">
+              <h1 class="display-4 font-weight-bold" style="color: black;">BAI's <br> WELL BUILT STRUCTURE <br>
+                <h1 class="display-5 font-weight-bold" style="color: black;"> COMPETITION</h1>
+              </h1>
+              <hr style="color: black;">
+
+            </div>
+            <div class="col-sm col-md-6">
+              <form class="border border-light p-5 mb-4" id='step-1' style="background-color: white;"  action="{% url 'BAI_app_v2:user_login' %}" method="POST">
+                {% csrf_token %}
+                <div class="card">
+                  <img src="../../static/assets/header.jpg" alt="BAI logo with ISO mark">
+                </div>
+                <br>
+                <p class="h4 mb-2 text-center">Sign in</p>
+                <div class="md-form">
+                  <i class="fas fa-envelope prefix"></i>
+                  <label class="mb-0 ml-2" for="Email"></label>
+                  <input type="text" id="defaultLoginFormEmail" name="username" class="form-control mb-4" placeholder="Username">
+                </div>
+                <div class="md-form">
+                  <i class="fas fa-unlock prefix"></i>              
+                  <label class="mb-0 ml-2" for="password"></label>
+                  <input type="password" id="defaultLoginFormPassword" name="password" class="form-control mb-4" placeholder="Password">
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                            <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="g-recaptcha" data-sitekey="6Lc0ftwZAAAAAHL8dFK1MkhtAA269TsHzADkc44q"></div>
+                  {{message}}
+                <button class="btn btn-info btn-block my-4" type="Submit" name="" value="Login"><a href="#" class="white-text">Log In</a></button>
+            
+                <div class="text-center">
+                    <p>Not a member?
+                        <a href="{% url 'BAI_app_v2:signup' %}">Register</a>
+                    </p>
+                </div>
+            </form>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {% endblock %}

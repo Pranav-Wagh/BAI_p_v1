@@ -1,0 +1,78 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+
+<div class="flex-center flex-column col-sm">
+    <br><br><br>
+    <div class="card flex-center flex-column col-sm sunny-morning-gradient" style="width: 100%;">
+        <br>
+        <h2 class="display-5 font-weight-bold">User Profile</h2>
+        <br><br>
+        <div class="row" style="width: 50%;">
+            <!--Grid column-->
+            <div class="col-sm">
+                <i class="fas fa-user fa-6x"></i>
+            </div>
+            <div class="col-md-6 mb-4 black-text text-center text-md-center">
+                <h3 class="font-weight-bold"><strong>Welcome {{request.user}}</strong></h3>
+                <h3 class="font-weight-bold"><strong><span>{{request.ParticipantInfo.company_nm}}</span></strong></h3>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container flex-center flex-column">
+        <div class="col-12 col-sm-6 col-lg-8 font-weight-bold">
+            <br>
+            <div class="row">
+                <div class="col-sm">
+                    <label class="h4" for="">Name of Applicant : </label>
+                </div>
+                <div class="col-sm">
+                    <span class="h4 ">{{request.user}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <label class="h4" for="">Name of Firm / Company  : </label>
+                </div>
+                <div class="col-sm">
+                    <span class="h4">{{request.company_nm}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <label class="h4" for="">Designation of Applicant : </label><br>
+                </div>
+                <div class="col-sm">
+                    <span class="h4">{{request.ParticipantInfo.applicant_desig}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <label class="h4" for="">Address : </label> <br>
+                </div>
+                <div class="col-sm">
+                    <span class="h4">{{request.ParticipantInfo.address}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <label class="h4" for="">Email : </label> <br>
+                </div>
+                <div class="col-sm">
+                    <span class="h4">{{request.user.email}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <label class="h4" for="">Phone No : </label><br>
+                </div>
+                <div class="col-sm">
+                    <span class="h4">{{request.ParticipantInfo.ph_no}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

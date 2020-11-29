@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design for Bootstrap</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Start your project here-->
+  <div class="flex-center flex-column">
+    <ul class="nav nav-pills mb-3" id="step-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="step-1-tab" data-toggle="pill" href="#step-1" role="tab"
+            aria-controls="pills-1" aria-selected="true">Step 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="step-2-tab" data-toggle="pill" href="#step-2" role="tab"
+            aria-controls="step-2" aria-selected="false">Step 2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="step-3-tab" data-toggle="pill" href="#step-3" role="tab"
+            aria-controls="step-3" aria-selected="false">Step 3</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="step-4-tab" data-toggle="pill" href="#step-4" role="tab"
+            aria-controls="step-4" aria-selected="false">Step 4</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="step-5-tab" data-toggle="pill" href="#step-5" role="tab"
+            aria-controls="step-5" aria-selected="false">Step 5</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="step-6-tab" data-toggle="pill" href="#step-6" role="tab"
+            aria-controls="step-6" aria-selected="false">Step 6</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="step-7-tab" data-toggle="pill" href="#step-7" role="tab"
+            aria-controls="step-7" aria-selected="false">Step 7</a>
+        </li>
+      </ul>
+      <div class="tab-content pt-2 pl-1" id="step-tabContent">
+        <div class="tab-pane fade show active" id="step-1" role="tabpanel" aria-labelledby="step-1-tab">
+            <form class="border border-light p-5" >
+                <div id='step-1'>
+                    <p class="h4 mb-4 text-center">General Information about Project</p>
+                    <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+
+                    <input class="form-control mb-4" id="defaultRegisterFormFirstName" type="text" placeholder="Name of Project *">
+
+                    <input class="form-control mb-4" id="textInput" type="text" placeholder="Address of Project with Land Mark *">
+
+                    <div class="input-group mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput" multiple>
+                            <label class="custom-file-label" for="fileInput">Site Map</label>
+                        </div>
+                    </div>
+
+                    <input class="form-control mb-4" id="textInput" type="text" placeholder="Name of the Client *">
+
+                    <input class="form-control mb-4" id="textInput" type="text" placeholder="Project Cost in Rs. *">
+
+                    <input class="form-control mb-4" id="textInput" type="text" placeholder="Applicants role with the project *">
+
+                    <input class="form-control mb-4" id="textInput" type="text" placeholder="Applicants scope *">
+
+                    <input class="form-control mb-4" id="textInput" type="text" placeholder="Cost of Applicant’s works *">
+
+                    <div id="date-picker-example" class="md-form md-outline datepicker" inline="true">
+                        <input placeholder="Select date" type="date" id="example" class="form-control">
+                        <label for="date-picker-example">Date of Commencement of work *</label>
+                    </div>
+                    <div id="date-picker-example" class="md-form md-outline datepicker" inline="true">
+                        <input placeholder="Select date" type="date" id="example" class="form-control">
+                        <label for="date-picker-example">Date of Completion, Scheduled *</label>
+                    </div>
+                    <div id="date-picker-example" class="md-form md-outline datepicker" inline="true">
+                        <input placeholder="Select date" type="date" id="example" class="form-control">
+                        <label for="date-picker-example">Date of Virtual Completion, Actual *</label>
+                    </div>
+
+                    <input class="form-control mb-4" id="textInput" type="text" placeholder="Cost of Project Completed Till Date *">
+
+
+
+                    <button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='steps.html'">Next</button>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="step-2" role="tabpanel" aria-labelledby="step-2-tab">
+            <form class="border border-light p-5">
+
+                <p class="h4 mb-4 text-center">Names of Consultants appointed:</p>
+                <input type="text" id="textInput" class="form-control mb-4" placeholder="Architect">
+                <input type="text" id="textInput" class="form-control mb-4" placeholder="Structural Consultant">
+                <input type="text" id="textInput" class="form-control mb-4" placeholder="Plumbing Consultant">
+                <input type="text" id="textInput" class="form-control mb-4" placeholder="Fire Consultant">
+                <input type="text" id="textInput" class="form-control mb-4" placeholder="Landscaping Consultant">
+                <input type="text" id="textInput" class="form-control mb-4" placeholder="HVAC Consultant">
+                <input type="text" id="textInput" class="form-control mb-4" placeholder="Electrical Consultant">
+                <input type="text" id="textInput" class="form-control mb-4" placeholder="Interior Designer, if any">
+                <input type="text" id="textInput" class="form-control mb-4" placeholder="Project Management Consultant">
+                <input type="text" id="textInput" class="form-control mb-4" placeholder="MoEF Consultant">
+                <label for="textInput"><b>Approvals, NOCs, certificates from PMC, PH Dept.,<br>
+                    CFO, MoEF, GRIHA etc. (attach copies)</b></label>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput" multiple>
+                        <label class="custom-file-label" for="fileInput">Select multiple files, if any</label>
+                    </div>
+                </div>
+                <label for="textInput"><b>Is the project rated as green project?</b></label>
+                <!-- Default unchecked -->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                        <label class="custom-control-label" for="defaultUnchecked">YES</label>
+                    </div>
+                    <!-- Default checked -->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" checked>
+                        <label class="custom-control-label" for="defaultChecked">NO</label>
+                    </div>
+                <label for="textInput"><b>If yes, give details(attach copies)</b></label>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput" multiple>
+                        <label class="custom-file-label" for="fileInput">Select multiple files, if any</label>
+                    </div>
+                </div>
+                <button class="btn btn-info btn-block my-4" type="button" >Next</button>
+
+            </form>
+        </div>
+        <!--quality-->
+        <div class="tab-pane fade" id="step-3" role="tabpanel" aria-labelledby="step-3-tab">
+            <form class="border border-light p-5" >
+                <p class="h4 mb-4 text-center">Quality</p>
+                <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+                <div class="form-row">
+                  <div class="col-9">
+                    <label for="textInput"><b>1. Was there a system for coordinating of all drawings?</b></label>
+                  </div>
+                  <div class="col-3">
+                    <div class="mt-0">
+                      <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
+                        <input type="radio" name="timedefined">YES
+                      </label>
+                      &emsp;
+                      <label class="radio-inline">
+                      <input type="radio" name="timedefined">NO
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                  <div class="collapse" id="collapseExample1">
+                    <div class="mt-3">
+                      <div class="form-row">
+                        <div class="col-9">
+                          <label><b> If yes it was done by whom?</b></label><br>
+                        </div>
+                        <div class="col-3">
+                          <div class="md-form mt-0">
+                            <input type="text"  placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-9">
+                      <label for="textInput"><b>2. Was there a separate PMC for the project?</b></label>
+                    </div>
+                    <div class="col-3">
+                      <div class="mt-0">
+                        <label class="radio-inline">
+                          <input type="radio" name="check">YES
+                        </label>
+                        &emsp;
+                        <label class="radio-inline">
+                        <input type="radio" name="check">NO
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-9">
+                      <label for="textInput"><b>3. Were the drawings and specifications assessed in-
+                        house or consultants, in terms of possible quality
+                        improvement? *</b></label>
+                    </div>
+                    <div class="col-3">
+                      <div class="mt-0">
+                        <label class="radio-inline">
+                          <input type="radio" name="check">YES
+                        </label>
+                        &emsp;
+                        <label class="radio-inline">
+                        <input type="radio" name="check">NO
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-9">
+                      <label for="textInput"><b>4. What was the frequency of Consultants’ site visit?</b></label><br>
+                    </div>
+                    <div class="col-3">
+                      <div class="md-form mt-0">
+                        <input type="text"  placeholder="in Hz">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-9">
+                      <label for="textInput"><b>5. Were the decisions recorded in the site instruction book
+                        or minutes of meeting? *</b></label>
+                    </div>
+                    <div class="col-3">
+                      <div class="mt-0">
+                        <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample2">
+                          <input type="radio" name="timedefined">YES
+                        </label>
+                        &emsp;
+                        <label class="radio-inline">
+                        <input type="radio" name="timedefined">NO
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="collapse" id="collapseExample2">
+                      <div class="mt-3">
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label><b> If yes, please submit a sample of such minutes of
+                              meeting and/or instruction book.</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <div class="input-group">
+                                <div class="custom-file">
+                                  <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                    aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="inputGroupFile01">Instruction book.</label>
+                                </div>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-9">
+                        <label for="textInput"><b>6. Were Quality Standards mentioned in the Tender? *</b></label>
+                      </div>
+                      <div class="col-3">
+                        <div class="mt-0">
+                          <label class="radio-inline" >
+                            <input type="radio" name="timedefined">YES
+                          </label>
+                          &emsp;
+                          <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample3">
+                          <input type="radio" name="timedefined">NO
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                      <div class="collapse" id="collapseExample3">
+                        <div class="mt-3">
+                          <div class="form-row">
+                            <div class="col-9">
+                              <label><b> If not, who defined the quality standards? *</b></label><br>
+                            </div>
+                            <div class="col-3">
+                              <div class="md-form mt-0">
+                                <input type="text"  placeholder="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-9">
+                          <label for="textInput"><b>7.Was there an in-house team to control quality?</b></label>
+                        </div>
+                        <div class="col-3">
+                          <div class="mt-0">
+                            <label class="radio-inline">
+                              <input type="radio" name="check">YES
+                            </label>
+                            &emsp;
+                            <label class="radio-inline">
+                            <input type="radio" name="check">NO
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-9">
+                          <label for="textInput"><b>8.Was there an external team to control quality?</b></label>
+                        </div>
+                        <div class="col-3">
+                          <div class="mt-0">
+                            <label class="radio-inline">
+                              <input type="radio" name="check">YES
+                            </label>
+                            &emsp;
+                            <label class="radio-inline">
+                            <input type="radio" name="check">NO
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-8">
+                          <label for="textInput"><b>9.List quality assurance tests carried out - On the site. *</b></label><br>
+                        </div>
+                        <div class="col-4">
+                          <div class="md-form mt-0">
+                            <input class="form-control" type="text"  placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-8">
+                          <label for="textInput"><b>10.List quality assurance tests carried out - Off the site. *</b></label><br>
+                        </div>
+                        <div class="col-4">
+                          <div class="md-form mt-0">
+                            <input class="form-control" type="text"  placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-9">
+                          <label for="textInput"><b>11.Submit sample Checklist followed.</b></label><br>
+                        </div>
+                        <div class="col-3">
+                          <div class="md-form mt-0">
+                            <div class="input-group">
+                              <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                  aria-describedby="inputGroupFileAddon01">
+                                  <label class="custom-file-label" for="inputGroupFile01">Checklist followed.</label>
+                              </div>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-9">
+                          <label for="textInput"><b>12.Submit sample test reports.</b></label><br>
+                        </div>
+                        <div class="col-3">
+                          <div class="md-form mt-0">
+                            <div class="input-group">
+                              <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                  aria-describedby="inputGroupFileAddon01">
+                                  <label class="custom-file-label" for="inputGroupFile01">Test reports.</label>
+                              </div>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-9">
+                          <label for="textInput"><b>13. Were there any special training programs for
+                            Supervisory staff during execution?</b></label>
+                        </div>
+                        <div class="col-3">
+                          <div class="mt-0">
+                            <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample4">
+                              <input type="radio" name="timedefined">YES
+                            </label>
+                            &emsp;
+                            <label class="radio-inline" >
+                            <input type="radio" name="timedefined">NO
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                        <div class="collapse" id="collapseExample4">
+                          <div class="mt-3">
+                            <div class="form-row">
+                              <div class="col-8">
+                                <label><b> If Yes, Provide details. *</b></label><br>
+                              </div>
+                              <div class="col-4">
+                                <div class="md-form mt-0">
+                                  <input class="form-control" type="text"  placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>14. Were there any special training programs for workers during execution?</b></label>
+                          </div>
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample5">
+                                <input type="radio" name="timedefined">YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline" >
+                              <input type="radio" name="timedefined">NO
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                          <div class="collapse" id="collapseExample5">
+                            <div class="mt-3">
+                              <div class="form-row">
+                                <div class="col-8">
+                                  <label><b> If Yes, Provide details. *</b></label><br>
+                                </div>
+                                <div class="col-4">
+                                  <div class="md-form mt-0">
+                                    <input class="form-control" type="text"  placeholder="">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-9">
+                              <label for="textInput"><b>15.Was there any Supervision from Clients side directly? *</b></label>
+                            </div>
+                            <div class="col-3">
+                              <div class="mt-0">
+                                <label class="radio-inline">
+                                  <input type="radio" name="check">YES
+                                </label>
+                                &emsp;
+                                <label class="radio-inline">
+                                <input type="radio" name="check">NO
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-row">
+                            <div class="col-8">
+                              <label for="textInput"><b>16. Any other system / method / mechanism adopted for
+                                Quality improvement?<br> Provide a separate Note. **</b></label><br>
+                            </div>
+                            <div class="col-4">
+                              <div class="md-form mt-0">
+                                <input class="form-control" type="text"  placeholder="">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-8">
+                              <label for="textInput"><b>17. How would you rate your project in terms of quality on a
+                                scale of 1 to 10 <br> (1: Lowest, 10:Highest) *</b></label><br>
+                            </div>
+                            <div class="col-4">
+                              <div class="md-form mt-0">
+                                <input class="form-control" type="text"  placeholder="">
+                              </div>
+                            </div>
+                          </div>
+
+
+                <button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='steps.html'">Next</button>
+            </form>
+        </div>
+        <!--quality-->
+
+
+
+        <div class="tab-pane fade" id="step-4" role="tabpanel" aria-labelledby="step-4-tab">
+          <form class="border border-light p-5" >
+            <p class="h4 mb-4 text-center">Speed</p>
+            <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+            <div class="form-row">
+              <div class="col-9">
+                <label for="textInput"><b>1. In case of a Tender, was the time line defined in
+                  the Tender? *</b></label>
+              </div>
+              <div class="col-3">
+                <div class="mt-0">
+                  <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
+                    <input type="radio" name="timedefined">YES
+                  </label>
+                  &emsp;
+                  <label class="radio-inline">
+                  <input type="radio" name="timedefined">NO
+                  </label>
+                </div>
+              </div>
+            </div>
+              <div class="collapse" id="collapseExample1">
+                <div class="mt-3">
+                  <div class="form-row">
+                    <div class="col-9">
+                      <label><b>If not, who determined the Project Time frame? *</b></label><br>
+                    </div>
+                    <div class="col-3">
+                      <div class="md-form mt-0">
+                        <input type="text"  placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>2. Was the project being tracked in terms of time
+                    during the progress of work?</b></label>
+                </div>
+                <div class="col-3">
+                  <div class="mt-0">
+                    <label class="radio-inline">
+                      <input type="radio" name="check">YES
+                    </label>
+                    &emsp;
+                    <label class="radio-inline">
+                    <input type="radio" name="check">NO
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>3. Was there a separate PMC appointed? *</b></label>
+                </div>
+                <div class="col-3">
+                  <div class="mt-0">
+                    <label class="radio-inline">
+                      <input type="radio" name="check">YES
+                    </label>
+                    &emsp;
+                    <label class="radio-inline">
+                    <input type="radio" name="check">NO
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>4. Were the drawings, specifications and techniques
+                    assessed <br> in terms of possible time reduction? *</b></label>
+                </div>
+                <div class="col-3">
+                  <div class="mt-0">
+                    <label class="radio-inline">
+                      <input type="radio" name="check">YES
+                    </label>
+                    &emsp;
+                    <label class="radio-inline">
+                    <input type="radio" name="check">NO
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>5. Was there a separate group / individual tracking
+                    progress planned v/s actual?</b></label>
+                </div>
+                <div class="col-3">
+                  <div class="mt-0">
+                    <label class="radio-inline">
+                      <input type="radio" name="check">YES
+                    </label>
+                    &emsp;
+                    <label class="radio-inline">
+                    <input type="radio" name="check">NO
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                    <label for="textInput"><b>6. What was the expected period of completion of the
+                      project? *</b></label><br>
+                </div>
+                <div class="col-3">
+                  <div class="md-form mt-0">
+                    <input type="text"  placeholder="in months">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                    <label for="textInput"><b>7. What was the actual period of completion of the
+                      project? *</b></label><br>
+                </div>
+                <div class="col-3">
+                  <div class="md-form mt-0">
+                    <input type="text"  placeholder="in months">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>8. During execution, did you encounter any difficulty
+                    that resulted in variance of work?</b></label>
+                </div>
+                <div class="col-3">
+                  <div class="mt-0">
+                    <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample2">
+                      <input type="radio" name="timedefined">YES
+                    </label>
+                    &emsp;
+                    <label class="radio-inline">
+                    <input type="radio" name="timedefined">NO
+                    </label>
+                  </div>
+                </div>
+              </div>
+                <div class="collapse" id="collapseExample2">
+                  <div class="mt-3">
+                    <div class="form-row">
+                      <div class="col-9">
+                          <label for="textInput"><b>If yes, how much time did you loose on that
+                            account?</b></label><br>
+                      </div>
+                      <div class="col-3">
+                        <div class="md-form mt-0">
+                          <input type="text"  placeholder="in months">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <div class="form-row">
+                <div class="col-9">
+                    <label for="textInput"><b>9. What degree of mechanization was done by you
+                      on site?</b></label><br>
+                </div>
+                <div class="col-3">
+                  <div class="md-form mt-0">
+                    <input type="text"  placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                    <label for="textInput"><b>10. How did it contribute to improvement in speed of
+                      work?</b></label><br>
+                </div>
+                <div class="col-3">
+                  <div class="md-form mt-0">
+                    <input type="text"  placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>11. In Case of Tender, were the payments received by
+                    you as per Tender terms? *</b></label>
+                </div>
+                <div class="col-3">
+                  <div class="mt-0">
+                    <label class="radio-inline">
+                      <input type="radio" name="check">YES
+                    </label>
+                    &emsp;
+                    <label class="radio-inline">
+                    <input type="radio" name="check">NO
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-9">
+                    <label for="textInput"><b>12. What suggestions were made by you to improve
+                      the speed of the Project? *</b></label><br>
+                </div>
+                <div class="col-3">
+                  <div class="md-form mt-0">
+                    <input type="text"  placeholder="">
+                  </div>
+                </div>
+              </div>
+                <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>13. How would you rate your project in terms of Speed
+                    on a scale of 1 to 10 <br>
+                    (1: Lowest, 10:Highest) *</b></label><br>
+              </div>
+                <div class="col-3">
+                  <div class="md-form mt-0">
+                    <input type="text"  placeholder="">
+                  </div>
+                </div>
+              </div>
+
+            <button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='steps.html'">Next</button>
+          </form>
+        </div>
+
+
+        <!-- 4 -->
+        <div class="tab-pane fade" id="step-5" role="tabpanel" aria-labelledby="step-5-tab">
+          <form class="border border-light p-5" >
+              <p class="h4 mb-4 text-center">Economy</p>
+              <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+              <div class="form-row">
+                <div class="col-9">
+                    <label for="textInput"><b>1. In case of a Tender, what was the project cost as
+                      per the contract? *</b></label><br>
+                </div>
+                <div class="col-3">
+                  <div class="md-form mt-0">
+                    <input type="text"  placeholder="in Rs">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                    <label for="textInput"><b>2. If not, who determined the Estimated Project Cost? *</b></label><br>
+                </div>
+                <div class="col-3">
+                  <div class="md-form mt-0">
+                    <input type="text"  placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>3. Were the drawings, specifications and techniques
+                    assessed in terms of possible cost reduction? *</b></label>
+                </div>
+                <div class="col-3">
+                  <div class="mt-0">
+                    <label class="radio-inline" >
+                      <input type="radio" name="timedefined">YES
+                    </label>
+                    &emsp;
+                    <label class="radio-inline">
+                    <input type="radio" name="timedefined">NO
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>4. Was the project being tracked in terms of cost
+                    during progress of work?</b></label>
+                </div>
+                <div class="col-3">
+                  <div class="mt-0">
+                    <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
+                      <input type="radio" name="timedefined">YES
+                    </label>
+                    &emsp;
+                    <label class="radio-inline">
+                    <input type="radio" name="timedefined">NO
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="collapse" id="collapseExample1">
+                <div class="mt-3">
+                  <div class="form-row">
+                    <div class="col-9">
+                        <label for="textInput"><b>If yes, by whom? *</b></label><br>
+                    </div>
+                    <div class="col-3">
+                      <div class="md-form mt-0">
+                        <input type="text"  placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div class="form-row">
+                  <div class="col-9">
+                    <label for="textInput"><b>5. Was there a separate PMC appointed?</b></label>
+                  </div>
+                  <div class="col-3">
+                    <div class="mt-0">
+                      <label class="radio-inline">
+                        <input type="radio" name="check">YES
+                      </label>
+                      &emsp;
+                      <label class="radio-inline">
+                      <input type="radio" name="check">NO
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-9">
+                      <label for="textInput"><b>6. What was the Expected cost of completion of the
+                        project? *</b></label><br>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-9">
+                      <label for="textInput"><b>7. What was the actual cost of completion of the
+                        project? *</b></label><br>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="col-9">
+                    <label for="textInput"><b>8. During execution did you encounter any difficulty
+                      that resulted in cost escalation of work?</b></label>
+                  </div>
+                  <div class="col-3">
+                    <div class="mt-0">
+                      <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
+                        <input type="radio" name="timedefined">YES
+                      </label>
+                      &emsp;
+                      <label class="radio-inline">
+                      <input type="radio" name="timedefined">NO
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                  <div class="collapse" id="collapseExample1">
+                    <div class="mt-3">
+                      <div class="form-row">
+                        <div class="col-9">
+                            <label for="textInput"><b>If yes, how much escalation would you attribute on
+                              that account?</b></label><br>
+                        </div>
+                        <div class="col-3">
+                          <div class="md-form mt-0">
+                            <input type="text"  placeholder="in Rs">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="form-row">
+                  <div class="col-9">
+                      <label for="textInput"><b>9. Enlist the cost saving measures adopted by you
+                        during execution. <br> Provide separate note. *</b></label><br>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-9">
+                      <label for="textInput"><b>10. Enlist any suggestions made by you to the client
+                        for reduction in cost.</b></label><br>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <label><b>11. Cost of project per: *</b></label><br>
+                <div class="form-row">
+                  <div class="col-9">
+                      <label for="textInput"><b>&emsp;Sft of built up area</b></label><br>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-9">
+                      <label for="textInput"><b>&emsp;Room, in case of hotel  </b></label><br>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-9">
+                      <label for="textInput"><b>&emsp;Bed, in case of hospital</b></label><br>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-9">
+                      <label for="textInput"><b>&emsp;Workstation, in case of office</b></label><br>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-9">
+                      <label for="textInput"><b>&emsp;Similar</b></label><br>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>12. How would you rate your project in terms of Economy
+                    on a scale of 1 to 10 <br>
+                    (1: Lowest, 10:Highest) *</b></label><br>
+                </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+
+              <button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='steps.html'">Next</button>
+          </form>
+        </div>
+
+
+        <!--5-->
+        <div class="tab-pane fade" id="step-6" role="tabpanel" aria-labelledby="step-6-tab">
+          <form class="border border-light p-5" >
+              <p class="h4 mb-4 text-center">Safety/Welfare</p>
+              <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+              <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>1. Was safety on site being monitored?*</b></label>
+                </div>
+                <div class="col-3">
+                  <div class="mt-0">
+                    <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
+                      <input type="radio" name="timedefined">YES
+                    </label>
+                    &emsp;
+                    <label class="radio-inline">
+                    <input type="radio" name="timedefined">NO
+                    </label>
+                  </div>
+                </div>
+              </div>
+                <div class="collapse" id="collapseExample1">
+                  <div class="mt-3">
+                    <div class="form-row">
+                      <div class="col-9">
+                          <label for="textInput"><b>If yes, by whom? *</b></label><br>
+                      </div>
+                      <div class="col-3">
+                        <div class="md-form mt-0">
+                          <input type="text"  placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <div class="form-row">
+                <div class="col-9">
+                    <label for="textInput"><b>2. Enlist safety measures / equipment adopted on site <br>
+                      during execution in terms of Barricading, signage,
+                      nets, <br> firefighting, equipment to workers, safe <br>
+                      electrical supply etc. *</b></label><br>
+                </div>
+                <div class="col-3">
+                  <div class="md-form mt-0">
+                    <input type="text"  placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>3. Was medical aid available on site during execution?</b></label>
+                </div>
+                <div class="col-3">
+                  <div class="mt-0">
+                    <label class="radio-inline" >
+                      <input type="radio" name="timedefined">YES
+                    </label>
+                    &emsp;
+                    <label class="radio-inline">
+                    <input type="radio" name="timedefined">NO
+                    </label>
+                  </div>
+                </div>
+              </div>
+                <div class="form-row">
+                  <div class="col-9">
+                    <label for="textInput"><b>4. Were there any safety related incidents or near-miss
+                      on site? *</b></label>
+                  </div>
+                  <div class="col-3">
+                    <div class="mt-0">
+                      <label class="radio-inline">
+                        <input type="radio" name="check">YES
+                      </label>
+                      &emsp;
+                      <label class="radio-inline">
+                      <input type="radio" name="check">NO
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-7">
+                    <label for="textInput"><b>5. Provide documents showing safety audits, if done.</b></label><br>
+                  </div>
+                  <div class="col-5">
+                    <div class="mt-0">
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="inputGroupFile01"
+                            aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Upload Documents.</label>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              <button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='steps.html'">Next</button>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="step-7" role="tabpanel" aria-labelledby="step-7-tab">
+          <form class="border border-light p-5" >
+              <p class="h4 mb-4 text-center">Others</p>
+              <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+              <div class="form-row">
+                <div class="col-7">
+                  <label for="textInput"><b>1. What arrangements were made on site for workers
+                    accommodation? <br> Provide Photographs. *</b></label><br>
+                </div>
+                <div class="col-5">
+                  <div class="mt-0">
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01"
+                          aria-describedby="inputGroupFileAddon01">
+                          <label class="custom-file-label" for="inputGroupFile01">Upload Documents.</label>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-7">
+                  <label for="textInput"><b>2. What sanitary arrangements were made on site for <br>
+                  workers? <br> Provide Photographs. *</b></label><br>
+                </div>
+                <div class="col-5">
+                  <div class="mt-0">
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01"
+                          aria-describedby="inputGroupFileAddon01">
+                          <label class="custom-file-label" for="inputGroupFile01">Upload Documents.</label>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-7">
+                  <label for="textInput"><b>3. Was Crèche and/or school provided for workers
+                    children on site?<br> Provide Photographs.</b></label><br>
+                </div>
+                <div class="col-5">
+                  <div class="mt-0">
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01"
+                          aria-describedby="inputGroupFileAddon01">
+                          <label class="custom-file-label" for="inputGroupFile01">Upload Documents.</label>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-7">
+                  <label for="textInput"><b>4. Enlist any pollution control measures adopted <br>
+                    during construction to address sound pollution, air <br>
+                    pollution, water pollution, waste disposal. <br>
+                    Provide Photographs. *</b></label><br>
+                </div>
+                <div class="col-5">
+                  <div class="mt-0">
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01"
+                          aria-describedby="inputGroupFileAddon01">
+                          <label class="custom-file-label" for="inputGroupFile01">Upload Documents.</label>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-9">
+                  <label for="textInput"><b>5. Does your company have any quality accreditation
+                    such as ISO?</b></label>
+                </div>
+                <div class="col-3">
+                  <div class="mt-0">
+                    <label class="radio-inline" >
+                      <input type="radio" name="timedefined">YES
+                    </label>
+                    &emsp;
+                    <label class="radio-inline">
+                    <input type="radio" name="timedefined">NO
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <label for="textInput"><b>6. What are the water and energy conservation
+                measures <br> adopted thereby reducing green house
+                gas emissions? *</b></label>
+                <div class="form-row">
+                  <div class="col-9">
+                    <label for="textInput"><b>&emsp;a. During construction</b></label>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                        <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-9">
+                    <label for="textInput"><b>&emsp;b. During occupancy</b></label>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                        <input type="text"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <label for="textInput"><b>7. Specify with proof what are the actions taken to <br>
+                  maximize use of renewable energy resources.</b></label>
+                  <div class="form-row">
+                    <div class="col-6">
+                      <div class="md-form mt-0">
+                        <input class="form-control" type="text"  placeholder="">
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="inputGroupFile01"
+                            aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Proof.</label>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-9">
+                      <label for="textInput"><b>8. Mention measures taken to follow Green Building
+                        norms.</b></label>
+                    </div>
+                    <div class="col-3">
+                      <div class="md-form mt-0">
+                          <input type="text"  placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-9">
+                      <label for="textInput"><b>9. How effectively you have maintained debris
+                        management at site?</b></label>
+                    </div>
+                    <div class="col-3">
+                      <div class="md-form mt-0">
+                          <input type="text"  placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-9">
+                      <label for="textInput"><b>10. How many Seminars / Workshops attended by your <br>
+                        representative, arranged by BAI or any other
+                        organization?</b></label>
+                    </div>
+                    <div class="col-3">
+                      <div class="md-form mt-0">
+                          <input type="text"  placeholder="">
+                      </div>
+                    </div>
+                  </div>
+              <button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='steps.html'">Next</button>
+
+              <p><em>NOTE: Please keep all relevant document ready at site for verification / inspection
+                  during the visit of juries.</em> </p>
+          </form>
+        </div>
+      </div>
+  </div>
+  <!-- End your project here-->
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Your custom scripts (optional) -->
+  <script type="text/javascript" src="js/myjs.js"></script>
+
+</body>
+</html>

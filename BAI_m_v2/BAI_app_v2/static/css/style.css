@@ -1,0 +1,63 @@
+html,
+body,
+header,
+.view {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 1000px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 650px;
+  }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+  .navbar:not(.top-nav-collapse) {
+     background: #4476db!important;
+  }
+}
+/* Navbar animation */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.3); }
+
+.top-nav-collapse {
+  background-color:  #4476db; }
+
+/* Adding color to the Navbar on mobile */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #4476db; } }
+
+/* Footer color for sake of consistency with Navbar */
+.page-footer {
+  background-color: #4476db; }
+
+thead{
+  background-color: #ff5e56;
+}
+
+#topButton {
+  /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 50px; /* Place the button at the bottom of the page */
+  right: 50px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+}
+
+#topButton:hover {
+  background-color: #1C2331; /* Add a dark-grey background on hover */
+}
