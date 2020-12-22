@@ -15,8 +15,7 @@ def home(request):
 @login_required
 def participant_logout(request):
     logout(request)
-    return redirect('/BAI_app_v2/user_login/')
-
+    return render(request,'BAI_app_v2/user_login.html')
 
 
 def signup(request):
@@ -63,7 +62,7 @@ def user_login(request):
 
         if user123 is not None:
             login(request,user123)
-            return render(request,'BAI_app_v2/user_landing.html',{})
+            return render(request,'BAI_app_v2/user_landing.html',{'user123':user123})
         else:
             #print("Someone tried and failed to login!!")
             #print("Email used:{} and password used: {}".format(username,password))

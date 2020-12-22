@@ -39,8 +39,8 @@
                 <strong><br>Already a Member of BAI?<br>Log In to fill up the Application Form<br></strong>
                 <button type="button" class="btn btn-indigo"><a href="{% url 'BAI_app_v2:user_login' %}" class="text-white"></a>Log In</button>
                 {% else %}
-                <strong><br>Log Out from my Account</strong>
-                <button type="button" class="btn btn-indigo"><a href="{% url 'logout' %}" class="text-white"></a>Log Out</button>
+                <strong><br>Log Out from my Account<br></strong>
+                <button type="button" class="btn btn-indigo"><a href="{% url 'BAI_app_v2:logout' %}" class="text-white"></a>Log Out</button>
                 {% endif %}
 
               </p>
