@@ -36,11 +36,11 @@
                 <button type="button" class="btn btn-indigo"><a href="{% url 'BAI_app_v2:signup' %}" class="text-white" >Sign Up</a></button>
               
                 {% if user123.is_authenticated %}
+                <strong><br>Log Out from {{request.user}} Account<br></strong>
+                <button type="button" class="btn btn-indigo"><a href="{% url 'BAI_app_v2:participant_logout' %}" class="text-white"></a>Log Out</button>
+                {% else %}
                 <strong><br>Already a Member of BAI?<br>Log In to fill up the Application Form<br></strong>
                 <button type="button" class="btn btn-indigo"><a href="{% url 'BAI_app_v2:user_login' %}" class="text-white"></a>Log In</button>
-                {% else %}
-                <strong><br>Log Out from my Account<br></strong>
-                <button type="button" class="btn btn-indigo"><a href="{% url 'BAI_app_v2:logout' %}" class="text-white"></a>Log Out</button>
                 {% endif %}
 
               </p>

@@ -15,7 +15,7 @@ def home(request):
 @login_required
 def participant_logout(request):
     logout(request)
-    return render(request,'BAI_app_v2/user_login.html')
+    return render(request,'BAI_app_v2/login.html')
 
 
 def signup(request):
@@ -61,13 +61,18 @@ def user_login(request):
         user123 = authenticate(request,username=username,password=password)
 
         if user123 is not None:
-            login(request,user123)
-            return render(request,'BAI_app_v2/user_landing.html',{'user123':user123})
+            if user123.is_active:
+                login(request,user123)
+                return render(request,'BAI_app_v2/user_landing.html',{'user123':user123})
+
+            else:
+                return HttpResponse("Account not Active!")
+
         else:
             #print("Someone tried and failed to login!!")
             #print("Email used:{} and password used: {}".format(username,password))
             message="Check the details again"
-            return render(request,'BAI_app_v2/login.html',{'message':message})
+            return render(request,'BAI_app_v2/login.html',{'message':message,'user123':user123})
     else:
         return render(request,'BAI_app_v2/login.html',{})
 

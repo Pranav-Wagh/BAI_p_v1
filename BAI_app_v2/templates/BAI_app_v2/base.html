@@ -42,10 +42,6 @@
       </a>
 
       <!-- Collapse -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
       <!-- Links -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -81,13 +77,13 @@
           </li>-->
           {% if user123.is_authenticated %}
             <li class="nav-item ">
-                <a class="nav-link border border-light rounded" href="{% url 'BAI_app_v2:logout' %}">Log Out</a>
+                <a class="nav-link border border-light rounded" href="{% url 'BAI_app_v2:participant_logout' %}">Log Out</a>
             </li>
-            {% else %}
+          {% else %}
             <li class="nav-item ">
                 <a class="nav-link border border-light rounded" href="{% url 'BAI_app_v2:user_login' %}">Log In</a>
             </li>
-            {% endif %}
+          {% endif %}
         </ul>
 
       </div>
