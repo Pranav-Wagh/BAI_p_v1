@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
 from BAI_app_v2.forms import ParticipantInfoForm,SignUpForm,SpeedForm,SafetynWellfareForm,OthersForm,EconomyForm,Project_infoForm,QualityForm,CategoryForm,PaymentDetailsForm
 
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate,login,logout,update_session_auth_hash
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.forms import PasswordChangeForm
 
 # Create your views here.
 
@@ -248,5 +249,26 @@ def form3(request):
     messages.info(request, 'Payment Details filled successfully!!')
     messages.info(request, 'Application From filled sussessfully!!')
     return render(request,'BAI_app_v2/form3.html',{'payment_cat':payment_cat,'filled3':filled3})
+
+
+@login_required(login_url='/BAI_app_v2/user_login/')
+def change_pass(request):
+
+    if request.method == 'POST':
+        changePass = PasswordChangeForm(user=request.user,data=request.POST)
+        if changePass.is_valid():
+            changePass.save()
+            # print(changePass)
+            #update_session_auth_hash(request,changePass.user)
+            return HttpResponse("Password Changed Successfully")
+
+        # else:
+        #     #print("old:{} new1:{} new2:{}".format(old_password,new_password1,new_password2))
+        #     print(changePass)
+        #     return HttpResponse("Request for Change Password Failed!")
+
+    else:
+        changePass = PasswordChangeForm(user=request.user)
+    return render(request,'BAI_app_v2/changePassword.html',{'changePass':changePass})
 
 

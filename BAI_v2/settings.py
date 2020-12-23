@@ -139,3 +139,10 @@ MEDIA_URL = '/media/'
 
 LOGIN_URL = '/BAI_app_v2/login'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_POST = '587'
+EMAIL_HOST_USER = 'pranav14112000@gmail.com'
+EMAIL_HOST_PASSWORD = 'pmfrshyivvumpmaa'
+EMAIL_USE_TLS = True
+
