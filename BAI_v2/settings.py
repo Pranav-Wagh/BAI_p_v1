@@ -142,7 +142,7 @@ LOGIN_URL = '/BAI_app_v2/login'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_POST = '587'
-EMAIL_HOST_USER = 'your_email'
-EMAIL_HOST_PASSWORD = 'your_password'
+EMAIL_HOST_USER = 'pranav.14112000@gmail.com'
+EMAIL_HOST_PASSWORD = 'pmfrshyivvumpmaa'
 EMAIL_USE_TLS = True
-
+DEFAULT_FROM_EMAIL = 'noreply<no_reply@domain.com>'

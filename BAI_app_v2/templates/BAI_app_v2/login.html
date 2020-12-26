@@ -25,17 +25,23 @@
                 <div class="md-form">
                   <i class="fas fa-envelope prefix"></i>
                   <label class="mb-0 ml-2" for="Email"></label>
-                  <input type="text" id="defaultLoginFormEmail" name="username" class="form-control mb-4" placeholder="Username">
+                  <input type="text" id="defaultLoginFormEmail" name="username" class="form-control mb-4" placeholder="Username" required>
                 </div>
                 <div class="md-form">
                   <i class="fas fa-unlock prefix"></i>              
                   <label class="mb-0 ml-2" for="password"></label>
-                  <input type="password" id="defaultLoginFormPassword" name="password" class="form-control mb-4" placeholder="Password">
+                  <input type="password" id="defaultLoginFormPassword" name="password" class="form-control mb-4" placeholder="Password" required>
                 </div>
                 <div class="g-recaptcha" data-sitekey="6Lc0ftwZAAAAAHL8dFK1MkhtAA269TsHzADkc44q"></div>
                   {{message}}
                 <button class="btn btn-info btn-block my-4" type="Submit" name="" value="Login"><a href="#" class="white-text">Log In</a></button>
-
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags %}
+                            <script>alert("{{ message }}")</script>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
                 <div class="d-flex justify-content-between">
                   <p><strong><a href="{% url 'BAI_app_v2:password_reset' %}">Forgot Password?</a></strong></p>
                 </div>

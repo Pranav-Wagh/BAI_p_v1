@@ -4,7 +4,17 @@ from django.contrib.auth.models import User
 # Create your models here.
 yes_no=[("on","yes"),("off","no")]
 ratings_1_10=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8'),('9','9'),('10','10')]
-category_1_9=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8'),('9','9')]
+category_1_9=[
+            ('Residential (bungalow, row houses, standalone buildings)','Residential (bungalow, row houses, standalone buildings)'),
+            ('Residential (housing complex)','Residential (housing complex)'),
+            ('Residential ( affordable housing)','Residential ( affordable housing)'),
+            ('Commercial (malls, office, institution, hotel, hospital, cinema)','Commercial (malls, office, institution, hotel, hospital, cinema)'),
+            ('Industrial (any size, any type)','Industrial (any size, any type)'),
+            ('Infrastructure (bridges, flyovers, ESR etc.)','Infrastructure (bridges, flyovers, ESR etc.)'),
+            ('Well equipped, well mechanized site','Well equipped, well mechanized site'),
+            ('Government, Semi-Govt., Public Works','Government, Semi-Govt., Public Works'),
+            ('Work upto Bare Shell (includes RCC, Masonry and Plaster works)','Work upto Bare Shell (includes RCC, Masonry and Plaster works)')
+            ]
 
 
 class ParticipantInfo(models.Model):
@@ -43,6 +53,7 @@ class Speed(models.Model):
     tenderPay = models.CharField(choices=yes_no,max_length=4,blank=False)
     suggest = models.TextField(max_length=100,blank=False)
     SpeedScale = models.TextField(max_length=100,blank=False)
+    category_latest = models.CharField(max_length=70,blank=True)
 
     def __str__(self):
         return self.users_name
@@ -55,6 +66,7 @@ class SafetynWellfare(models.Model):
     medical_aid = models.CharField(choices=yes_no,max_length=10,blank=False)
     incidents = models.CharField(choices=yes_no,max_length=10,blank=False)
     safety_audits = models.FileField(upload_to='uploads/',blank=True)
+    category_latest = models.CharField(max_length=70, blank=True)
 
     def __str__(self):
         return self.users_name
@@ -73,6 +85,7 @@ class Others(models.Model):
     green_building = models.TextField(max_length=2000,blank=True)
     debris_management = models.TextField(max_length=2000, blank=True)
     seminars = models.TextField(max_length=2000, blank=True)
+    category_latest = models.CharField(max_length=70, blank=True)
 
     def __str__(self):
         return self.users_name
@@ -97,6 +110,7 @@ class Economy(models.Model):
     cost_per_workstation=models.FloatField(blank=False)
     cost_per_similar=models.FloatField(blank=False)
     economy_ratings=models.TextField(blank=False,max_length=100)
+    category_latest = models.CharField(max_length=70, blank=True)
 
     def __str__(self):
         return self.users_name
@@ -117,6 +131,13 @@ class Project_info(models.Model):
     sched_completion_date=models.DateTimeField(blank=False)
     act_completion_date=models.DateTimeField(blank=False)
     proj_cost_tilldate=models.IntegerField(blank=False)
+    
+    category_latest = models.CharField(max_length=70, blank=True)
+
+    def __str__(self):
+        return self.users_name
+
+class Project_info_1(models.Model):
     Architect_name=models.CharField(max_length=200,blank=True)
     Structural_Consultant_name = models.CharField(max_length=200, blank=True)
     Plumbing_Consultant_name = models.CharField(max_length=200,blank=True)
@@ -133,8 +154,11 @@ class Project_info(models.Model):
     green_proj=models.CharField(max_length=1000, choices=yes_no,blank=True)
     green_project_details=models.FileField(upload_to="uploads/",blank=True)
 
+    category_latest = models.CharField(max_length=70, blank=True)
+
     def __str__(self):
         return self.users_name
+
 
 class Quality(models.Model):
     users_name = models.CharField(max_length=20, blank=True)
@@ -161,13 +185,14 @@ class Quality(models.Model):
     Any_other_system_method_mechanism_adopted=models.CharField(max_length=1000, choices=yes_no,blank=True)
     system_method_mechanism_adopted=models.TextField(max_length=100,blank=True)
     rate_your_project_in_terms_of_quality=models.IntegerField(blank=False)
+    category_latest = models.CharField(max_length=70, blank=True)
 
     def __str__(self):
         return self.users_name
 
 class Category(models.Model):
     users_name = models.CharField(max_length=20, blank=True)
-    app_form_cat = models.CharField(choices=category_1_9,max_length=4,blank=True)
+    app_form_cat = models.CharField(choices=category_1_9,max_length=70,blank=True)
 
     def __str__(self):
         return self.users_name
@@ -205,11 +230,13 @@ class PaymentDetails(models.Model):
     trans_date = models.CharField(max_length=20,blank=False)
     trans_id = models.CharField(max_length=30,blank=False)
     bank = models.CharField(max_length=50,blank=False)
+    category_latest = models.CharField(max_length=70, blank=True)
 
     def __str__(self):
         return self.users_name
 
-
-
+class UserCategory(models.Model):
+    users_name = models.CharField(max_length=20, blank=True)
+    category_latest = models.CharField(max_length=70, blank=True)
 
 

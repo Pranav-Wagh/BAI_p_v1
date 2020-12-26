@@ -7,11 +7,11 @@
           <!-- Horizontal Steppers -->
           <div class="container">
             <div class="row Site-content">
-          {% if filled0 %}
+          <!-- {% if filled0 %}
 
               <div class="col-md-12 mt-5 jumbotron">
                   <div class="alert alert-success mt-5" role="alert">
-                    <!-- <p class="h2 text-center">Category selected successfully!!</p> -->
+                    <p class="h2 text-center">Category selected successfully!!</p>
                     {% if messages %}
                       <ul class="messages my-4">
                         {% for message in messages %}
@@ -25,7 +25,11 @@
                   </div>
               </div>
               
-          {% else %} 
+          {% else %}  -->
+
+                {% if error0 %}
+                  <script> alert(" {{error0}} ")</script>
+                {% endif %}
       
               <div class="col-md-12">
   
@@ -82,8 +86,8 @@
                   </div>
                     <div class="col-9">
   
-                       <span> Hello, {{request.user}} </span>
-                      <span> <a href="/logout">Logout</a> </span>
+                       <!-- <span> Hello, {{request.user}} </span>
+                      <span> <a href="/logout">Logout</a> </span> -->
   
                     <div id="list-item-1">
                         <form class="border border-light p-5" action="{% url 'BAI_app_v2:form0' %}" method="POST">
@@ -150,23 +154,15 @@
 
                                 <select name="app_form_cat" class="browser-default custom-select my-4">
                                   <option selected>Categories Avaliable</option>
-                                  <option value="1">Residential (bungalow, row houses, standalone buildings)</option>
-                                  <option value="2">Residential (housing
-                                    complex)</option>
-                                  <option value="3">Residential ( affordable
-                                    housing)</option>
-                                  <option value="4">Commercial (malls,
-                                    office, institution, hotel, hospital, cinema)</option>
-                                  <option value="5">Industrial (any size,
-                                    any type)</option>
-                                  <option value="6">Infrastructure (bridges,
-                                    flyovers, ESR etc.)</option>
-                                  <option value="7">Well equipped, well
-                                    mechanized site</option>
-                                  <option value="8">Government, Semi-Govt.,
-                                    Public Works</option>
-                                  <option value="9">Work upto Bare Shell
-                                    (includes RCC, Masonry and Plaster works)</option>
+                                  <option value="Residential (bungalow, row houses, standalone buildings)">Residential (bungalow, row houses, standalone buildings)</option>
+                                  <option value="Residential (housing complex)">Residential (housing complex)</option>
+                                  <option value="Residential ( affordable housing)">Residential ( affordable housing)</option>
+                                  <option value="Commercial (malls, office, institution, hotel, hospital, cinema)">Commercial (malls, office, institution, hotel, hospital, cinema)</option>
+                                  <option value="Industrial (any size, any type)">Industrial (any size, any type)</option>
+                                  <option value="Infrastructure (bridges, flyovers, ESR etc.)">Infrastructure (bridges, flyovers, ESR etc.)</option>
+                                  <option value="Well equipped, well mechanized site">Well equipped, well mechanized site</option>
+                                  <option value="Government, Semi-Govt., Public Works">Government, Semi-Govt., Public Works</option>
+                                  <option value="Work upto Bare Shell (includes RCC, Masonry and Plaster works)">Work upto Bare Shell (includes RCC, Masonry and Plaster works)</option>
                                 </select>
 
                             </strong>

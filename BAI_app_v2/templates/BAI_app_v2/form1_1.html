@@ -1,0 +1,155 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+
+    <!-- Horizontal Steppers -->
+    <div class="container mt-5">
+
+      {% if filled0 %}
+      <script>alert("Category Selected Successfully!")</script>
+      {% endif %}
+
+      <div class="row Site-content">
+        <div class="col-md-12">
+
+          <!-- Stepers Wrapper -->
+          <ul class="stepper stepper-horizontal">
+
+            <!-- First Step -->
+            <li class="completed">
+              <a class="nav-link" onclick="href='/BAI_app_v2/form0'">
+                <span class="circle">1</span>
+                <span class="label">First step</span>
+              </a>
+            </li>
+
+            <!-- First Step -->
+            <li class="incomplete">
+              <a href="#step-home">
+                <span class="circle">2</span>
+                <span class="label">Second step</span>
+              </a>
+            </li>
+
+            <!-- Second Step -->
+            <li class="incomplete">
+              <a class="nav-link" onclick="href='/BAI_app_v2/form2'">
+                <span class="circle">3</span>
+                <span class="label">Third step</span>
+              </a>
+            </li>
+
+            <!-- Third Step -->
+            <li class="incomplete">
+              <a class="nav-link" onclick="location.href='/BAI_app_v2/form3.html'">
+                <span class="circle">4</span>
+                <span class="label">Fourth step</span>
+              </a>
+            </li>
+
+          </ul>
+          <!-- /.Stepers Wrapper -->
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="mt-2">
+          <div class="row">
+            <div class="col-3">
+              <div class="sticky-top">
+                <div class="list-group">
+                  <ul id="list-example">
+                    <a class="list-group-item list-group-item-action " href="#list-item-1">General Information about Project</a>
+                    <a class="list-group-item list-group-item-action " href="form 1-2.html">Names of Consultants appointed</a>
+                    <a class="list-group-item list-group-item-action " href="form 1-3.html">Quality </a>
+                    <a class="list-group-item list-group-item-action " href="form 1-4.html">Speed of construction</a>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-9">
+
+
+
+              <div id="list-item-1">
+                <!-- step 1-1 -->
+                <form class="border border-light p-5" action="{% url 'BAI_app_v2:form1_1' %}" enctype="multipart/form-data" method="POST">
+                  {% csrf_token %}
+                  <p class="h4 mb-4 text-center">General Information about Project</p>
+                  <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+                  <div class="md-form">
+                    <input type="text" id="defaultRegisterFormFirstName" class="form-control mb-4" name="project_name" required>
+                    <label for="defaultRegisterFormFirstName">Name of Project *</label>
+                  </div>
+                    <div class="md-form">
+                      <input type="text" id="textInput2" class="form-control mb-4" name="project_address" required>
+                      <label for="textInput2">Address of Project with Land Mark *</label>
+                    </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="fileInput" name="site_map" aria-describedby="fileInput" multiple>
+                      <label class="custom-file-label" for="fileInput">Site Map</label>
+                    </div>
+                  </div>
+                  <div class="md-form">
+                    <input type="text" id="textInput3" class="form-control mb-4" name="client_name" required>
+                    <label for="textInput3">Name of the Client *</label>
+                  </div>
+                  <div class="md-form">
+                    <input type="text" id="textInput4" class="form-control mb-4" name="project_cost" required>
+                    <label for="textInput4">Project Cost in Rs. *</label>
+                  </div>
+                  <div class="md-form">
+                    <input type="text" id="textInput5" class="form-control mb-4" name="applicant_role" required>
+                    <label for="textInput5">Applicants role with the project *</label>
+                  </div>
+                  <div class="md-form">
+                    <input type="text" id="textInput6" class="form-control mb-4" name="applicant_scope" required>
+                    <label for="textInput6">Applicants scope *</label>
+                  </div>
+                  <div class="md-form">
+                    <input type="text" id="textInput7" class="form-control mb-4" name="applicantWork_cost" required>
+                    <label for="textInput7">Cost of Applicant’s works *</label>
+                  </div>
+
+                  <div class="md-form">
+                  <input placeholder="Selected date" type="date" id="date-picker-example" name="commencement_date" class="form-control datepicker" required>
+                  <label for="date-picker-example">Date of Commencement of work *</label>
+                </div>
+                <div class="md-form">
+                  <input placeholder="Selected date" type="date" id="date-picker-example" name="sched_completion_date" class="form-control datepicker" required>
+                  <label for="date-picker-example">Date of Completion, Scheduled *</label>
+                </div>
+                <div class="md-form">
+                  <input placeholder="Selected date" type="date" id="date-picker-example" name="act_completion_date" class="form-control datepicker" required>
+                  <label for="date-picker-example">Date of Virtual Completion, Actual *</label>
+                </div>
+
+                  <div class="md-form">
+                    <input type="text" id="textInput8" class="form-control mb-4" name="proj_cost_tilldate" required>
+                    <label for="textInput8">Cost of Project Completed Till Date *</label>
+                  </div>
+
+                  {% if error1_1 %}
+                  <script> alert(" {{error1_1}} ")</script>
+                  {% endif %}
+
+                    <button class="btn btn-info my-4 btn-block" type="submit">Save & Next</button>
+                </form>
+                <!-- step 1-1 -->
+              </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+
+      <!-- /.Horizontal Steppers -->
+{% endblock %}

@@ -7,24 +7,9 @@
     <div class="container">
       <!-- Horizontal Steppers -->
       <div class="row">
-        {% if filled3 %}
-
-        <div class="col-md-12 mt-5 jumbotron">
-          <div class="alert alert-success mt-5" role="alert">
-            {% if messages %}
-              <ul class="messages my-4">
-                {% for message in messages %}
-                  <li class="h4">{{ message }}</li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </div>
-          <div class="container mt-5">
-            <button class="btn btn-danger my-4"><a href="{% url 'BAI_app_v2:user_landing' %}" class="white-text">Exit</a></button>
-          </div>
-      </div>
-            
-        {% else %} 
+        {% if filled2_3 %}
+      <script>alert("Others Information saved Successfully!")</script>
+      {% endif %}
         <div class="col-md-12">
 
           <!-- Stepers Wrapper -->
@@ -149,6 +134,10 @@
                               </div>
                               <!--Grid row-->
 
+                              {% if error3 %}
+                              <script> alert(" {{error3}} ")</script>
+                              {% endif %}
+
                               <div class="container">
                                 <button class="btn btn-info my-4 btn-block" type="Submit" value="Form3" style="width: 500px;">Submit</button>
                               </div>
@@ -176,8 +165,6 @@
               </div>
             </div>
           </div>
-
-        {% endif %}
 
       </div>
     </div>
