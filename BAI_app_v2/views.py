@@ -2,11 +2,12 @@ from django.shortcuts import render,redirect
 from BAI_app_v2.forms import (ParticipantInfoForm,SignUpForm,SpeedForm,SafetynWellfareForm,
                                 OthersForm,EconomyForm,Project_infoForm, Project_info_1Form, 
                                 QualityForm,CategoryForm, PaymentDetailsForm, UserCategoryForm)
-from BAI_app_v2.models import UserCategory
+from BAI_app_v2.models import (UserCategory, Category, PaymentDetails, Quality, Project_info, 
+                                Project_info_1, Economy, Others,SafetynWellfare, Speed)
 from django.contrib.auth import authenticate,login,logout,update_session_auth_hash
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 
@@ -25,6 +26,71 @@ UserModel = get_user_model()
 
 def home(request):
     return render(request,'BAI_app_v2/index.html')
+
+def adminBAI(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        adminUser = authenticate(request,username=username,password=password)
+
+        if adminUser is not None:
+            if adminUser.is_active and adminUser.is_superuser:
+                login(request,adminUser)
+                return render(request,'BAI_app_v2/admin_home.html',{'adminUser':adminUser})
+
+            else:
+                return HttpResponse("Not Authorised to access Admin page! OR Account not active!")
+
+        else:
+            messages.add_message(request, 40, 'Invalid Login credentials')
+            return redirect('BAI_app_v2/admin_login.html')
+    else:
+        return render(request,'BAI_app_v2/admin_login.html')
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_home(request):
+    return render(request,'BAI_app_v2/admin_home.html')
+
+@user_passes_test(lambda u: u.is_superuser)
+def add_jury(request):
+    return render(request,'BAI_app_v2/add_jury.html')
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_verified(request):
+    return render(request,'BAI_app_v2/admin_verified.html')
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_notverified(request):
+    all_entries = list()
+    #q1 = Category.objects.filter(users_name).filter(app_form_cat)
+    q1 = Category.objects.values('users_name','app_form_cat')
+    #print(q1)
+    for itr in q1:
+        count = 0
+        user = itr['users_name']
+        cat = itr['app_form_cat']
+
+        test = [Project_info,Project_info_1,Quality,Economy,Speed,PaymentDetails,Others,SafetynWellfare]
+        for i in test:
+            q = i.objects.filter(users_name=user).filter(category_latest=cat)
+            if len(q)>0:
+                count = count+1
+
+        if count==8:
+            sub_entry = list()
+            sub_entry.append(user)
+            sub_entry.append(cat)
+            all_entries.append(sub_entry)
+
+    return render(request,'BAI_app_v2/admin_notverified.html',{'all_entries':all_entries})
+
+@user_passes_test(lambda u: u.is_superuser)
+def view_jury(request):
+    return render(request,'BAI_app_v2/view_jury.html')
+
+
 
 @login_required
 def participant_logout(request):
@@ -134,9 +200,11 @@ def form0(request):
         if category_cat.is_valid():
             category_cat1 = category_cat.save()
             category_cat1.users_name = request.user.username
+            category_cat1.filled0 = 'True'
             category_cat1.save()
             obj = UserCategory.objects.filter(users_name=request.user.username)
             obj.update(category_latest=category_cat1.app_form_cat)
+            #obj[0]
             obj[0].save()
             filled0 = True
             return render(request,'BAI_app_v2/form1_1.html',{'category_cat':category_cat,'filled0':filled0})
@@ -173,6 +241,7 @@ def form1_1(request):
                 project_info_cat1.site_map = request.FILES['site_map']   
 
             project_info_cat1.users_name = request.user.username
+            project_info_cat1.filled1_1 = 'True'
             project_info_cat1.category_latest = obj[0].category_latest
             project_info_cat1.save()
 
@@ -206,6 +275,7 @@ def form1_2(request):
                 project_info_1_cat1.green_project_details = request.FILES['green_project_details']
 
             project_info_1_cat1.users_name = request.user.username
+            project_info_1_cat1.filled1_2 = 'True'
             project_info_1_cat1.category_latest = obj[0].category_latest
             project_info_1_cat1.save()
 
@@ -242,6 +312,7 @@ def form1_3(request):
                 quality_cat1.sample_test_reports = request.FILES['sample_test_reports']
 
             quality_cat1.users_name = request.user.username
+            quality_cat1.filled1_3 = 'True'
             quality_cat1.category_latest = obj[0].category_latest
             quality_cat1.save()
 
@@ -271,6 +342,7 @@ def form1_4(request):
             speed_cat1 = speed_cat.save()
 
             speed_cat1.users_name = request.user.username
+            speed_cat1.filled1_4 = 'True'
             speed_cat1.category_latest = obj[0].category_latest
             speed_cat1.save()
 
@@ -304,6 +376,7 @@ def form2_2(request):
                 safety_cat1.safety_audits = request.FILES['safety_audits']
 
             safety_cat1.users_name=request.user.username
+            safety_cat1.filled2_2 = 'True'
             safety_cat1.category_latest = obj[0].category_latest
             safety_cat1.save()
 
@@ -332,6 +405,7 @@ def form2_1(request):
             economy_cat1 = economy_cat.save()
 
             economy_cat1.users_name = request.user.username
+            economy_cat1.filled2_1 = 'True'
             economy_cat1.category_latest = obj[0].category_latest
             economy_cat1.save()
 
@@ -371,6 +445,7 @@ def form2_3(request):
                 others_cat1.renewable_energy_pic = request.FILES['renewable_energy_pic']            
 
             others_cat1.users_name=request.user.username
+            others_cat1.filled2_3 = 'True'
             others_cat1.category_latest = obj[0].category_latest
             others_cat1.save()
             filled2_3 = True
@@ -399,6 +474,7 @@ def form3(request):
             obj = UserCategory.objects.filter(users_name=request.user.username)
             payment_cat1 = payment_cat.save()
             payment_cat1.users_name = request.user.username
+            payment_cat1.filled3 = 'True'
             payment_cat1.category_latest = obj[0].category_latest
             payment_cat1.save()
 
@@ -451,6 +527,7 @@ def activate(request, uidb64, token):
         #return render(request, 'BAI_app_v2/signup.html', {'email_verified': email_verified})
     else:
         return HttpResponse('Activation link is invalid!')
+
 
 
 

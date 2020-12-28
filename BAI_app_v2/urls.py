@@ -26,4 +26,10 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='BAI_app_v2/PasswordResetConfirm.html'),name='password_reset_comfirm'),
     path('password-reset-complete/',auth_views.PasswordResetCompleteView.as_view(template_name='BAI_app_v2/PasswordResetComplete.html'),name='password_reset_complete'),
     path('activate/<uidb64>/<token>/',views.activate,name="activate"),
+    path('adminBAI/',views.adminBAI,name="adminBAI"),
+    path('admin_home/',views.admin_home,name="admin_home"),
+    path('add_jury/',views.add_jury,name="add_jury"),
+    path('admin_verified/',views.admin_verified,name="admin_verified"),
+    path('admin_notverified/',views.admin_notverified,name="admin_notverified"),
+    path('view_jury/',views.view_jury,name="view_jury"),
 ]

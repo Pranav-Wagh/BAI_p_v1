@@ -1,0 +1,73 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+  <!-- Start your project here-->
+  <div >
+    <div class="view full-page-intro flex-center flex-column col-sm">
+      <div style="height: 100px;"></div>
+        <div class="container">
+          <div class="row">
+            <div class=" container col-sm text-center">
+
+
+              <hr style="color: black;">
+              <h1 class="display-4 font-weight-bold" style="color: black;">BAI's <br> WELL BUILT STRUCTURE <br>
+                <h1 class="display-5 font-weight-bold" style="color: black;"> COMPETITION</h1>
+              </h1>
+              <hr style="color: black;">
+
+          </div>
+            <div class="col-sm">
+              <form class="border border-light p-5" id='step-1' style="background-color: white;" action="{% url 'BAI_app_v2:adminBAI' %}" method="POST">
+                {% csrf_token %}
+                <div class="card">
+                  <img src="../../static/assets/header.jpg" alt="">
+                </div>
+                <br>
+                <p class="h4 mb-4 text-center">Admin LogIn</p>
+                <div class="md-form">
+                  <i class="fas fa-envelope prefix"></i>
+                  <input type="text" class="form-control" id="defaultLoginFormEmail" name="username" required>
+                  <label for="form3">E-mail</label>
+                </div>
+                <div class="md-form">
+                  <i class="fas fa-unlock prefix"></i>
+                  <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" name="password" required>
+                  <label for="form3">Password</label>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                            <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="g-recaptcha" data-sitekey="6Lc0ftwZAAAAAHL8dFK1MkhtAA269TsHzADkc44q"></div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags %}
+                            <script>alert("{{ message }}")</script>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                <button class="btn btn-info btn-block my-4" type="submit" >
+                  Log In
+                </button>
+
+                <!-- <div class="text-center">
+                    <p>Not a member?
+                        <a href='signup.html'>Register</a>
+                    </p>
+                </div> -->
+            </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  {% endblock %}

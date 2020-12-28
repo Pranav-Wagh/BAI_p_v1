@@ -1,0 +1,43 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+
+    <div class="container mt-5 mb-5">
+      <!-- <p>{{all_entries}}</p> -->
+        <div class="row">
+          <div class="col-md-3 mt-5">
+            <div class="sticky-top">
+              <div id="list-example" class="list-group">
+                <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:admin_notverified' %}">Not Verified</a>
+                <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:admin_verified' %}">Verified</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9 mt-5">
+              <p class="h4 mb-4 text-center">List of User(Forms not Verified)</p>
+
+              {% for itr in all_entries %}
+              <div class="row z-depth-1 blue lighten-4">
+                <div class="col-md-5 tex-center" >
+                    <div class="flex-left">
+                        <h4 class="display-4 mt-3 font-weight-bold">{{itr.0}}</h4>
+                    </div>
+                </div>
+                <div class="col-md-5 tex-center" >
+                    <div class="flex-left">
+                      <h5 class="display-4 mt-3">{{itr.1}}</h5>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn success-color my-2 btn-block text-white font-weight-bold hoverable" type="button"
+                      onclick="window.location.href='submittedforms_notver.html'">View Forms</button>
+                </div>
+              </div>
+              {% endfor %}
+
+
+          </div>
+
+        </div>
+      </div>
+
+{% endblock %}

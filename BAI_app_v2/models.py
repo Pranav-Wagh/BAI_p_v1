@@ -15,6 +15,7 @@ category_1_9=[
             ('Government, Semi-Govt., Public Works','Government, Semi-Govt., Public Works'),
             ('Work upto Bare Shell (includes RCC, Masonry and Plaster works)','Work upto Bare Shell (includes RCC, Masonry and Plaster works)')
             ]
+true_false = [('True','True'),('False','False')]
 
 
 class ParticipantInfo(models.Model):
@@ -55,6 +56,8 @@ class Speed(models.Model):
     SpeedScale = models.TextField(max_length=100,blank=False)
     category_latest = models.CharField(max_length=70,blank=True)
 
+    filled1_4 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+
     def __str__(self):
         return self.users_name
 
@@ -67,6 +70,8 @@ class SafetynWellfare(models.Model):
     incidents = models.CharField(choices=yes_no,max_length=10,blank=False)
     safety_audits = models.FileField(upload_to='uploads/',blank=True)
     category_latest = models.CharField(max_length=70, blank=True)
+
+    filled2_2 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -86,6 +91,8 @@ class Others(models.Model):
     debris_management = models.TextField(max_length=2000, blank=True)
     seminars = models.TextField(max_length=2000, blank=True)
     category_latest = models.CharField(max_length=70, blank=True)
+
+    filled2_3 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -112,6 +119,8 @@ class Economy(models.Model):
     economy_ratings=models.TextField(blank=False,max_length=100)
     category_latest = models.CharField(max_length=70, blank=True)
 
+    filled2_1 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+
     def __str__(self):
         return self.users_name
 
@@ -134,10 +143,13 @@ class Project_info(models.Model):
     
     category_latest = models.CharField(max_length=70, blank=True)
 
+    filled1_1 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+
     def __str__(self):
         return self.users_name
 
 class Project_info_1(models.Model):
+    users_name = models.CharField(max_length=20, blank=True)
     Architect_name=models.CharField(max_length=200,blank=True)
     Structural_Consultant_name = models.CharField(max_length=200, blank=True)
     Plumbing_Consultant_name = models.CharField(max_length=200,blank=True)
@@ -155,6 +167,8 @@ class Project_info_1(models.Model):
     green_project_details=models.FileField(upload_to="uploads/",blank=True)
 
     category_latest = models.CharField(max_length=70, blank=True)
+
+    filled1_2 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -187,12 +201,15 @@ class Quality(models.Model):
     rate_your_project_in_terms_of_quality=models.IntegerField(blank=False)
     category_latest = models.CharField(max_length=70, blank=True)
 
+    filled1_3 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+
     def __str__(self):
         return self.users_name
 
 class Category(models.Model):
     users_name = models.CharField(max_length=20, blank=True)
     app_form_cat = models.CharField(choices=category_1_9,max_length=70,blank=True)
+    filled0 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -232,11 +249,11 @@ class PaymentDetails(models.Model):
     bank = models.CharField(max_length=50,blank=False)
     category_latest = models.CharField(max_length=70, blank=True)
 
+    filled3 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+
     def __str__(self):
         return self.users_name
 
 class UserCategory(models.Model):
     users_name = models.CharField(max_length=20, blank=True)
     category_latest = models.CharField(max_length=70, blank=True)
-
-
