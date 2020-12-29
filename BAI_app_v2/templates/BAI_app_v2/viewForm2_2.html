@@ -1,0 +1,143 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+
+    <div class="container">
+        <!-- Horizontal Steppers -->
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- Stepers Wrapper -->
+                <ul class="stepper stepper-horizontal">
+
+                    <li class="completed">
+                        <a class="nav-link" onclick="href='/BAI_app_v2/form0'">
+                          <span class="circle">1</span>
+                          <span class="label">First step</span>
+                        </a>
+                      </li>
+          
+                      <!-- First Step -->
+                      <li class="incomplete">
+                        <a href="#step-home">
+                          <span class="circle">2</span>
+                          <span class="label">Second step</span>
+                        </a>
+                      </li>
+          
+                      <!-- Second Step -->
+                      <li class="incomplete">
+                        <a class="nav-link" onclick="href='/BAI_app_v2/form2'">
+                          <span class="circle">3</span>
+                          <span class="label">Third step</span>
+                        </a>
+                      </li>
+          
+                      <!-- Third Step -->
+                      <li class="incomplete">
+                        <a class="nav-link" onclick="location.href='/BAI_app_v2/form3.html'">
+                          <span class="circle">4</span>
+                          <span class="label">Fourth step</span>
+                        </a>
+                      </li>
+                </ul>
+                <!-- /.Stepers Wrapper -->
+                <div class="container">
+                    <div class="mt-2">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="sticky-top">
+                                    <div id="list-example" class="list-group">
+                                        <a class="list-group-item list-group-item-action"
+                                            href="form2.html">Economy</a>
+                                        <a class="list-group-item list-group-item-action"
+                                            href="#list-item-2">Safety/Welfare</a>
+                                        <a class="list-group-item list-group-item-action" href="form 2-3.html">Others</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <div class="scrollspy-example z-depth-1">
+                                    <h4 id="list-item-2">
+                                        <!--Names of Consultants appointed-->
+                                    </h4>
+                                    <!--step 2-2-->
+                                    <div>
+                                        <form class="border border-light p-5" id="list-item-2">
+                                            <p class="h4 mb-4 text-center">Safety/Welfare</p>
+                                            <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)
+                                            </p>
+                                            <div class="form-row">
+                                                <div class="col-9">
+                                                    <label for="textInput"><b>1. Was safety on site being
+                                                            monitored?*</b></label>
+                                                </div>
+                                                <div class="col-3">
+                                                    {{}}
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-9">
+                                                  <label for="textInput"><b>If yes, by whom? *</b></label><br>
+                                                </div>
+                                                <div class="col-3">
+                                                    {{}}
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-9">
+                                                    <label for="textInput"><b>2. Enlist safety measures / equipment
+                                                            adopted on site <br>
+                                                            during execution in terms of Barricading, signage,
+                                                            nets, <br> firefighting, equipment to workers, safe <br>
+                                                            electrical supply etc. *</b></label><br>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="md-form mt-0">
+                                                      {{}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-9">
+                                                    <label for="textInput"><b>3. Was medical aid available on site
+                                                            during execution?</b></label>
+                                                </div>
+                                                <div class="col-3">
+                                                    {{}}
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-9">
+                                                    <label for="textInput"><b>4. Were there any safety related incidents
+                                                            or near-miss
+                                                            on site? *</b></label>
+                                                </div>
+                                                <div class="col-3">
+                                                    {{}}
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-9">
+                                                    <label for="textInput"><b>5. Provide documents showing safety
+                                                            audits, if done.</b></label><br>
+                                                </div>
+                                                <div class="col-3">
+                                                    {{}}
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='form 2-3.html'">Next</button>
+                                            <!--<button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='form3.html'">Next</button>-->
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.Horizontal Steppers -->
+    </div>
+{% endblock %}

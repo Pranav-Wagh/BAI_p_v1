@@ -16,6 +16,7 @@ category_1_9=[
             ('Work upto Bare Shell (includes RCC, Masonry and Plaster works)','Work upto Bare Shell (includes RCC, Masonry and Plaster works)')
             ]
 true_false = [('True','True'),('False','False')]
+# status_choice = [('none','none'),('accepted','accepted'),('rejected','rejected')]
 
 
 class ParticipantInfo(models.Model):
@@ -209,7 +210,7 @@ class Quality(models.Model):
 class Category(models.Model):
     users_name = models.CharField(max_length=20, blank=True)
     app_form_cat = models.CharField(choices=category_1_9,max_length=70,blank=True)
-    filled0 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+    status = models.IntegerField(default=0,blank=True)
 
     def __str__(self):
         return self.users_name

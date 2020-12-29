@@ -1,0 +1,263 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+
+    <div class="container">
+      <!-- Horizontal Steppers -->
+      <div class="row">
+        <div class="col-md-12">
+
+          <!-- Stepers Wrapper -->
+          <ul class="stepper stepper-horizontal">
+
+            <li class="completed">
+              <a class="nav-link" onclick="href='/BAI_app_v2/form0'">
+                <span class="circle">1</span>
+                <span class="label">First step</span>
+              </a>
+            </li>
+
+            <!-- First Step -->
+            <li class="incomplete">
+              <a href="#step-home">
+                <span class="circle">2</span>
+                <span class="label">Second step</span>
+              </a>
+            </li>
+
+            <!-- Second Step -->
+            <li class="incomplete">
+              <a class="nav-link" onclick="href='/BAI_app_v2/form2'">
+                <span class="circle">3</span>
+                <span class="label">Third step</span>
+              </a>
+            </li>
+
+            <!-- Third Step -->
+            <li class="incomplete">
+              <a class="nav-link" onclick="location.href='/BAI_app_v2/form3.html'">
+                <span class="circle">4</span>
+                <span class="label">Fourth step</span>
+              </a>
+            </li>
+
+          </ul>
+          <!-- /.Stepers Wrapper -->
+          <div class="container">
+            <div class="mt-2">
+              <div class="row">
+                <div class="col-3">
+                  <div class="sticky-top">
+                    <div id="list-example" class="list-group">
+                      <a class="list-group-item list-group-item-action" href="#list-item-1">Economy</a>
+                      <a class="list-group-item list-group-item-action" href="form 2-2.html">Safety/Welfare</a>
+                      <a class="list-group-item list-group-item-action" href="form 2-3.html">Others</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-9">
+                  <div class="scrollspy-example z-depth-1">
+                    <h4 id="list-item-1">
+                      <!--Economy-->
+                    </h4>
+                    <!--step 2-1-->
+                    <div>
+                      <form class="border border-light p-5">
+
+                        <p class="h4 mb-4 text-center">Economy</p>
+                        <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>1. In case of a Tender, what was the project cost as
+                                per the contract? *</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            {{}}
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>2. If not, who determined the Estimated Project Cost? *</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            {{}}
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>3. Were the drawings, specifications and techniques
+                                assessed in terms of possible cost reduction? *</b></label>
+                          </div>
+                          <div class="col-3">
+                            {{}}
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>4. Was the project being tracked in terms of cost
+                                during progress of work?</b></label>
+                          </div>
+                          <div class="col-3">
+                            {{}}
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>If yes, by whom? *</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            {{}}
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>5. Was there a separate PMC appointed?</b></label>
+                          </div>
+                          <div class="col-3">
+                            {{}}
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>6. What was the Expected cost of completion of the
+                                project? *</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              {{}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>7. What was the actual cost of completion of the
+                                project? *</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              {{}}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>8. During execution did you encounter any difficulty
+                                that resulted in cost escalation of work?</b></label>
+                          </div>
+                          <div class="col-3">
+                            {{}}
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>If yes, how much escalation would you attribute on
+                                that account?</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            {{}}
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>9. Enlist the cost saving measures adopted by you
+                                during execution. <br> Provide separate note. *</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              {{}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>10. Enlist any suggestions made by you to the client
+                                for reduction in cost.</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              {{}}
+                            </div>
+                          </div>
+                        </div>
+                        <label><b>11. Cost of project per: *</b></label><br>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>&emsp;Sft of built up area</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              {{}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>&emsp;Room, in case of hotel </b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              {{}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>&emsp;Bed, in case of hospital</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              {{}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>&emsp;Workstation, in case of office</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              {{}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>&emsp;Similar</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              {{}}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>12. How would you rate your project in terms of Economy
+                                on a scale of 1 to 10
+                                (1: Lowest, 10:Highest) *</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            {{}}
+                          </div>
+                        </div>
+                        <button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='form 2-2.html'">Next</button>
+                        <!--<button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='steps.html'">Next</button>-->
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.Horizontal Steppers -->
+  </div>
+
+{% endblock %}

@@ -16,24 +16,36 @@
               <p class="h4 mb-4 text-center">List of User(Forms not Verified)</p>
 
               {% for itr in all_entries %}
-              <div class="row z-depth-1 blue lighten-4">
-                <div class="col-md-5 tex-center" >
-                    <div class="flex-left">
-                        <h4 class="display-4 mt-3 font-weight-bold">{{itr.0}}</h4>
-                    </div>
+              <div class="row z-depth-1 lighten-4">
+                <div class="col-md-2 tex-center" >
+                    
+                      <p class="h4 mt-3">{{itr.0}}</p>  
+                  
                 </div>
-                <div class="col-md-5 tex-center" >
-                    <div class="flex-left">
-                      <h5 class="display-4 mt-3">{{itr.1}}</h5>
-                    </div>
+                <div class="col-md-4 tex-center" >
+                    
+                  <p class="h4 mt-3">{{itr.1}}</p>  
+                  
                 </div>
                 <div class="col-md-2">
-                  <button class="btn success-color my-2 btn-block text-white font-weight-bold hoverable" type="button"
-                      onclick="window.location.href='submittedforms_notver.html'">View Forms</button>
+                  <a href="{% url 'BAI_app_v2:viewForm1_1' itr.0 itr.1 %}"><i class="fas fa-eye fa-lg mt-3" style="color: #0288D1;"></i></a>
+                </div>
+                <div class="col-md-2">
+                  {% if itr.2 == '1' %}
+                  <a href="{% url 'BAI_app_v2:AcceptForm' itr.0 itr.1 %}" data-toogle="tooltip" title="Already Accepted!!" style="pointer-events: none; cursor: default;" class="btn btn-dark"><i class="fas fa-check fa-lg mt-3 white-text"></i></a>
+                  {% else %}
+                  <a href="{% url 'BAI_app_v2:AcceptForm' itr.0 itr.1 %}" class="btn btn-success"><i class="fas fa-check fa-lg mt-3 white-text"></i></a>
+                  {% endif %}
+                </div>
+                <div class="col-md-2">
+                  {% if itr.2 == '2' %}
+                  <a href="{% url 'BAI_app_v2:RejectForm' itr.0 itr.1 %}" data-toogle="tooltip" title="Already Rejected!!" style="pointer-events: none; cursor: default;" class="btn btn-dark"><i class="fas fa-times fa-lg mt-3 white-text"></i></a>
+                  {% else %}
+                  <a href="{% url 'BAI_app_v2:RejectForm' itr.0 itr.1 %}" class="btn btn-danger"><i class="fas fa-times fa-lg mt-3 white-text"></i></a>
+                  {% endif %}
                 </div>
               </div>
               {% endfor %}
-
 
           </div>
 

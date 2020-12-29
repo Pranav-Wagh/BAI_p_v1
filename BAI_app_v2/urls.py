@@ -32,4 +32,16 @@ urlpatterns = [
     path('admin_verified/',views.admin_verified,name="admin_verified"),
     path('admin_notverified/',views.admin_notverified,name="admin_notverified"),
     path('view_jury/',views.view_jury,name="view_jury"),
+
+    path('viewForm1_1/<user>/<int:cat_id>',views.viewForm1_1,name="viewForm1_1"),
+    # path('viewForm1_2/<user>/<cat>',views.viewForm1_2,name="viewForm1_2"),
+    # path('viewForm1_3/<user>/<cat>',views.viewForm1_3,name="viewForm1_3"),
+    # path('viewForm1_4/<user>/<cat>',views.viewForm1_4,name="viewForm1_4"),
+    # path('viewForm2_1/<user>/<cat>',views.viewForm2_1,name="viewForm2_1"),
+    # path('viewForm2_2/<user>/<cat>',views.viewForm2_2,name="viewForm2_2"),
+    # path('viewForm2_3/<user>/<cat>',views.viewForm2_3,name="viewForm2_3"),
+    # path('viewForm3/<user>/<cat>',views.viewForm3,name="viewForm3"),
+
+    path('AcceptForm/<user>/<int:cat_id>',views.AcceptForm,name="AcceptForm"),
+    path('RejectForm/<user>/<int:cat_id>',views.RejectForm,name="RejectForm"),
 ]
