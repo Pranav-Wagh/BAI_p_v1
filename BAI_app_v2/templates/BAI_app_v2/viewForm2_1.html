@@ -1,5 +1,83 @@
-{% extends "BAI_app_v2/base.html" %}
-{% block body_block %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Builder's Association of India</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="../../../../static/css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="../../../../static/css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="../../../../static/css/style.css">
+
+
+
+  <script>
+    $('body').scrollspy({
+      target: '#menuSpy'
+    });
+  </script>
+
+</head>
+
+<body data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+  <main class="Site-content">
+    <nav class="navbar  navbar-expand-lg navbar-dark scrolling-navbar indigo">
+      <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand white-text" onclick='location.href="../../main.html"'>
+          <strong>BAI-WBSC</strong>
+        </a>
+
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <!-- Left -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" onclick="location.href='../../main.html'">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick='href="../profiles/profile.html"'>Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick='href="../../main.html#contact"'>Contact</a>
+            </li>
+          </ul>
+
+          <!-- Right -->
+          <ul class="navbar-nav nav-flex-icons">
+
+            <li class="nav-item">
+              <a onclick="location.href='../static_ui/rules1.html'"
+                class="nav-link border border-light rounded waves-effect" target="_blank">
+                About WBSC
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+
 
     <div class="container">
       <!-- Horizontal Steppers -->
@@ -48,9 +126,9 @@
                 <div class="col-3">
                   <div class="sticky-top">
                     <div id="list-example" class="list-group">
-                      <a class="list-group-item list-group-item-action" href="#list-item-1">Economy</a>
-                      <a class="list-group-item list-group-item-action" href="form 2-2.html">Safety/Welfare</a>
-                      <a class="list-group-item list-group-item-action" href="form 2-3.html">Others</a>
+                      <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:viewForm2_1' Economy.users_name cat_id %}">Economy</a>
+                      <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:viewForm2_2' Economy.users_name cat_id %}">Safety/Welfare</a>
+                      <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:viewForm2_3' Economy.users_name cat_id %}">Others</a>
                     </div>
                   </div>
                 </div>
@@ -61,62 +139,70 @@
                     </h4>
                     <!--step 2-1-->
                     <div>
-                      <form class="border border-light p-5">
-
-                        <p class="h4 mb-4 text-center">Economy</p>
+                      <form class="border border-light p-5" action="{% url 'BAI_app_v2:viewForm2_2' Economy.users_name cat_id %}">
+                        <p class="h4 text-center">Economy</p>
                         <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+                        <p class="h4 text-center">User: {{Economy.users_name}}</p>
+                        <p class="h4 mb-2 text-center">Category: {{Economy.category_latest}}</p>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>1. In case of a Tender, what was the project cost as
                                 per the contract? *</b></label><br>
                           </div>
                           <div class="col-3">
-                            {{}}
+                            <p class="h5">{{Economy.project_cost}}</p>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>2. If not, who determined the Estimated Project Cost? *</b></label><br>
                           </div>
                           <div class="col-3">
-                            {{}}
+                            <p class="h5">{{Economy.who_determined}}</p>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>3. Were the drawings, specifications and techniques
                                 assessed in terms of possible cost reduction? *</b></label>
                           </div>
                           <div class="col-3">
-                            {{}}
+                            <p class="h5">{{Economy.cost_reduction}}</p>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>4. Was the project being tracked in terms of cost
                                 during progress of work?</b></label>
                           </div>
                           <div class="col-3">
-                            {{}}
+                            <p class="h5">{{Economy.tracked_e}}</p>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>If yes, by whom? *</b></label><br>
                           </div>
                           <div class="col-3">
-                            {{}}
+                            <p class="h5">{{Economy.who_tracked}}</p>
                           </div>
                         </div>
+                        <hr>
 
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>5. Was there a separate PMC appointed?</b></label>
                           </div>
                           <div class="col-3">
-                            {{}}
+                            <p class="h5">{{Economy.PMC_appointed}}</p>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>6. What was the Expected cost of completion of the
@@ -124,10 +210,11 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              {{}}
+                              <p class="h5">{{Economy.expected_cost}}</p>
                             </div>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>7. What was the actual cost of completion of the
@@ -135,10 +222,11 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              {{}}
+                              <p class="h5">{{Economy.actual_cost}}</p>
                             </div>
                           </div>
                         </div>
+                        <hr>
 
                         <div class="form-row">
                           <div class="col-9">
@@ -146,18 +234,20 @@
                                 that resulted in cost escalation of work?</b></label>
                           </div>
                           <div class="col-3">
-                            {{}}
+                            <p class="h5">{{Economy.difficulty_e}}</p>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>If yes, how much escalation would you attribute on
                                 that account?</b></label><br>
                           </div>
                           <div class="col-3">
-                            {{}}
+                            <p class="h5">{{Economy.escalated}}</p>
                           </div>
                         </div>
+                        <hr>
 
                         <div class="form-row">
                           <div class="col-9">
@@ -166,10 +256,11 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              {{}}
+                              <p class="h5">{{Economy.costsaving_measures}}</p>
                             </div>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>10. Enlist any suggestions made by you to the client
@@ -177,10 +268,11 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              {{}}
+                              <p class="h5">{{Economy.suggestions}}</p>
                             </div>
                           </div>
                         </div>
+                        <hr>
                         <label><b>11. Cost of project per: *</b></label><br>
                         <div class="form-row">
                           <div class="col-9">
@@ -188,50 +280,55 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              {{}}
+                              <p class="h5">{{Economy.cost_per_sft}}</p>
                             </div>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>&emsp;Room, in case of hotel </b></label><br>
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              {{}}
+                              <p class="h5">{{Economy.cost_per_room}}</p>
                             </div>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>&emsp;Bed, in case of hospital</b></label><br>
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              {{}}
+                              <p class="h5">{{Economy.cost_per_bed}}</p>
                             </div>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>&emsp;Workstation, in case of office</b></label><br>
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              {{}}
+                              <p class="h5">{{Economy.cost_per_workstation}}</p>
                             </div>
                           </div>
                         </div>
+                        <hr>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>&emsp;Similar</b></label><br>
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              {{}}
+                              <p class="h5">{{Economy.cost_per_similar}}</p>
                             </div>
                           </div>
                         </div>
+                        <hr>
 
                         <div class="form-row">
                           <div class="col-9">
@@ -240,10 +337,11 @@
                                 (1: Lowest, 10:Highest) *</b></label><br>
                           </div>
                           <div class="col-3">
-                            {{}}
+                            <p class="h5">{{Economy.economy_ratings}}</p>
                           </div>
                         </div>
-                        <button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='form 2-2.html'">Next</button>
+                        <hr>
+                        <button class="btn btn-info my-4 btn-block" type="submit">Next</button>
                         <!--<button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='steps.html'">Next</button>-->
                       </form>
                     </div>
@@ -260,4 +358,46 @@
   <!-- /.Horizontal Steppers -->
   </div>
 
-{% endblock %}
+
+   <!--Footer-->
+   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+    <!--Call to action-->
+    <div class="pt-4">
+      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
+        target="_blank" role="button">Jury
+        <i class="fas fa-download ml-2"></i>
+      </a>
+      <a class="btn btn-outline-white" href="{% url 'BAI_app_v2:adminBAI' %}">Admin
+        <i class="fas fa-graduation-cap ml-2"></i>
+      </a>
+    </div>
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2020 Copyright:
+      <a href="#" target="_blank"> BAI-WBSC-2020 </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="../../../../static/js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../../../../static/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../../../../static/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../../../../static/js/mdb.min.js"></script>
+
+</body>
+
+
+</html>
+

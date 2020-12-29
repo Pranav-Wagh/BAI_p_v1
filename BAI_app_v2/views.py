@@ -64,67 +64,66 @@ def admin_verified(request):
 @user_passes_test(lambda u: u.is_superuser)
 def admin_notverified(request):
 
-    if request.method == "POST":
-        #Q = Category.objects.get(users_name=request.user.username)
-        user = Category.objects.filter(users_name=request.user.username).filter(app_form_cat=request.POST['app_form_cat'])
-        print(user)
-        if request.POST.get('status'):
-            user.status = request.POST.get('status')
-            for objs in user:
-                objs.save()
-            return HttpResponse('Accepted/Rejected....Check Admin page!!!')
-        else:
-            return HttpResponse('chuklay ikde!!!')
+    # if request.method == "POST":
+    #     #Q = Category.objects.get(users_name=request.user.username)
+    #     user = Category.objects.filter(users_name=request.user.username).filter(app_form_cat=request.POST['app_form_cat'])
+    #     print(user)
+    #     if request.POST.get('status'):
+    #         user.status = request.POST.get('status')
+    #         for objs in user:
+    #             objs.save()
+    #         return HttpResponse('Accepted/Rejected....Check Admin page!!!')
+    #     else:
+    #         return HttpResponse('chuklay ikde!!!')
 
-    else:
-        cat_id = {
-            'Residential (bungalow, row houses, standalone buildings)':1,
-            'Residential (housing complex)':2,
-            'Residential ( affordable housing)':3,
-            'Commercial (malls, office, institution, hotel, hospital, cinema)':4,
-            'Industrial (any size, any type)':5,
-            'Infrastructure (bridges, flyovers, ESR etc.)':6,
-            'Well equipped, well mechanized site':7,
-            'Government, Semi-Govt., Public Works':8,
-            'Work upto Bare Shell (includes RCC, Masonry and Plaster works)':9
-        }
-        all_entries = list()
-        #q1 = Category.objects.filter(users_name).filter(app_form_cat)
-        q1 = Category.objects.values('users_name','app_form_cat','status')
-        #print(q1)
-        for itr in q1:
-            count = 0
-            user = itr['users_name']
-            cat = itr['app_form_cat']
-            stat = itr['status']
+    cat_id = {
+        "Residential (bungalow, row houses, standalone buildings)":1,
+        "Residential (housing complex)":2,
+        "Residential ( affordable housing)":3,
+        "Commercial (malls, office, institution, hotel, hospital, cinema)":4,
+        "Industrial (any size, any type)":5,
+        "Infrastructure (bridges, flyovers, ESR etc.)":6,
+        "Well equipped, well mechanized site":7,
+        "Government, Semi-Govt., Public Works":8,
+        "Work upto Bare Shell (includes RCC, Masonry and Plaster works)":9
+    }
+    all_entries = list()
+    #q1 = Category.objects.filter(users_name).filter(app_form_cat)
+    q1 = Category.objects.values('users_name','app_form_cat','status')
+    #print(q1)
+    for itr in q1:
+        count = 0
+        user = itr['users_name']
+        cat = itr['app_form_cat']
+        stat = itr['status']
 
-            test = [Project_info,Project_info_1,Quality,Economy,Speed,PaymentDetails,Others,SafetynWellfare]
-            for i in test:
-                q = i.objects.filter(users_name=user).filter(category_latest=cat)
-                if len(q)>0:
-                    count = count+1
+        test = [Project_info,Project_info_1,Quality,Economy,Speed,PaymentDetails,Others,SafetynWellfare]
+        for i in test:
+            q = i.objects.filter(users_name=user).filter(category_latest=cat)
+            if len(q)>0:
+                count = count+1
 
-            if count==8:
-                sub_entry = list()
-                sub_entry.append(user)
-                sub_entry.append(cat_id[cat])
-                sub_entry.append(stat)
-                all_entries.append(sub_entry)
-        
-        return render(request,'BAI_app_v2/admin_notverified.html',{'all_entries':all_entries})  
+        if count==8:
+            sub_entry = list()
+            sub_entry.append(user)
+            sub_entry.append(cat_id[cat])
+            sub_entry.append(stat)
+            all_entries.append(sub_entry)
+    
+    return render(request,'BAI_app_v2/admin_notverified.html',{'all_entries':all_entries})  
 
 @user_passes_test(lambda u: u.is_superuser)
 def AcceptForm(request,user,cat_id):
     cat = {
-            1:'Residential (bungalow, row houses, standalone buildings)',
-            2:'Residential (housing complex)',
-            3:'Residential ( affordable housing)',
-            4:'Commercial (malls, office, institution, hotel, hospital, cinema)',
-            5:'Industrial (any size, any type)',
-            6:'Infrastructure (bridges, flyovers, ESR etc.)',
-            7:'Well equipped, well mechanized site',
-            8:'Government, Semi-Govt., Public Works',
-            9:'Work upto Bare Shell (includes RCC, Masonry and Plaster works)'
+            1:"Residential (bungalow, row houses, standalone buildings)",
+            2:"Residential (housing complex)",
+            3:"Residential ( affordable housing)",
+            4:"Commercial (malls, office, institution, hotel, hospital, cinema)",
+            5:"Industrial (any size, any type)",
+            6:"Infrastructure (bridges, flyovers, ESR etc.)",
+            7:"Well equipped, well mechanized site",
+            8:"Government, Semi-Govt., Public Works",
+            9:"Work upto Bare Shell (includes RCC, Masonry and Plaster works)"
         }
     category = cat[cat_id]
     #q = Category.objects.filter(users_name=user).filter(app_form_cat=category)
@@ -137,15 +136,15 @@ def AcceptForm(request,user,cat_id):
 @user_passes_test(lambda u: u.is_superuser)
 def RejectForm(request,user,cat_id):
     cat = {
-            1:'Residential (bungalow, row houses, standalone buildings)',
-            2:'Residential (housing complex)',
-            3:'Residential ( affordable housing)',
-            4:'Commercial (malls, office, institution, hotel, hospital, cinema)',
-            5:'Industrial (any size, any type)',
-            6:'Infrastructure (bridges, flyovers, ESR etc.)',
-            7:'Well equipped, well mechanized site',
-            8:'Government, Semi-Govt., Public Works',
-            9:'Work upto Bare Shell (includes RCC, Masonry and Plaster works)'
+            1:"Residential (bungalow, row houses, standalone buildings)",
+            2:"Residential (housing complex)",
+            3:"Residential ( affordable housing)",
+            4:"Commercial (malls, office, institution, hotel, hospital, cinema)",
+            5:"Industrial (any size, any type)",
+            6:"Infrastructure (bridges, flyovers, ESR etc.)",
+            7:"Well equipped, well mechanized site",
+            8:"Government, Semi-Govt., Public Works",
+            9:"Work upto Bare Shell (includes RCC, Masonry and Plaster works)"
         }
     category = cat[cat_id]
     #q = Category.objects.filter(users_name=user).filter(app_form_cat=category)
@@ -598,9 +597,7 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 
-
-def viewForm1_1(request,user,cat_id):
-    cat = {
+cat = {
             1:"Residential (bungalow, row houses, standalone buildings)",
             2:"Residential (housing complex)",
             3:"Residential ( affordable housing)",
@@ -611,25 +608,44 @@ def viewForm1_1(request,user,cat_id):
             8:"Government, Semi-Govt., Public Works",
             9:"Work upto Bare Shell (includes RCC, Masonry and Plaster works)"
         }
-    q = Project_info.objects.get(users_name=user,category_latest=cat[int(cat_id)])
-    print(q)
-    return render(request,'BAI_app_v2/viewForm1_1.html',{"Project_info":q})
+
+def viewForm1_1(request,user,cat_id):
+    category = cat[cat_id]
+    q = Project_info.objects.get(users_name=user,category_latest=category)
+    return render(request,'BAI_app_v2/viewForm1_1.html',{"Project_info":q,"cat_id":cat_id})
     
-# def viewForm1_2(request,user,cat):
+def viewForm1_2(request,user,cat_id):
+    category = cat[cat_id]
+    q1 = Project_info_1.objects.get(users_name=user,category_latest=category)
+    return render(request,'BAI_app_v2/viewForm1_2.html',{"Project_info_1":q1,"cat_id":cat_id})
 
-# def viewForm1_3(request,user,cat):
+def viewForm1_3(request,user,cat_id):
+    category = cat[cat_id]
+    q2 = Quality.objects.get(users_name=user,category_latest=category)
+    return render(request,'BAI_app_v2/viewForm1_3.html',{"Quality":q2,"cat_id":cat_id})
 
-# def viewForm1_4(request,user,cat):
+def viewForm1_4(request,user,cat_id):
+    category = cat[cat_id]
+    q3 = Speed.objects.get(users_name=user,category_latest=category)
+    return render(request,'BAI_app_v2/viewForm1_4.html',{"Speed":q3,"cat_id":cat_id})
 
-# def viewForm2_1(request,user,cat):
+def viewForm2_1(request,user,cat_id):
+    category = cat[cat_id]
+    q = Economy.objects.get(users_name=user,category_latest=category)
+    return render(request,'BAI_app_v2/viewForm2_1.html',{"Economy":q,"cat_id":cat_id})
 
-# def viewForm2_2(request,user,cat):
+def viewForm2_2(request,user,cat_id):
+    category = cat[cat_id]
+    q = SafetynWellfare.objects.get(users_name=user,category_latest=category)
+    return render(request,'BAI_app_v2/viewForm2_2.html',{"SafetynWellfare":q,"cat_id":cat_id})
 
-# def viewForm2_3(request,user,cat):
+def viewForm2_3(request,user,cat_id):
+    category = cat[cat_id]
+    q = Others.objects.get(users_name=user,category_latest=category)
+    return render(request,'BAI_app_v2/viewForm2_3.html',{"Others":q,"cat_id":cat_id})
 
-# def viewForm3(request,user,cat):
-
-
-
-
+def viewForm3(request,user,cat_id):
+    category = cat[cat_id]
+    q = PaymentDetails.objects.get(users_name=user,category_latest=category)
+    return render(request,'BAI_app_v2/viewForm3.html',{"PaymentDetails":q,"cat_id":cat_id})
 

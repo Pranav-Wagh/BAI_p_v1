@@ -131,28 +131,26 @@
               <div class="sticky-top">
                 <div class="list-group">
                   <ul id="list-example">
-                    <a class="list-group-item list-group-item-action " href="#">General Information about
+                    <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_1' Project_info.users_name cat_id %}">General Information about
                       Project</a>
-                    <a class="list-group-item list-group-item-action " href="#">Names of Consultants
+                    <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_2' Project_info.users_name cat_id %}">Names of Consultants
                       appointed</a>
-                    <a class="list-group-item list-group-item-action " href="#">Quality </a>
-                    <a class="list-group-item list-group-item-action " href="#">Speed of construction</a>
+                    <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_3' Project_info.users_name cat_id %}">Quality </a>
+                    <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_4' Project_info.users_name cat_id %}">Speed of construction</a>
                   </ul>
                 </div>
               </div>
             </div>
             <div class="col-9">
 
-
-
               <div id="list-item-1">
                 <!-- step 1-1 -->
-                <p class="h4 mb-4 text-center">Query: {{Project_info.2}}</p>
-
-                <p>
-                <form class="border border-light p-5">
-                  <p class="h4 mb-4 text-center">General Information about Project</p>
+                <form class="border border-light p-5" action="{% url 'BAI_app_v2:viewForm1_2' Project_info.users_name cat_id %}">
+                  <p class="h4 text-center">General Information about Project</p>
                   <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+                  <p class="h4 text-center">User: {{Project_info.users_name}}</p>
+                  <p class="h4 mb-2 text-center">Category: {{Project_info.category_latest}}</p>
+                  <hr>
                   <div class="container flex-center flex-column">
                       <div class="col-sm">
                           <br>
@@ -161,104 +159,115 @@
                                   <label class="h5" for="">Name of Project: </label>
                               </div>
                               <div class="col-sm-4">
-                                  
+                                  <p class="h5">{{Project_info.project_name}}</p>
                               </div>
                           </div>
+                          <hr>
                           <div class="row" style="width:100%">
                             <div class="col-sm-8">
                                   <label class="h5" for="">Address of Project with Land Mark: </label>
                               </div>
                               <div class="col-sm-4">
-                                  
+                                <p class="h5">{{Project_info.project_address}}</p>
                               </div>
                           </div>
+                          <hr>
                           <div class="row" style="width:100%">
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                   <label class="h5" for="">Site Map: </label>
                               </div>
-                              <div class="col-sm-4">
-                                  
+                              <div class="col-sm-6">
+                                <p class="h5"><a href="{{Project_info.site_map}}">{{Project_info.site_map}}</a></p>
                               </div>
                           </div>
+                          <hr>
                           <div class="row" style="width:100%">
                             <div class="col-sm-8">
                                   <label class="h5" for="">Name of the Client: </label>
                               </div>
                               <div class="col-sm-4">
-                                  
+                                <p class="h5">{{Project_info.client_name}}</p>
                               </div>
                           </div>
+                          <hr>
                           <div class="row" style="width:100%">
                             <div class="col-sm-8">
                                   <label class="h5" for="">Project Cost in Rs.: </label>
                               </div>
                               <div class="col-sm-4">
-                                  
+                                <p class="h5">{{Project_info.project_cost}}</p>
                               </div>
                           </div>
+                          <hr>
                           <div class="row" style="width:100%">
                             <div class="col-sm-8">
                                   <label class="h5" for="">Applicants role with the project: </label>
                               </div>
                               <div class="col-sm-4">
-                                  
+                                <p class="h5">{{Project_info.applicant_role}}</p>
                               </div>
                           </div>
+                          <hr>
                           <div class="row" style="width:100%">
                             <div class="col-sm-8">
                                   <label class="h5" for="">Applicants scope: </label>
                               </div>
                               <div class="col-sm-4">
-                                  
+                                <p class="h5">{{Project_info.applicant_scope}}</p>
                               </div>
                           </div>
+                          <hr>
                           <div class="row" style="width:100%">
                             <div class="col-sm-8">
                                   <label class="h5" for="">Cost of Applicant’s works: </label>
                               </div>
                               <div class="col-sm-4">
-                                  
+                                <p class="h5">{{Project_info.applicantWork_cost}}</p>
                               </div>
                           </div>
+                          <hr>
                           <div class="row" style="width:100%">
                             <div class="col-sm-8">
                                   <label class="h5" for="">Date of Commencement of work: </label>
                               </div>
                               <div class="col-sm-4">
-                                  
+                                <p class="h5">{{Project_info.commencement_date}}</p>
                               </div>
                           </div>
+                          <hr>
                           <div class="row" style="width:100%">
                             <div class="col-sm-8">
                                   <label class="h5" for="">Date of Completion, Scheduled: </label>
                               </div>
                               <div class="col-sm-4">
-                                  
+                                <p class="h5">{{Project_info.sched_completion_date}}</p>
                               </div>
                           </div>
+                          <hr>
                           <div class="row" style="width:100%">
                             <div class="col-sm-8">
                                   <label class="h5" for="">Date of Virtual Completion, Actual: </label>
                               </div>
                               <div class="col-sm-4">
-                                  
+                                <p class="h5">{{Project_info.act_completion_date}}</p>
                               </div>
                           </div>
+                          <hr>
                           <div class="row" style="width:100%">
                             <div class="col-sm-8">
                                   <label class="h5" for="">Cost of Project Completed Till Date: </label>
                               </div>
                               <div class="col-sm-4">
-                                  
+                                <p class="h5">{{Project_info.proj_cost_tilldate}}</p>
                               </div>
                           </div>
+                          <hr>
 
                       </div>
                   </div>
 
-                    <button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='form 1-2.html'">Next</button>
+                    <button class="btn btn-info my-4 btn-block" type="submit">Next</button>
                 </form>
-                </p>
                 <!-- step 1-1 -->
               </div>
 
@@ -267,20 +276,34 @@
         </div>
       </div>
 
-      <!-- Footer -->
-      <footer class="page-footer font-small blue">
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2020 Copyright:
-          <a href="https://mdbootstrap.com/"> BAI-WBSC2020 </a>
-        </div>
-        <!-- Copyright -->
-      </footer>
-      <!-- Footer -->
-  </main>
+
+   <!--Footer-->
+   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+    <!--Call to action-->
+    <div class="pt-4">
+      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
+        target="_blank" role="button">Jury
+        <i class="fas fa-download ml-2"></i>
+      </a>
+      <a class="btn btn-outline-white" href="{% url 'BAI_app_v2:adminBAI' %}">Admin
+        <i class="fas fa-graduation-cap ml-2"></i>
+      </a>
+    </div>
+    <!--/.Call to action-->
+
+    <hr class="my-4">
 
 
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2020 Copyright:
+      <a href="#" target="_blank"> BAI-WBSC-2020 </a>
+    </div>
+    <!--/.Copyright-->
 
-  <!-- End your project here-->
+  </footer>
+  <!--/.Footer-->
 
   <!-- jQuery -->
   <script type="text/javascript" src="../../../../static/js/jquery.min.js"></script>
@@ -290,8 +313,6 @@
   <script type="text/javascript" src="../../../../static/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="../../../../static/js/mdb.min.js"></script>
-  <!-- Your custom scripts (optional) -->
-  <script type="text/javascript"></script>
 
 </body>
 

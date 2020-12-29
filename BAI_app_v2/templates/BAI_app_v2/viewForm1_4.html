@@ -1,5 +1,83 @@
-{% extends "BAI_app_v2/base.html" %}
-{% block body_block %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Builder's Association of India</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="../../../../static/css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="../../../../static/css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="../../../../static/css/style.css">
+
+
+
+  <script>
+    $('body').scrollspy({
+      target: '#menuSpy'
+    });
+  </script>
+
+</head>
+
+<body data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+  <main class="Site-content">
+    <nav class="navbar  navbar-expand-lg navbar-dark scrolling-navbar indigo">
+      <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand white-text" onclick='location.href="../../main.html"'>
+          <strong>BAI-WBSC</strong>
+        </a>
+
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <!-- Left -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" onclick="location.href='../../main.html'">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick='href="../profiles/profile.html"'>Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick='href="../../main.html#contact"'>Contact</a>
+            </li>
+          </ul>
+
+          <!-- Right -->
+          <ul class="navbar-nav nav-flex-icons">
+
+            <li class="nav-item">
+              <a onclick="location.href='../static_ui/rules1.html'"
+                class="nav-link border border-light rounded waves-effect" target="_blank">
+                About WBSC
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+
 
         <!-- Horizontal Steppers -->
         <div class="container ">
@@ -52,14 +130,12 @@
                             <div class="sticky-top">
                                 <div class="list-group">
                                     <ul id="list-example">
-                                        <a class="list-group-item list-group-item-action " href="form1.html">General
-                                            Information about Project</a>
-                                        <a class="list-group-item list-group-item-action " href="form 1-2.html">Names of
-                                            Consultants appointed</a>
-                                        <a class="list-group-item list-group-item-action " href="form 1-3.html">Quality
-                                        </a>
-                                        <a class="list-group-item list-group-item-action " href="#list-item-4">Speed of
-                                            construction</a>
+                                      <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_1' Speed.users_name cat_id %}">General Information about
+                                        Project</a>
+                                      <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_2' Speed.users_name cat_id %}">Names of Consultants
+                                        appointed</a>
+                                      <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_3' Speed.users_name cat_id %}">Quality </a>
+                                      <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_4' Speed.users_name cat_id %}">Speed of construction</a>
                                     </ul>
                                 </div>
                             </div>
@@ -67,9 +143,12 @@
                         <div class="col-9">
                             <div id="list-item-4">
                                 <!-- step 1-4 -->
-                                <form class="border border-light p-5">
-                                    <p class="h4 mb-4 text-center">Speed</p>
+                                <form class="border border-light p-5" action="{% url 'BAI_app_v2:viewForm2_1' Speed.users_name cat_id %}">
+                                    <p class="h4 text-center">Speed</p>
                                     <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+                                    <p class="h4 text-center">User: {{Speed.users_name}}</p>
+                                    <p class="h4 mb-2 text-center">Category: {{Speed.category_latest}}</p>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                             <label for="textInput"><b>1. In case of a Tender, was the time line defined
@@ -77,36 +156,40 @@
                                                     the Tender? *</b></label>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                            <p class="h5">{{Speed.tender}}</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                           <label><b>If not, who determined the Project Time frame?
                                                   *</b></label><br>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.ProTimeFrame}}</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                             <label for="textInput"><b>2. Was the project being tracked in terms of time
                                                     during the progress of work?</b></label>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.tracked}}</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                             <label for="textInput"><b>3. Was there a separate PMC appointed?
                                                     *</b></label>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.PMCappointed}}</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                             <label for="textInput"><b>4. Were the drawings, specifications and
@@ -114,9 +197,10 @@
                                                     assessed <br> in terms of possible time reduction? *</b></label>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.TimeReduc}}</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                             <label for="textInput"><b>5. Was there a separate group / individual
@@ -124,9 +208,10 @@
                                                     progress planned v/s actual?</b></label>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.trackPro}}</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                             <label for="textInput"><b>6. What was the expected period of completion of
@@ -134,18 +219,20 @@
                                                     project? *</b></label><br>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.expectPeriod}}</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                             <label for="textInput"><b>7. What was the actual period of completion of the
                                                     project? *</b></label><br>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.periodComplete}}</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                             <label for="textInput"><b>8. During execution, did you encounter any
@@ -153,9 +240,10 @@
                                                     that resulted in variance of work?</b></label>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.difficulty}}</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                           <label for="textInput"><b>If yes, how much time did you loose on
@@ -163,9 +251,10 @@
                                                   account?</b></label><br>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.timeLost}}</p>
                                         </div>
                                     </div>
+                                    <hr>
 
                                     <div class="form-row">
                                         <div class="col-9">
@@ -173,9 +262,10 @@
                                                     on site?</b></label><br>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.mechanization}}</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                             <label for="textInput"><b>10. How did it contribute to improvement in speed
@@ -183,9 +273,10 @@
                                                     work?</b></label><br>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.contribImprov}}</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                             <label for="textInput"><b>11. In Case of Tender, were the payments received
@@ -193,9 +284,10 @@
                                                     you as per Tender terms? *</b></label>
                                         </div>
                                         <div class="col-3">
-                                            {{}}
+                                          <p class="h5">{{Speed.tenderPay}}</p>
                                         </div>
                                     </div>
+                                    <hr>
 
                                     <div class="form-row">
                                         <div class="col-9">
@@ -204,10 +296,11 @@
                                         </div>
                                         <div class="col-3">
                                             <div class="md-form mt-0">
-                                              {{}}
+                                              <p class="h5">{{Speed.suggest}}</p>
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="form-row">
                                         <div class="col-9">
                                             <label for="textInput"><b>13. How would you rate your project in terms of
@@ -215,15 +308,16 @@
                                                     on a scale of 1 to 10
                                                     (1: Lowest, 10:Highest) *</b></label><br>
                                         </div>
+                                        <hr>
                                         <div class="col-3">
                                             <div class="md-form mt-0">
-                                              {{}}
+                                              <p class="h5">{{Speed.SpeedScale}}</p>
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
 
-                                    <button class="btn btn-info my-4 btn-block" type="button"
-                                        onclick="window.location.href='form2.html'">Submit</button>
+                                    <button class="btn btn-info my-4 btn-block" type="submit">Next</button>
                                 </form>
                             </div>
                             <!-- step 1-4 -->
@@ -233,5 +327,44 @@
             </div>
         </div>
 
-        <!-- /.Horizontal Steppers -->
-{% endblock %}
+   <!--Footer-->
+   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+    <!--Call to action-->
+    <div class="pt-4">
+      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
+        target="_blank" role="button">Jury
+        <i class="fas fa-download ml-2"></i>
+      </a>
+      <a class="btn btn-outline-white" href="{% url 'BAI_app_v2:adminBAI' %}">Admin
+        <i class="fas fa-graduation-cap ml-2"></i>
+      </a>
+    </div>
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2020 Copyright:
+      <a href="#" target="_blank"> BAI-WBSC-2020 </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="../../../../static/js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../../../../static/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../../../../static/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../../../../static/js/mdb.min.js"></script>
+
+</body>
+
+
+</html>
