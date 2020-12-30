@@ -59,7 +59,8 @@ def add_jury(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def admin_verified(request):
-    return render(request,'BAI_app_v2/admin_verified.html')
+    q = Category.objects.filter(status=1)
+    return render(request,'BAI_app_v2/admin_verified.html',{"verified":q})
 
 @user_passes_test(lambda u: u.is_superuser)
 def admin_notverified(request):

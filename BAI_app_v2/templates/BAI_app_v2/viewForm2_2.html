@@ -125,11 +125,9 @@
                             <div class="col-3">
                                 <div class="sticky-top">
                                     <div id="list-example" class="list-group">
-                                        <a class="list-group-item list-group-item-action"
-                                            href="form2.html">Economy</a>
-                                        <a class="list-group-item list-group-item-action"
-                                            href="#list-item-2">Safety/Welfare</a>
-                                        <a class="list-group-item list-group-item-action" href="form 2-3.html">Others</a>
+                                      <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:viewForm2_1' SafetynWellfare.users_name cat_id %}">Economy</a>
+                                      <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:viewForm2_2' SafetynWellfare.users_name cat_id %}">Safety/Welfare</a>
+                                      <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:viewForm2_3' SafetynWellfare.users_name cat_id %}">Others</a>
                                     </div>
                                 </div>
                             </div>
@@ -140,27 +138,31 @@
                                     </h4>
                                     <!--step 2-2-->
                                     <div>
-                                        <form class="border border-light p-5" id="list-item-2">
+                                        <form class="border border-light p-5" id="list-item-2" action="{% url 'BAI_app_v2:viewForm2_3' SafetynWellfare.users_name cat_id %}">
                                             <p class="h4 mb-4 text-center">Safety/Welfare</p>
-                                            <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)
-                                            </p>
+                                            <p class="text-center">Builder / Contractor(Fill relevant information)</p>
+                                            <p class="h4 text-center">User: {{SafetynWellfare.users_name}}</p>
+                                            <p class="h4 mb-2 text-center">Category: {{SafetynWellfare.category_latest}}</p>
+                                            <hr>
                                             <div class="form-row">
                                                 <div class="col-9">
                                                     <label for="textInput"><b>1. Was safety on site being
                                                             monitored?*</b></label>
                                                 </div>
                                                 <div class="col-3">
-                                                    {{}}
+                                                    <p>{{SafetynWellfare.monitered}}</p>
                                                 </div>
                                             </div>
+                                            <hr>
                                             <div class="form-row">
                                                 <div class="col-9">
                                                   <label for="textInput"><b>If yes, by whom? *</b></label><br>
                                                 </div>
                                                 <div class="col-3">
-                                                    {{}}
+                                                  <p>{{SafetynWellfare.bywhom}}</p>
                                                 </div>
                                             </div>
+                                            <hr>
                                             <div class="form-row">
                                                 <div class="col-9">
                                                     <label for="textInput"><b>2. Enlist safety measures / equipment
@@ -171,19 +173,21 @@
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="md-form mt-0">
-                                                      {{}}
+                                                      <p>{{SafetynWellfare.measures}}</p>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <hr>
                                             <div class="form-row">
                                                 <div class="col-9">
                                                     <label for="textInput"><b>3. Was medical aid available on site
                                                             during execution?</b></label>
                                                 </div>
                                                 <div class="col-3">
-                                                    {{}}
+                                                  <p>{{SafetynWellfare.medical_aid}}</p>
                                                 </div>
                                             </div>
+                                            <hr>
                                             <div class="form-row">
                                                 <div class="col-9">
                                                     <label for="textInput"><b>4. Were there any safety related incidents
@@ -191,19 +195,21 @@
                                                             on site? *</b></label>
                                                 </div>
                                                 <div class="col-3">
-                                                    {{}}
+                                                  <p>{{SafetynWellfare.incidents}}</p>
                                                 </div>
                                             </div>
+                                            <hr>
                                             <div class="form-row">
                                                 <div class="col-9">
                                                     <label for="textInput"><b>5. Provide documents showing safety
                                                             audits, if done.</b></label><br>
                                                 </div>
                                                 <div class="col-3">
-                                                    {{}}
+                                                  <p>{{SafetynWellfare.safety_audits}}</p>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='form 2-3.html'">Next</button>
+                                            <hr>
+                                            <button class="btn btn-info my-4 btn-block" type="submit">Next</button>
                                             <!--<button class="btn btn-info my-4 btn-block" type="button" onclick="window.location.href='form3.html'">Next</button>-->
                                         </form>
                                     </div>

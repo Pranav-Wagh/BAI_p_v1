@@ -13,22 +13,26 @@
           </div>
           <div class="col-md-9 mt-5">
               <p class="h4 mb-4 text-center">List of User(Forms Verified)</p>
-              <div class="row z-depth-1 blue lighten-4">
-                <div class="col-sm-4 tex-center" >
+
+              {% for itr in verified %}
+              <div class="row z-depth-1 lighten-4">
+                <div class="col-sm-3 tex-center" >
                     <div class="flex-left col-sm" style="width: 100%; height:100%">
-                        <h4 class="display-5 mt-3 font-weight-bold">No.[USER]</h4>
+                        <h4 class="display-5 mt-3 font-weight-bold">{{itr.users_name}}</h4>
                     </div>
                 </div>
-                <div class="col-sm-4 tex-center" >
+                <div class="col-sm-6 tex-center" >
                     <div class="flex-left col-sm" style="width: 100%; height:100%">
-                      <h5 class="display-5 mt-3"> Total forms filled: </h5>
+                      <h5 class="display-5 mt-3">{{itr.app_form_cat}}</h5>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                  <button class="btn success-color my-2 btn-block text-white font-weight-bold hoverable" type="button"
-                      onclick="window.location.href='submittedforms_ver.html'">View Forms</button>
+                <div class="col-sm-3">
+                  <a href="{% url 'BAI_app_v2:viewForm1_1' itr.users_name itr.app_form_cat %}"><i class="fas fa-eye fa-2x mt-3" style="color: #0288D1;"></i></a>
                 </div>
               </div>
+              {% endfor %}
+
+
               </div>
 
         </div>

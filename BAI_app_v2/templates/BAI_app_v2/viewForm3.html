@@ -123,7 +123,7 @@
                 <div class="col-3">
                   <div class="sticky-top">
                     <div id="list-example" class="list-group">
-                      <a class="list-group-item list-group-item-action" href="#list-item-1">Payment Details</a>
+                      <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:viewForm3' PaymentDetails.users_name cat_id %}">Payment Details</a>
                     </div>
                   </div>
                 </div>
@@ -147,18 +147,20 @@
 
                           <!--Grid column-->
                           <div class="col-md-12 mb-md-0 mb-5">
-                            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                            <form id="contact-form" name="contact-form" action="{% url 'BAI_app_v2:admin_notverified' %}">
 
                               <!--Grid row-->
                               <div class="row">
                                 <div class="col-sm">
+                                  <p class="h4 text-center">User: {{PaymentDetails.users_name}}</p>
+                                  <p class="h4 mb-2 text-center">Category: {{PaymentDetails.category_latest}}</p>
                                     <br>
                                     <div class="row" style="width:100%">
                                       <div class="col-sm">
                                             <label class="h5" for="">Payment Method : </label>
                                         </div>
                                         <div class="col-sm">
-                                            {{}}
+                                            <p class="h5">{{PaymentDetails.pay_method}}</p>
                                         </div>
                                     </div>
                                     <div class="row" style="width:100%">
@@ -166,7 +168,7 @@
                                             <label class="h5" for="">Transaction Date : </label>
                                         </div>
                                         <div class="col-sm">
-                                          {{}}
+                                          <p class="h5">{{PaymentDetails.trans_date}}</p>
                                         </div>
                                     </div>
                                     <div class="row" style="width:100%">
@@ -174,7 +176,7 @@
                                             <label class="h5" for="">Transaction ID / Cheque Number : </label><br>
                                         </div>
                                         <div class="col-sm">
-                                            {{}}
+                                          <p class="h5">{{PaymentDetails.trans_id}}</p>
                                         </div>
                                     </div>
                                     <div class="row" style="width:100%">
@@ -182,21 +184,15 @@
                                             <label class="h5" for="">Bank Details : </label> <br>
                                         </div>
                                         <div class="col-sm">
-                                            {{}}
+                                          <p class="h5">{{PaymentDetails.bank}}</p>
                                         </div>
                                     </div>
                                     <div class="text-center text-md-center">
-                                      <a class="btn btn-primary">Verify Details</a>
+                                      <button type="submit" class="btn btn-danger">Exit</button>
                                     </div>
                                 </div>
 
-
-                              <!--Grid row-->
-
                             </form>
-
-
-                            <div class="status"></div>
                           </div>
                           <!--Grid column-->
 
@@ -206,12 +202,6 @@
                       </section>
                       <!--Section: Contact v.2-->
                     </div>
-                    <hr>
-                    <div class="container">
-                      <button class="btn btn-info my-4 btn-block" type="button"
-                        onclick="window.location.href='form3.html'" style="width: 500px;">Submit</button>
-                    </div>
-
                     <div style="height:10px;">
                     </div>
                   </div>
