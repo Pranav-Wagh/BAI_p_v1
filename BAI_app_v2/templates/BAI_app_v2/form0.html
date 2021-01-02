@@ -88,8 +88,7 @@
   
                        <!-- <span> Hello, {{request.user}} </span>
                       <span> <a href="/logout">Logout</a> </span> -->
-  
-                    <div id="list-item-1">
+                      <div id="list-item-1">
                         <form class="border border-light p-5" action="{% url 'BAI_app_v2:form0' %}" method="POST">
                             {% csrf_token %}
                             <h1 class="display-5 font-weight-bold"> Select a category you <br> want to fill application
@@ -97,60 +96,6 @@
                             <!-- Default unchecked -->
                             <br>
                             <strong>
-                                <!-- <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultUnchecked"
-                                        name="cat1">
-                                    <label class="custom-control-label" for="defaultUnchecked">Residential (bungalow,
-                                        row houses, standalone buildings)</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultUnchecked2"
-                                        name="cat2">
-                                    <label class="custom-control-label" for="defaultUnchecked2">Residential (housing
-                                        complex)</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultUnchecked3"
-                                        name="cat3">
-                                    <label class="custom-control-label" for="defaultUnchecked3">Residential ( affordable
-                                        housing)</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultUnchecked4"
-                                        name="cat4">
-                                    <label class="custom-control-label" for="defaultUnchecked4">Commercial (malls,
-                                        office, institution, hotel, hospital, cinema)</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultUnchecked5"
-                                        name="cat5">
-                                    <label class="custom-control-label" for="defaultUnchecked5">Industrial (any size,
-                                        any type)</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultUnchecked6"
-                                        name="cat6">
-                                    <label class="custom-control-label" for="defaultUnchecked6">Infrastructure (bridges,
-                                        flyovers, ESR etc.)</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultUnchecked7"
-                                        name="cat7">
-                                    <label class="custom-control-label" for="defaultUnchecked7">Well equipped, well
-                                        mechanized site</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultUnchecked8"
-                                        name="cat8">
-                                    <label class="custom-control-label" for="defaultUnchecked8">Government, Semi-Govt.,
-                                        Public Works</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultUnchecked9"
-                                        name="cat9">
-                                    <label class="custom-control-label" for="defaultUnchecked9">Work upto Bare Shell
-                                        (includes RCC, Masonry and Plaster works)</label>
-                                </div> -->
 
                                 <select name="app_form_cat" class="browser-default custom-select my-4">
                                   <option selected>Categories Avaliable</option>
@@ -176,9 +121,7 @@
                 </div>
               </div>
               </div>
-  
-          {% endif %}
-  
+              {% endif %}
               <!-- /.Horizontal Steppers -->
       </main>
   </div>

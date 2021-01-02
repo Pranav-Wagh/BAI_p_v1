@@ -1,0 +1,152 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+{% load static %}
+<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+  <div class="container mt-5">
+    <main class="Site-content">
+        <!-- Horizontal Steppers -->
+        <div class="container ">
+          <div class="row Site-content">
+            {% if error1_2 %}
+            <script> alert(" {{error1_2}} ")</script>
+            {% endif %}
+    
+            <div class="col-md-12">
+
+              <!-- Stepers Wrapper -->
+              <ul class="stepper stepper-horizontal">
+
+                <li class="completed">
+                  <a class="nav-link" href="#">
+                    <span class="circle">1</span>
+                    <span class="label">First step</span>
+                  </a>
+                </li>
+
+                <!-- First Step -->
+                <li class="incomplete">
+                  <a href="#step-home">
+                    <span class="circle">2</span>
+                    <span class="label">Second step</span>
+                  </a>
+                </li>
+
+                <!-- Second Step -->
+                <li class="incomplete">
+                  <a class="nav-link" href="#">
+                    <span class="circle">3</span>
+                    <span class="label">Third step</span>
+                  </a>
+                </li>
+
+                <!-- Third Step -->
+                <li class="incomplete">
+                  <a class="nav-link" href="#">
+                    <span class="circle">4</span>
+                    <span class="label">Fourth step</span>
+                  </a>
+                </li>
+
+              </ul>
+              <!-- /.Stepers Wrapper -->
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="mt-2">
+              <div class="row">
+                <div class="col-3">
+                  <div class="sticky-top">
+                    <div class="list-group">
+                      <ul id="list-example">
+                        <a class="list-group-item list-group-item-action " href="#list-item-1">General Information about Project</a>
+                        <a class="list-group-item list-group-item-action " href="#list-item-2">Names of Consultants appointed</a>
+                        <a class="list-group-item list-group-item-action " href="#list-item-3">Quality </a>
+                        <a class="list-group-item list-group-item-action " href="#list-item-4">Speed of construction</a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                  <div class="col-9">
+                      <p>
+                      <form class="border border-light p-5" action="{% url 'BAI_app_v2:updateform1_2' request.user.username cat_id %}" enctype="multipart/form-data" method="POST">
+                        {% csrf_token %}
+                        
+                      <div id="list-item-2">
+                        <p class="h4 mb-4 text-center">Update Names of Consultants appointed:</p>
+                        <input type="text" id="textInput" class="form-control mb-4" name="Architect_name" value={{Project_info_1.Architect_name}}>
+                        <input type="text" id="textInput" class="form-control mb-4" name="Structural_Consultant_name" value={{Project_info_1.Structural_Consultant_name}}>
+                        <input type="text" id="textInput" class="form-control mb-4" name="Plumbing_Consultant_name" value={{Project_info_1.Plumbing_Consultant_name}}>
+                        <input type="text" id="textInput" class="form-control mb-4" name="Fire_Consultant_name" value={{Project_info_1.Fire_Consultant_name}}>
+                        <input type="text" id="textInput" class="form-control mb-4" name="Landscaping_Consultant_name" value={{Project_info_1.Landscaping_Consultant_name}}>
+                        <input type="text" id="textInput" class="form-control mb-4" name="HVAC_Consultant_name" value={{Project_info_1.HVAC_Consultant_name}}>
+                        <input type="text" id="textInput" class="form-control mb-4" name="Electrical_Consultant_name" value={{Project_info_1.Electrical_Consultant_name}}>
+                        <input type="text" id="textInput" class="form-control mb-4" name="Interior_Designer_name" value={{Project_info_1.Interior_Designer_name}}>
+                        <input type="text" id="textInput" class="form-control mb-4" name="Project_Management_Consultant_name" value={{Project_info_1.Project_Management_Consultant_name}}>
+                        <input type="text" id="textInput" class="form-control mb-4" name="MoEF_Consultant_name" value={{Project_info_1.MoEF_Consultant_name}}>
+                        <label for="textInput"><b>Approvals, NOCs, certificates from PMC, PH Dept.,<br>
+                            CFO, MoEF, GRIHA etc. (attach copies)</b></label>
+                        <div class="input-group mb-4">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                          </div>
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="fileInput" name="req_docs" aria-describedby="fileInput" multiple>
+                            <label class="custom-file-label" for="fileInput">{{Project_info_1.req_docs}}</label>
+                          </div>
+                        </div>
+                        <label for="textInput"><b>Is the project rated as green project?</b></label>
+
+                        {% if Project_info_1.green_proj == "no" %}
+                        <!-- Default unchecked -->
+                        <div class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="green_proj" id="defaultUnchecked" value="on">
+                          <label class="custom-control-label" for="defaultUnchecked">YES</label>
+                        </div>
+                        <!-- Default checked -->
+                        <div class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="green_proj" id="defaultChecked" value="off" checked >
+                          <label class="custom-control-label" for="defaultChecked">NO</label>
+                        </div>
+
+                        {% else %}
+                        <!-- Default unchecked -->
+                        <div class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="green_proj" id="defaultChecked" value="on" checked>
+                          <label class="custom-control-label" for="defaultChecked">YES</label>
+                        </div>
+                        <!-- Default checked -->
+                        <div class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="green_proj" id="defaultUnchecked" value="off" >
+                          <label class="custom-control-label" for="defaultUnchecked">NO</label>
+                        </div>
+                        {% endif %}
+
+
+                        <label for="textInput"><b>If yes, give details(attach copies)</b></label>
+                        <div class="input-group mb-4">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                          </div>
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="fileInput" name="green_project_details" aria-describedby="fileInput" multiple>
+                            <label class="custom-file-label" for="fileInput">{{Project_info_1.green_project_details}}</label>
+                          </div>
+                        </div>
+
+                      </div>
+
+                        <button class="btn btn-info my-4 btn-block" type="Submit">UPDATE</button>
+                      </form>
+                    </div>
+                    <!-- step 1-4 -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <!-- /.Horizontal Steppers -->
+    </main>
+</div>
+
+{% endblock %}

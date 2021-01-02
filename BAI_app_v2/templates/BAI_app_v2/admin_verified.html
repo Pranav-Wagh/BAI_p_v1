@@ -1,7 +1,10 @@
 {% extends "BAI_app_v2/base.html" %}
 {% block body_block %}
+{% load static %}
 
+<div class="jumbotron">
     <div class="container mt-5 mb-5">
+      <p class="h3 mt-5 text-center">List of User(Forms Verified)</p>
         <div class="row">
           <div class="col-md-3 mt-5">
             <div class="sticky-top">
@@ -12,30 +15,34 @@
             </div>
           </div>
           <div class="col-md-9 mt-5">
-              <p class="h4 mb-4 text-center">List of User(Forms Verified)</p>
-
-              {% for itr in verified %}
-              <div class="row z-depth-1 lighten-4">
-                <div class="col-sm-3 tex-center" >
-                    <div class="flex-left col-sm" style="width: 100%; height:100%">
-                        <h4 class="display-5 mt-3 font-weight-bold">{{itr.users_name}}</h4>
-                    </div>
-                </div>
-                <div class="col-sm-6 tex-center" >
-                    <div class="flex-left col-sm" style="width: 100%; height:100%">
-                      <h5 class="display-5 mt-3">{{itr.app_form_cat}}</h5>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                  <a href="{% url 'BAI_app_v2:viewForm1_1' itr.users_name itr.app_form_cat %}"><i class="fas fa-eye fa-2x mt-3" style="color: #0288D1;"></i></a>
-                </div>
+              <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-striped table-hover text-center" >
+                  <thead class="white-text">
+                    <tr>
+                      <th><strong>Sr No.</strong></th>
+                      <th><strong>User</strong></th>
+                      <th><strong>Category of Application Form</strong></th>
+                      <th><strong>View Form</strong></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for itr in verified %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{itr.0}}</td>
+                      <td>{{itr.2}}</td>
+                      <td><a href="{% url 'BAI_app_v2:viewForm1_1' itr.0 itr.1 %}"><i class="fas fa-eye fa-lg" style="color: #0288D1;"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
               </div>
-              {% endfor %}
 
 
-              </div>
+          </div>
 
         </div>
       </div>
+</div>
 
 {% endblock %}

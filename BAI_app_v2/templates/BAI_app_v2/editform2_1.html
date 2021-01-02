@@ -1,15 +1,16 @@
 {% extends "BAI_app_v2/base.html" %}
 {% block body_block %}
+{% load static %}
 
+<div data-spy="scroll" data-target="#list-example" data-offset="0">
+
+  <div class="container mt-5">
     <div class="container">
-      {% if filled1_4 %}
-      <script>alert("Speed Information saved Successfully!")</script>
-      {% endif %}
-      {% if error2_1 %}
-      <script>alert("{{error2_1}}")</script>
-      {% endif %}
       <!-- Horizontal Steppers -->
       <div class="row">
+                {% if error2_1 %}
+                <script> alert(" {{error2_1}} ")</script>
+                {% endif %}
         <div class="col-md-12">
 
           <!-- Stepers Wrapper -->
@@ -17,7 +18,7 @@
 
             <!-- First Step -->
             <li class="completed">
-              <a class="nav-link" onclick="href='/BAI_app_v2/form0'">
+              <a class="nav-link" href="#">
                 <span class="circle">1</span>
                 <span class="label">First step</span>
               </a>
@@ -25,7 +26,7 @@
 
             <!-- First Step -->
             <li class="completed">
-              <a class="nav-link" onclick="href='/BAI_app_v2/form1'">
+              <a class="nav-link" href="#">
                 <span class="circle">2</span>
                 <span class="label">Second step</span>
               </a>
@@ -41,7 +42,7 @@
 
             <!-- Third Step -->
             <li class="incomplete">
-              <a class="nav-link" onclick="location.href='/BAI_app_v2/form3'">
+              <a class="nav-link" href="#">
                 <span class="circle">4</span>
                 <span class="label">Fourth step</span>
               </a>
@@ -56,8 +57,8 @@
                   <div class="sticky-top">
                     <div id="list-example" class="list-group">
                       <a class="list-group-item list-group-item-action" href="#list-item-1">Economy</a>
-                      <a class="list-group-item list-group-item-action" href="form 2-2.html">Safety/Welfare</a>
-                      <a class="list-group-item list-group-item-action" href="form 2-3.html">Others</a>
+                      <a class="list-group-item list-group-item-action" href="#list-item-2">Safety/Welfare</a>
+                      <a class="list-group-item list-group-item-action" href="#list-item-3">Others</a>
                     </div>
                   </div>
                 </div>
@@ -67,9 +68,10 @@
                       <!--Economy-->
                     </h4>
                     <!--step 2-1-->
-                      <form class="border border-light p-5" action="{% url 'BAI_app_v2:form2_1' %}" enctype="multipart/form-data" method="POST">
+                    <div>
+                      <form class="border border-light p-5" action="{% url 'BAI_app_v2:updateform2_1' request.user.username cat_id %}" enctype="multipart/form-data" method="POST">
                         {% csrf_token %}
-                        <p class="h4 mb-4 text-center">Economy</p>
+                        <p class="h4 mb-4 text-center">Update Economy Form</p>
                         <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
                         <div class="form-row">
                           <div class="col-9">
@@ -78,7 +80,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              <input type="text" name="project_cost" placeholder="in Rs">
+                              <input type="text" name="project_cost" value={{Economy.project_cost}}>
                             </div>
                           </div>
                         </div>
@@ -88,7 +90,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              <input type="text" name="who_determined" placeholder="">
+                              <input type="text" name="who_determined" value={{Economy.who_determined}}>
                             </div>
                           </div>
                         </div>
@@ -97,34 +99,62 @@
                             <label for="textInput"><b>3. Were the drawings, specifications and techniques
                                 assessed in terms of possible cost reduction? *</b></label>
                           </div>
+                          {% if Economy.cost_reduction == "yes" %}
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="cost_reduction">YES
+                                <input type="radio" name="cost_reduction" value="yes" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="cost_reduction">NO
+                                <input type="radio" name="cost_reduction" value="no">NO
                               </label>
                             </div>
                           </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="cost_reduction" value="yes" >YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="cost_reduction" value="no" checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
                         </div>
                         <div class="form-row">
                           <div class="col-9">
                             <label for="textInput"><b>4. Was the project being tracked in terms of cost
                                 during progress of work?</b></label>
                           </div>
+                          {% if Economy.cost_reduction == "yes" %}
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
-                                <input type="radio" name="tracked_e">YES
+                                <input type="radio" name="tracked_e" value="yes" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="tracked_e">NO
+                                <input type="radio" name="tracked_e" value="no">NO
                               </label>
                             </div>
                           </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
+                                <input type="radio" name="tracked_e" value="yes">YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="tracked_e" value="no" checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
                         </div>
                         <div class="collapse" id="collapseExample1">
                           <div class="mt-3">
@@ -134,7 +164,7 @@
                               </div>
                               <div class="col-3">
                                 <div class="md-form mt-0">
-                                  <input type="text" name="who_tracked" placeholder="">
+                                  <input type="text" name="who_tracked" value={{Quality.who_tracked}}>
                                 </div>
                               </div>
                             </div>
@@ -144,17 +174,31 @@
                           <div class="col-9">
                             <label for="textInput"><b>5. Was there a separate PMC appointed?</b></label>
                           </div>
+                          {% if Economy.PMC_appointed == "yes" %}
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="PMC_appointed">YES
+                                <input type="radio" name="PMC_appointed" value="yes" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="PMC_appointed">NO
+                                <input type="radio" name="PMC_appointed" value="no">NO
                               </label>
                             </div>
                           </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="PMC_appointed" value="yes" >YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="PMC_appointed" value="no" checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
                         </div>
                         <div class="form-row">
                           <div class="col-9">
@@ -163,7 +207,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              <input type="text" name="expected_cost" placeholder="">
+                              <input type="text" name="expected_cost" value={{Economy.expected_cost}}>
                             </div>
                           </div>
                         </div>
@@ -174,7 +218,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              <input type="text" name="actual_cost" placeholder="">
+                              <input type="text" name="actual_cost" value={{Economy.actual_cost}}>
                             </div>
                           </div>
                         </div>
@@ -184,17 +228,33 @@
                             <label for="textInput"><b>8. During execution did you encounter any difficulty
                                 that resulted in cost escalation of work?</b></label>
                           </div>
+                          {% if Economy.difficulty_e == "yes" %}
                           <div class="col-3">
                             <div class="mt-0">
+
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample2">
-                                <input type="radio" name="difficulty_e">YES
+                                <input type="radio" name="difficulty_e" value="yes" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="difficulty_e">NO
+                                <input type="radio" name="difficulty_e" value="no">NO
                               </label>
                             </div>
                           </div>
+                          {% else %}
+                           <div class="col-3">
+                            <div class="mt-0">
+
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample2">
+                                <input type="radio" name="difficulty_e" value="yes" >YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="difficulty_e" value="no" checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
                         </div>
                         <div class="collapse" id="collapseExample2">
                           <div class="mt-3">
@@ -205,7 +265,7 @@
                               </div>
                               <div class="col-3">
                                 <div class="md-form mt-0">
-                                  <input type="text" name="escalated" placeholder="in Rs">
+                                  <input type="text" name="escalated" value={{Economy.escalated}}>
                                 </div>
                               </div>
                             </div>
@@ -218,7 +278,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              <input type="text" name="costsaving_measures" placeholder="">
+                              <input type="text" name="costsaving_measures" value={{Economy.costsaving_measures}}>
                             </div>
                           </div>
                         </div>
@@ -229,7 +289,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              <input type="text" name="suggestions" placeholder="">
+                              <input type="text" name="suggestions" value={{Economy.suggestions}}>
                             </div>
                           </div>
                         </div>
@@ -240,7 +300,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              <input type="text" name="cost_per_sft" placeholder="">
+                              <input type="text" name="cost_per_sft" value={{Economy.cost_per_sft}}>
                             </div>
                           </div>
                         </div>
@@ -250,7 +310,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              <input type="text" name="cost_per_room" placeholder="">
+                              <input type="text" name="cost_per_room" value={{Economy.cost_per_room}}>
                             </div>
                           </div>
                         </div>
@@ -260,7 +320,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              <input type="text" name="cost_per_bed" placeholder="">
+                              <input type="text" name="cost_per_bed" value={{Economy.cost_per_bed}}>
                             </div>
                           </div>
                         </div>
@@ -270,7 +330,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              <input type="text" name="cost_per_workstation" placeholder="">
+                              <input type="text" name="cost_per_workstation" value={{Economy.cost_per_workstation}}>
                             </div>
                           </div>
                         </div>
@@ -280,7 +340,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                              <input type="text" name="cost_per_similar" placeholder="">
+                              <input type="text" name="cost_per_similar" value={{Economy.cost_per_similar}}>
                             </div>
                           </div>
                         </div>
@@ -293,7 +353,7 @@
                           </div>
                           <div class="col-3">
                             <div class="md-form mt-0">
-                                <input type="text" name="economy_ratings" placeholder="">
+                                <input type="text" name="economy_ratings" value={{Economy.economy_ratings}}>
                               <!-- <select class="mdb-select dropdown-primary">
                                 <option value="" disabled selected>Select Rating</option>
                                 <option value="1" name="economy_ratings">1</option>
@@ -311,17 +371,18 @@
                           </div>
                         </div>
 
-                        {% if error2_1 %}
-                        <script> alert(" {{error2_1}} ")</script>
-                        {% endif %}
-
-                        <button class="btn btn-info my-4 btn-block" type="submit">Save & Next</button>
+                        <button class="btn btn-info my-4 btn-block" type="Submit" value="Form2">UPDATE</button>
+                        <p><em>NOTE: Please keep all relevant document ready at site for verification / inspection
+                            during the visit of juries.</em> </p>
                       </form>
+                    </div>
+                    <!--step 2-2-->
 
                   </div>
                 </div>
               </div>
             </div>
+            
           </div>
         </div>
       </div>
@@ -330,4 +391,6 @@
   <!-- /.Horizontal Steppers -->
   </div>
 
-  {% endblock %}
+</div>
+
+{% endblock %}

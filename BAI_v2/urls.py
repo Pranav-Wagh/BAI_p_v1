@@ -24,4 +24,4 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('BAI_app_v2/',include('BAI_app_v2.urls')),
     path('', include('django.contrib.auth.urls')),
-]   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

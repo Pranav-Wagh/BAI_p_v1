@@ -44,4 +44,19 @@ urlpatterns = [
 
     path('AcceptForm/<user>/<int:cat_id>',views.AcceptForm,name="AcceptForm"),
     path('RejectForm/<user>/<int:cat_id>',views.RejectForm,name="RejectForm"),
+
+    path('updateform0/<user>/<int:cat_id>',views.updateform0,name="updateform0"),
+    path('updateform1_1/<user>/<int:cat_id>',views.updateform1_1,name="updateform1_1"),
+    path('updateform1_2/<user>/<int:cat_id>',views.updateform1_2,name="updateform1_2"),
+    path('updateform1_3/<user>/<int:cat_id>',views.updateform1_3,name="updateform1_3"),
+    path('updateform1_4/<user>/<int:cat_id>',views.updateform1_4,name="updateform1_4"),
+    path('updateform2_1/<user>/<int:cat_id>',views.updateform2_1,name="updateform2_1"),
+    path('updateform2_2/<user>/<int:cat_id>',views.updateform2_2,name="updateform2_2"),
+    path('updateform2_3/<user>/<int:cat_id>',views.updateform2_3,name="updateform2_3"),
+    path('updateform3/<user>/<int:cat_id>',views.updateform3,name="updateform3"),
+
+    path('update_view/',views.update_view,name="update_view"),
+    path('show_updateform0/<user>/<int:cat_id>',views.show_updateform0,name="show_updateform0"),
+
+
 ]

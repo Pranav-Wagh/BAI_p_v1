@@ -24,6 +24,30 @@ from django.contrib.auth import get_user_model
 UserModel = get_user_model()
 # Create your views here.
 
+cat_id = {
+    "Residential (bungalow, row houses, standalone buildings)":1,
+    "Residential (housing complex)":2,
+    "Residential ( affordable housing)":3,
+    "Commercial (malls, office, institution, hotel, hospital, cinema)":4,
+    "Industrial (any size, any type)":5,
+    "Infrastructure (bridges, flyovers, ESR etc.)":6,
+    "Well equipped, well mechanized site":7,
+    "Government, Semi-Govt., Public Works":8,
+    "Work upto Bare Shell (includes RCC, Masonry and Plaster works)":9
+}
+
+cat = {
+    1:"Residential (bungalow, row houses, standalone buildings)",
+    2:"Residential (housing complex)",
+    3:"Residential ( affordable housing)",
+    4:"Commercial (malls, office, institution, hotel, hospital, cinema)",
+    5:"Industrial (any size, any type)",
+    6:"Infrastructure (bridges, flyovers, ESR etc.)",
+    7:"Well equipped, well mechanized site",
+    8:"Government, Semi-Govt., Public Works",
+    9:"Work upto Bare Shell (includes RCC, Masonry and Plaster works)"
+}
+
 def home(request):
     return render(request,'BAI_app_v2/index.html')
 
@@ -59,8 +83,16 @@ def add_jury(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def admin_verified(request):
+    all_entries = list()
     q = Category.objects.filter(status=1)
-    return render(request,'BAI_app_v2/admin_verified.html',{"verified":q})
+    for itr in q:
+        sub_entry = list()
+        sub_entry.append(itr.users_name)
+        sub_entry.append(cat_id[itr.app_form_cat])
+        sub_entry.append(itr.app_form_cat)
+        #sub_entry.append(itr.status)
+        all_entries.append(sub_entry)
+    return render(request,'BAI_app_v2/admin_verified.html',{"verified":all_entries})
 
 @user_passes_test(lambda u: u.is_superuser)
 def admin_notverified(request):
@@ -77,26 +109,14 @@ def admin_notverified(request):
     #     else:
     #         return HttpResponse('chuklay ikde!!!')
 
-    cat_id = {
-        "Residential (bungalow, row houses, standalone buildings)":1,
-        "Residential (housing complex)":2,
-        "Residential ( affordable housing)":3,
-        "Commercial (malls, office, institution, hotel, hospital, cinema)":4,
-        "Industrial (any size, any type)":5,
-        "Infrastructure (bridges, flyovers, ESR etc.)":6,
-        "Well equipped, well mechanized site":7,
-        "Government, Semi-Govt., Public Works":8,
-        "Work upto Bare Shell (includes RCC, Masonry and Plaster works)":9
-    }
     all_entries = list()
     #q1 = Category.objects.filter(users_name).filter(app_form_cat)
-    q1 = Category.objects.values('users_name','app_form_cat','status')
+    q1 = Category.objects.filter(status=0)
     #print(q1)
     for itr in q1:
         count = 0
-        user = itr['users_name']
-        cat = itr['app_form_cat']
-        stat = itr['status']
+        user = itr.users_name
+        cat = itr.app_form_cat
 
         test = [Project_info,Project_info_1,Quality,Economy,Speed,PaymentDetails,Others,SafetynWellfare]
         for i in test:
@@ -108,24 +128,13 @@ def admin_notverified(request):
             sub_entry = list()
             sub_entry.append(user)
             sub_entry.append(cat_id[cat])
-            sub_entry.append(stat)
+            sub_entry.append(cat)
             all_entries.append(sub_entry)
     
     return render(request,'BAI_app_v2/admin_notverified.html',{'all_entries':all_entries})  
 
 @user_passes_test(lambda u: u.is_superuser)
 def AcceptForm(request,user,cat_id):
-    cat = {
-            1:"Residential (bungalow, row houses, standalone buildings)",
-            2:"Residential (housing complex)",
-            3:"Residential ( affordable housing)",
-            4:"Commercial (malls, office, institution, hotel, hospital, cinema)",
-            5:"Industrial (any size, any type)",
-            6:"Infrastructure (bridges, flyovers, ESR etc.)",
-            7:"Well equipped, well mechanized site",
-            8:"Government, Semi-Govt., Public Works",
-            9:"Work upto Bare Shell (includes RCC, Masonry and Plaster works)"
-        }
     category = cat[cat_id]
     #q = Category.objects.filter(users_name=user).filter(app_form_cat=category)
     q1 = Category.objects.get(users_name=user,app_form_cat=category)
@@ -133,20 +142,8 @@ def AcceptForm(request,user,cat_id):
     q1.save()
     return HttpResponse("Accepted successfully!!")
 
-
 @user_passes_test(lambda u: u.is_superuser)
 def RejectForm(request,user,cat_id):
-    cat = {
-            1:"Residential (bungalow, row houses, standalone buildings)",
-            2:"Residential (housing complex)",
-            3:"Residential ( affordable housing)",
-            4:"Commercial (malls, office, institution, hotel, hospital, cinema)",
-            5:"Industrial (any size, any type)",
-            6:"Infrastructure (bridges, flyovers, ESR etc.)",
-            7:"Well equipped, well mechanized site",
-            8:"Government, Semi-Govt., Public Works",
-            9:"Work upto Bare Shell (includes RCC, Masonry and Plaster works)"
-        }
     category = cat[cat_id]
     #q = Category.objects.filter(users_name=user).filter(app_form_cat=category)
     q1 = Category.objects.get(users_name=user,app_form_cat=category)
@@ -266,16 +263,18 @@ def form0(request):
     if request.method == 'POST':
 
         category_cat = CategoryForm(data=request.POST)
+        
         if category_cat.is_valid():
             category_cat1 = category_cat.save()
             category_cat1.users_name = request.user.username
-            category_cat1.filled0 = 'True'
+            #category_cat1.filled0 = 'True'
             category_cat1.save()
             obj = UserCategory.objects.filter(users_name=request.user.username)
             obj.update(category_latest=category_cat1.app_form_cat)
             #obj[0]
             obj[0].save()
             filled0 = True
+            
             return render(request,'BAI_app_v2/form1_1.html',{'category_cat':category_cat,'filled0':filled0})
 
         else:
@@ -293,7 +292,6 @@ def form0(request):
         
     #messages.info(request, 'Category selected successfully!!')
     
-
 @login_required(login_url='/BAI_app_v2/user_login/')
 def form1_1(request):
     filled1_1 = False
@@ -310,7 +308,7 @@ def form1_1(request):
                 project_info_cat1.site_map = request.FILES['site_map']   
 
             project_info_cat1.users_name = request.user.username
-            project_info_cat1.filled1_1 = 'True'
+            #project_info_cat1.filled1_1 = 'True'
             project_info_cat1.category_latest = obj[0].category_latest
             project_info_cat1.save()
 
@@ -344,7 +342,7 @@ def form1_2(request):
                 project_info_1_cat1.green_project_details = request.FILES['green_project_details']
 
             project_info_1_cat1.users_name = request.user.username
-            project_info_1_cat1.filled1_2 = 'True'
+            #project_info_1_cat1.filled1_2 = 'True'
             project_info_1_cat1.category_latest = obj[0].category_latest
             project_info_1_cat1.save()
 
@@ -381,7 +379,7 @@ def form1_3(request):
                 quality_cat1.sample_test_reports = request.FILES['sample_test_reports']
 
             quality_cat1.users_name = request.user.username
-            quality_cat1.filled1_3 = 'True'
+            #quality_cat1.filled1_3 = 'True'
             quality_cat1.category_latest = obj[0].category_latest
             quality_cat1.save()
 
@@ -411,7 +409,7 @@ def form1_4(request):
             speed_cat1 = speed_cat.save()
 
             speed_cat1.users_name = request.user.username
-            speed_cat1.filled1_4 = 'True'
+            #speed_cat1.filled1_4 = 'True'
             speed_cat1.category_latest = obj[0].category_latest
             speed_cat1.save()
 
@@ -445,7 +443,7 @@ def form2_2(request):
                 safety_cat1.safety_audits = request.FILES['safety_audits']
 
             safety_cat1.users_name=request.user.username
-            safety_cat1.filled2_2 = 'True'
+            #safety_cat1.filled2_2 = 'True'
             safety_cat1.category_latest = obj[0].category_latest
             safety_cat1.save()
 
@@ -474,7 +472,7 @@ def form2_1(request):
             economy_cat1 = economy_cat.save()
 
             economy_cat1.users_name = request.user.username
-            economy_cat1.filled2_1 = 'True'
+            #economy_cat1.filled2_1 = 'True'
             economy_cat1.category_latest = obj[0].category_latest
             economy_cat1.save()
 
@@ -514,7 +512,7 @@ def form2_3(request):
                 others_cat1.renewable_energy_pic = request.FILES['renewable_energy_pic']            
 
             others_cat1.users_name=request.user.username
-            others_cat1.filled2_3 = 'True'
+            #others_cat1.filled2_3 = 'True'
             others_cat1.category_latest = obj[0].category_latest
             others_cat1.save()
             filled2_3 = True
@@ -543,7 +541,7 @@ def form3(request):
             obj = UserCategory.objects.filter(users_name=request.user.username)
             payment_cat1 = payment_cat.save()
             payment_cat1.users_name = request.user.username
-            payment_cat1.filled3 = 'True'
+            #payment_cat1.filled3 = 'True'
             payment_cat1.category_latest = obj[0].category_latest
             payment_cat1.save()
 
@@ -598,18 +596,6 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 
-cat = {
-            1:"Residential (bungalow, row houses, standalone buildings)",
-            2:"Residential (housing complex)",
-            3:"Residential ( affordable housing)",
-            4:"Commercial (malls, office, institution, hotel, hospital, cinema)",
-            5:"Industrial (any size, any type)",
-            6:"Infrastructure (bridges, flyovers, ESR etc.)",
-            7:"Well equipped, well mechanized site",
-            8:"Government, Semi-Govt., Public Works",
-            9:"Work upto Bare Shell (includes RCC, Masonry and Plaster works)"
-        }
-
 def viewForm1_1(request,user,cat_id):
     category = cat[cat_id]
     q = Project_info.objects.get(users_name=user,category_latest=category)
@@ -649,4 +635,267 @@ def viewForm3(request,user,cat_id):
     category = cat[cat_id]
     q = PaymentDetails.objects.get(users_name=user,category_latest=category)
     return render(request,'BAI_app_v2/viewForm3.html',{"PaymentDetails":q,"cat_id":cat_id})
+
+
+@login_required(login_url='/BAI_app_v2/user_login/')
+def updateform0(request,user,cat_id):
+    cat_nm = cat[cat_id]
+    updateform0 = Category.objects.get(users_name=user,app_form_cat=cat_nm)
+    category_cat = CategoryForm(request.POST,instance=updateform0)
+    if category_cat.is_valid():
+        category_cat1 = category_cat.save(commit=False)
+        category_cat1.users_name = request.user.username
+        category_cat1.save()
+        obj = UserCategory.objects.filter(users_name=request.user.username)
+        obj.update(category_latest=category_cat1.app_form_cat)
+        obj[0].save()
+        try:
+            Project_info_details = Project_info.objects.get(users_name=user,category_latest=cat_nm)
+
+            dt_stamp = Project_info_details.commencement_date
+            Project_info_details.commencement_date = dt_stamp.strftime('%Y-%m-%d')
+
+            dt_stamp = Project_info_details.sched_completion_date
+            Project_info_details.sched_completion_date = dt_stamp.strftime('%Y-%m-%d')
+
+            dt_stamp = Project_info_details.act_completion_date
+            Project_info_details.act_completion_date = dt_stamp.strftime('%Y-%m-%d')
+
+            return render(request, 'BAI_app_v2/editform1_1.html',{"Project_info": Project_info_details,"cat_id":cat_id})
+        except Project_info.DoesNotExist:
+            error_string1_1 = "Sorry! You are trying to view/edit form which you have not filled!! Please fill the form first."
+            return render(request,'BAI_app_v2/form1_1.html',{"error1_1":error_string1_1})
+
+    else:
+        print(category_cat)
+        print(category_cat.errors)
+        error_string0 = ' '.join([' '.join(x for x in l) for l in list(category_cat.errors.values())])
+        return render(request, 'BAI_app_v2/editform0.html',
+                        {'category_cat': category_cat,
+                        'error0': error_string0,"cat_id":cat_id})
+
+    #messages.success(request, "STUDENT RECORD IS UPDATED SUCCESSFULLY")
+    #Participant_info.category_latest = Category.app_form_cat
+
+@login_required(login_url='/BAI_app_v2/user_login/')
+def updateform1_1(request,user,cat_id):
+    cat_nm = cat[cat_id]
+    update_form1 = Project_info.objects.get(users_name=user,category_latest=cat_nm)
+
+    project_info_cat = Project_infoForm(request.POST, request.FILES, instance=update_form1)
+
+    if project_info_cat.is_valid():
+        obj = UserCategory.objects.filter(users_name=request.user.username)
+        project_info_cat1 = project_info_cat.save(commit=False)
+        project_info_cat1.users_name = request.user.username
+        project_info_cat1.category_latest = obj[0].category_latest
+        project_info_cat1.save()
+        
+        try:
+            Project_info_1_details = Project_info_1.objects.get(users_name=user,category_latest=cat_nm)
+            return render(request,'BAI_app_v2/editform1_2.html',{"Project_info_1":Project_info_1_details,"cat_id":cat_id})
+        except Project_info_1.DoesNotExist:
+            error_string1_2 = "Sorry! You are trying to view/edit form which you have not filled!! Please fill the form first."
+            return render(request,'BAI_app_v2/form1_2.html',{"error1_2":error_string1_2})
+    else:
+        print(project_info_cat.errors)
+        error_string1_1 = ' '.join([' '.join(x for x in l) for l in list(project_info_cat.errors.values())])
+        return render(request, 'BAI_app_v2/editform1_1.html',
+                        {'project_info_cat': project_info_cat,
+                        'error1_1': error_string1_1,"cat_id":cat_id})
+
+@login_required(login_url='/BAI_app_v2/user_login/')
+def updateform1_2(request,user,cat_id):
+    cat_nm = cat[cat_id]
+    update_form1 = Project_info_1.objects.get(users_name=user,category_latest=cat_nm)
+    project_info_1cat = Project_info_1Form(request.POST, request.FILES, instance=update_form1)
+    if project_info_1cat.is_valid():
+        obj = UserCategory.objects.filter(users_name=request.user.username)
+        project_info_cat1 = project_info_1cat.save(commit=False)
+        project_info_cat1.users_name = request.user.username
+        project_info_cat1.category_latest = obj[0].category_latest
+        project_info_cat1.save()
+        try:
+            Quality_details = Quality.objects.get(users_name=user,category_latest=cat_nm)
+            return render(request,'BAI_app_v2/editform1_3.html',{"Quality":Quality_details,"cat_id":cat_id})
+        except Quality.DoesNotExist:
+            error_string1_3 = "Sorry! You are trying to view/edit form which you have'nt filled!! Please fill the form first."
+            return render(request,'BAI_app_v2/form1_3.html',{"error1_3":error_string1_3})
+    else:
+        print(project_info_1cat.errors)
+        error_string1_2 = ' '.join([' '.join(x for x in l) for l in list(project_info_1cat.errors.values())])
+        return render(request, 'BAI_app_v2/editform1_2.html',
+                        {'project_info_1cat': project_info_1cat,
+                        'error1_2': error_string1_2,"cat_id":cat_id})
+        
+@login_required(login_url='/BAI_app_v2/user_login/')
+def updateform1_3(request,user,cat_id):
+    cat_nm = cat[cat_id]
+    update_form2 = Quality.objects.get(users_name=user,category_latest=cat_nm)
+
+    quality_cat = QualityForm(request.POST, request.FILES, instance=update_form2)
+
+    if quality_cat.is_valid():
+        obj = UserCategory.objects.filter(users_name=request.user.username)
+        quality_cat1 = quality_cat.save(commit=False)
+        quality_cat1.users_name = request.user.username
+        quality_cat1.category_latest = obj[0].category_latest
+        quality_cat1.save()
+        try:
+            Speed_details = Speed.objects.get(users_name=user,category_latest=cat_nm)
+            return render(request,'BAI_app_v2/editform1_4.html',{"Speed":Speed_details,"cat_id":cat_id})
+        except Speed.DoesNotExist:
+            error_string1_4 = "Sorry! You are trying to view/edit form which you have'nt filled!! Please fill the form first."
+            return render(request,'BAI_app_v2/form1_4.html',{"error1_4":error_string1_4})
+    else:
+        print(quality_cat.errors)
+        error_string1_3 = ' '.join([' '.join(x for x in l) for l in list(quality_cat.errors.values())])
+        return render(request, 'BAI_app_v2/editform1_3.html',
+                        {'quality_cat': quality_cat,
+                        'error1_3': error_string1_3,"cat_id":cat_id})
+
+@login_required(login_url='/BAI_app_v2/user_login/')
+def updateform1_4(request,user,cat_id):
+    cat_nm = cat[cat_id]
+    update_form0 = Speed.objects.get(users_name=user,category_latest=cat_nm)
+    speed_cat = SpeedForm(request.POST,instance=update_form0)
+
+    if speed_cat.is_valid():
+        obj = UserCategory.objects.filter(users_name=request.user.username)
+        speed_cat1 = speed_cat.save(commit=False)
+        speed_cat1.users_name = request.user.username
+        speed_cat1.category_latest = obj[0].category_latest
+        speed_cat1.save()
+        try:
+            Economy_details = Economy.objects.get(users_name=user,category_latest=cat_nm)
+            return render(request,'BAI_app_v2/editform2_1.html',{"Economy":Economy_details,"cat_id":cat_id})
+        except Economy.DoesNotExist:
+            error_string2_1 = "Sorry! You are trying to view/edit form which you have'nt filled!! Please fill the form first."
+            return render(request,'BAI_app_v2/form2_1.html',{"error2_1":error_string2_1})
+    else:
+        print(speed_cat.errors)
+        error_string1_4 = ' '.join([' '.join(x for x in l) for l in list(speed_cat.errors.values())])
+        return render(request, 'BAI_app_v2/editform1_4.html',
+                        {'speed_cat': speed_cat,
+                        'error1_4': error_string1_4,"cat_id":cat_id})     
+
+@login_required(login_url='/BAI_app_v2/user_login/')
+def updateform2_1(request,user,cat_id):
+    cat_nm = cat[cat_id]
+    update_form3 = Economy.objects.get(users_name=user,category_latest=cat_nm)
+    economy_cat = EconomyForm(request.POST, instance=update_form3)
+
+    if economy_cat.is_valid():
+        obj = UserCategory.objects.filter(users_name=request.user.username)
+        economy_cat1 = economy_cat.save(commit=False)
+        economy_cat1.users_name = request.user.username
+        economy_cat1.category_latest = obj[0].category_latest
+        economy_cat1.save()
+        try:
+            SafetynWellfare_details = SafetynWellfare.objects.get(users_name=user,category_latest=cat_nm)
+            return render(request,'BAI_app_v2/editform2_2.html',{"SafetynWellfare":SafetynWellfare_details,"cat_id":cat_id})
+        except SafetynWellfare.DoesNotExist:
+            error_string2_2 = "Sorry! You are trying to view/edit form which you have'nt filled!! Please fill the form first."
+            return render(request,'BAI_app_v2/form2_2.html',{"error2_2":error_string2_2})
+    else:
+        print(economy_cat.errors)
+        error_string2_1 = ' '.join([' '.join(x for x in l) for l in list(economy_cat.errors.values())])
+        return render(request, 'BAI_app_v2/editform2_1.html',
+                        {'economy_cat': economy_cat,
+                        'error2_1': error_string2_1,"cat_id":cat_id})    
+
+@login_required(login_url='/BAI_app_v2/user_login/')
+def updateform2_2(request,user,cat_id):
+    cat_nm = cat[cat_id]
+    update_form1 = SafetynWellfare.objects.get(users_name=user,category_latest=cat_nm)
+    safety_cat = SafetynWellfareForm(request.POST, request.FILES, instance=update_form1 )
+
+    if safety_cat.is_valid():
+        obj = UserCategory.objects.filter(users_name=request.user.username)
+        safety_cat1 = safety_cat.save(commit=False)
+        safety_cat1.users_name = request.user.username
+        safety_cat1.category_latest = obj[0].category_latest
+        safety_cat1.save()
+        try:
+            result_Others = Others.objects.get(users_name=user,category_latest=cat_nm)
+            return render(request,'BAI_app_v2/editform2_3.html',{"Others":result_Others,"cat_id":cat_id})
+        except Others.DoesNotExist:
+            error_string2_3 = "Sorry! You are trying to view/edit form which you have'nt filled!! Please fill the form first."
+            return render(request,'BAI_app_v2/form2_3.html',{"error2_3":error_string2_3})
+    else:
+        print(safety_cat.errors)
+        error_string2_2 = ' '.join([' '.join(x for x in l) for l in list(safety_cat.errors.values())])
+        return render(request, 'BAI_app_v2/editform2_2.html',
+                        {'safety_cat': safety_cat,
+                        'error2_2': error_string2_2,"cat_id":cat_id}) 
+        
+
+@login_required(login_url='/BAI_app_v2/user_login/')
+def updateform2_3(request,user,cat_id):
+    cat_nm = cat[cat_id]
+    update_form2 = Others.objects.get(users_name=user,category_latest=cat_nm)
+    others_cat = OthersForm(request.POST, request.FILES, instance=update_form2)
+    if others_cat.is_valid():
+        obj = UserCategory.objects.filter(users_name=request.user.username)
+        others_cat1 = others_cat.save(commit=False)
+        others_cat1.users_name = request.user.username
+        others_cat1.category_latest = obj[0].category_latest
+        others_cat1.save()
+        try:
+            PaymentDetails_details = PaymentDetails.objects.get(users_name=user,category_latest=cat_nm)
+            return render(request, 'BAI_app_v2/editform3.html', {"PaymentDetails": PaymentDetails_details,"cat_id":cat_id})
+        except PaymentDetails.DoesNotExist:
+            error_string3 = "Sorry! You are trying to view/edit form which you have'nt filled!! Please fill the form first."
+            return render(request,'BAI_app_v2/form3.html',{"error3":error_string3})
+    else:
+        print(others_cat.errors)
+        error_string2_3 = ' '.join([' '.join(x for x in l) for l in list(others_cat.errors.values())])
+        return render(request, 'BAI_app_v2/editform2_3.html',
+                        {'others_cat': others_cat,
+                        'error2_3': error_string2_3,"cat_id":cat_id})
+        
+
+@login_required(login_url='/BAI_app_v2/user_login/')
+def updateform3(request,user,cat_id):
+    update = False
+    cat_nm = cat[cat_id]
+    updateform = PaymentDetails.objects.get(users_name=user,category_latest=cat_nm)
+    payment_cat = PaymentDetailsForm(data=request.POST,instance = updateform)
+    if payment_cat.is_valid():
+        obj = UserCategory.objects.filter(users_name=request.user.username)
+        payment_cat1 = payment_cat.save(commit=False)
+        payment_cat1.users_name = request.user.username
+        payment_cat1.category_latest = obj[0].category_latest
+        payment_cat1.save()
+        update = True
+        return render(request, 'BAI_app_v2/user_landing.html',{"update":update})
+    else :
+        print(payment_cat.errors)
+        error_string3 = ' '.join([' '.join(x for x in l) for l in list(payment_cat.errors.values())])
+        return render(request, 'BAI_app_v2/editform3.html',
+                        {'payment_cat': payment_cat,
+                        'error3': error_string3,"cat_id":cat_id})
+    #PaymentDetails_details = PaymentDetails.objects.get(users_name=user)
+
+@login_required(login_url='/BAI_app_v2/user_login/')
+def update_view(request):
+    category = Category.objects.filter(users_name=request.user.username)
+    all_entries = list()
+    for itr in category:
+        user = itr.users_name
+        cate = itr.app_form_cat
+        cate = cat_id[cate]
+        sub_entry = list()
+        sub_entry.append(user)
+        sub_entry.append(cate)
+        sub_entry.append(itr.app_form_cat)
+        all_entries.append(sub_entry)
+    return render(request,'BAI_app_v2/update_view.html',{"all_entries":all_entries})
+
+@login_required(login_url='/BAI_app_v2/user_login/')
+def show_updateform0(request,user,cat_id):
+    cat_nm = cat[cat_id]
+    category = Category.objects.get(users_name=user,app_form_cat=cat_nm)
+    return render(request,'BAI_app_v2/editform0.html',{"Category":category,"cat_id":cat_id})
+
 

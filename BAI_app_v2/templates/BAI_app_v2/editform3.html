@@ -1,5 +1,6 @@
 {% extends "BAI_app_v2/base.html" %}
 {% block body_block %}
+{% load static %}
 
 <div data-spy="scroll" data-target="#list-example" data-offset="0">
 
@@ -7,12 +8,11 @@
     <div class="container">
       <!-- Horizontal Steppers -->
       <div class="row">
-        {% if filled2_3 %}
-      <script>alert("Others Information saved Successfully!")</script>
-      {% endif %}
-      {% if error3 %}
-      <script>alert("{{error3}}")</script>
-      {% endif %}
+        
+        {% if error3 %}
+        <script> alert(" {{error3}} ")</script>
+        {% endif %}
+
         <div class="col-md-12">
 
           <!-- Stepers Wrapper -->
@@ -20,7 +20,7 @@
 
             <!-- First Step -->
             <li class="completed">
-              <a class="nav-link" onclick="href='/BAI_app_v2/form0'">
+              <a class="nav-link" href="#">
                 <span class="circle">1</span>
                 <span class="label">First step</span>
               </a>
@@ -28,7 +28,7 @@
 
             <!-- First Step -->
             <li class="completed">
-              <a class="nav-link" onclick="href='/BAI_app_v2/form1'">
+              <a class="nav-link" href="#">
                 <span class="circle">2</span>
                 <span class="label">Second step</span>
               </a>
@@ -36,7 +36,7 @@
 
             <!-- Second Step -->
             <li class="incomplete">
-              <a class="nav-link" onclick="href='/BAI_app_v2/form2'">
+              <a class="nav-link" href="#">
                 <span class="circle">3</span>
                 <span class="label">Third step</span>
               </a>
@@ -77,14 +77,14 @@
                       <section class="mb-4">
 
                         <!--Section heading-->
-                        <h2 class="h1-responsive font-weight-bold text-center my-4">Payment Details</h2>
+                        <h2 class="h1-responsive font-weight-bold text-center my-4">Update Payment Details</h2>
                         <!--Section description-->
 
                         <div class="row">
 
                           <!--Grid column-->
                           <div class="col-md-12 mb-md-0 mb-5">
-                            <form class="border border-light p-5" action="{% url 'BAI_app_v2:form3' %}" method="POST">
+                            <form class="border border-light p-5" action="{% url 'BAI_app_v2:updateform3' request.user.username cat_id %}" method="POST">
                               {% csrf_token %}
                               <!--Grid row-->
                               <div class="row">
@@ -92,8 +92,8 @@
                                 <!--Grid column-->
                                 <div class="col-md-6">
                                   <div class="md-form mb-0">
-                                    <input type="text" id="name" name="pay_method" class="form-control">
-                                    <label for="name" class="">Payment Method</label>
+                                    <input type="text" id="name" name="pay_method" class="form-control" value={{PaymentDetails.pay_method}}>
+                                    <label for="name" class="">{{PaymentDetails.pay_method}}</label>
                                   </div>
                                 </div>
                                 <!--Grid column-->
@@ -101,8 +101,8 @@
                                 <!--Grid column-->
                                 <div class="col-md-6">
                                   <div class="md-form mb-0">
-                                    <input type="text" name="trans_date" class="form-control">
-                                    <label for="email" class="">Transaction Date</label>
+                                    <input type="text" name="trans_date" class="form-control" value= {{PaymentDetails.trans_date}}>
+                                    <label for="email" class="">{{PaymentDetails.trans_date}}</label>
                                   </div>
                                 </div>
                                 <!--Grid column-->
@@ -114,8 +114,8 @@
                               <div class="row">
                                 <div class="col-md-12">
                                   <div class="md-form mb-0">
-                                    <input type="text" id="subject" name="trans_id" class="form-control">
-                                    <label for="subject" class="">Transaction ID / Cheque Number</label>
+                                    <input type="text" id="subject" name="trans_id" class="form-control" value={{PaymentDetails.trans_id}}>
+                                    <label for="subject" class="">{{PaymentDetails.trans_id}}</label>
                                   </div>
                                 </div>
                               </div>
@@ -128,18 +128,14 @@
                                 <div class="col-md-12">
 
                                   <div class="md-form">
-                                    <textarea type="text" id="message" name="bank" rows="2"
-                                      class="form-control md-textarea"></textarea>
-                                    <label for="message">Bank Details</label>
+                                    <input type="text" id="message" name="bank" rows="2"
+                                      class="form-control md-textarea" value={{PaymentDetails.bank}}></input>
+                                    <label for="message">HARSHAL</label>
                                   </div>
 
                                 </div>
                               </div>
                               <!--Grid row-->
-
-                              {% if error3 %}
-                              <script> alert(" {{error3}} ")</script>
-                              {% endif %}
 
                               <div class="container">
                                 <button class="btn btn-info my-4 btn-block" type="Submit" value="Form3" style="width: 500px;">Submit</button>
@@ -178,3 +174,4 @@
 </div>
 
 {% endblock %}
+

@@ -6,6 +6,11 @@
             {% if filled1_1 %}
             <script>alert("General Information About Project saved Successfully!")</script>
             {% endif %}
+
+            {% if error1_2 %}
+            <script>alert("{{error1_2}}")</script>
+            {% endif %}
+
             <div class="row Site-content">
                 <div class="col-md-12">
 
@@ -139,11 +144,6 @@
                                     <label class="custom-file-label" for="fileInput">Select multiple files, if any</label>
                                   </div>
                                 </div>
-
-                                {% if error1_2 %}
-                                    <script> alert(" {{error1_2}} ")</script>
-                                {% endif %}
-
                                 <button class="btn btn-info my-4 btn-block" type="submit">Save & Next</button>
                             </form>
         

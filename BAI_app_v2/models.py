@@ -21,7 +21,7 @@ true_false = [('True','True'),('False','False')]
 
 class ParticipantInfo(models.Model):
 
-    user = models.OneToOneField(User,on_delete=models.DO_NOTHING)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
 
     ph_no = models.CharField(max_length=10)
     address = models.CharField(max_length=100)
@@ -57,7 +57,7 @@ class Speed(models.Model):
     SpeedScale = models.TextField(max_length=100,blank=False)
     category_latest = models.CharField(max_length=70,blank=True)
 
-    filled1_4 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+    #filled1_4 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -72,7 +72,7 @@ class SafetynWellfare(models.Model):
     safety_audits = models.FileField(upload_to='uploads/',blank=True)
     category_latest = models.CharField(max_length=70, blank=True)
 
-    filled2_2 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+    #filled2_2 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -93,7 +93,7 @@ class Others(models.Model):
     seminars = models.TextField(max_length=2000, blank=True)
     category_latest = models.CharField(max_length=70, blank=True)
 
-    filled2_3 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+    #filled2_3 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -120,7 +120,7 @@ class Economy(models.Model):
     economy_ratings=models.TextField(blank=False,max_length=100)
     category_latest = models.CharField(max_length=70, blank=True)
 
-    filled2_1 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+    #filled2_1 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -144,7 +144,7 @@ class Project_info(models.Model):
     
     category_latest = models.CharField(max_length=70, blank=True)
 
-    filled1_1 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+    #filled1_1 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -169,7 +169,7 @@ class Project_info_1(models.Model):
 
     category_latest = models.CharField(max_length=70, blank=True)
 
-    filled1_2 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+    #filled1_2 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -202,7 +202,7 @@ class Quality(models.Model):
     rate_your_project_in_terms_of_quality=models.IntegerField(blank=False)
     category_latest = models.CharField(max_length=70, blank=True)
 
-    filled1_3 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+    #filled1_3 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -211,6 +211,8 @@ class Category(models.Model):
     users_name = models.CharField(max_length=20, blank=True)
     app_form_cat = models.CharField(choices=category_1_9,max_length=70,blank=True)
     status = models.IntegerField(default=0,blank=True)# 0 = None.....1 = Accepted.....2 = Rejected
+
+    #filled0 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
@@ -250,7 +252,7 @@ class PaymentDetails(models.Model):
     bank = models.CharField(max_length=50,blank=False)
     category_latest = models.CharField(max_length=70, blank=True)
 
-    filled3 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
+    #filled3 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
 
     def __str__(self):
         return self.users_name
