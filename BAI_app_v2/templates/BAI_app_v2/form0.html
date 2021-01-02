@@ -91,13 +91,12 @@
                       <div id="list-item-1">
                         <form class="border border-light p-5" action="{% url 'BAI_app_v2:form0' %}" method="POST">
                             {% csrf_token %}
-                            <h1 class="display-5 font-weight-bold"> Select a category you <br> want to fill application
-                                for.</h1>
+                            <h3 class="display-5 font-weight-bold mb-5"> Select a Category you want to fill Application
+                                for:-</h3>
                             <!-- Default unchecked -->
                             <br>
-                            <strong>
 
-                                <select name="app_form_cat" class="browser-default custom-select my-4">
+                                <!-- <select name="app_form_cat" class="browser-default custom-select my-4">
                                   <option selected>Categories Avaliable</option>
                                   <option value="Residential (bungalow, row houses, standalone buildings)">Residential (bungalow, row houses, standalone buildings)</option>
                                   <option value="Residential (housing complex)">Residential (housing complex)</option>
@@ -108,10 +107,62 @@
                                   <option value="Well equipped, well mechanized site">Well equipped, well mechanized site</option>
                                   <option value="Government, Semi-Govt., Public Works">Government, Semi-Govt., Public Works</option>
                                   <option value="Work upto Bare Shell (includes RCC, Masonry and Plaster works)">Work upto Bare Shell (includes RCC, Masonry and Plaster works)</option>
-                                </select>
+                                </select> -->
 
-                            </strong>
-
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked"
+                                        name="app_form_cat" value="Residential (bungalow, row houses, standalone buildings)">
+                                    <label class="custom-control-label" for="defaultUnchecked"><h5>Residential (bungalow,
+                                        row houses, standalone buildings)</h5></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked2"
+                                        name="app_form_cat" value="Residential (housing complex)">
+                                    <label class="custom-control-label" for="defaultUnchecked2"><h5>Residential (housing
+                                        complex)</h5></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked3"
+                                        name="app_form_cat" value="Residential ( affordable housing)">
+                                    <label class="custom-control-label" for="defaultUnchecked3"><h5>Residential ( affordable
+                                        housing)</h5></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked4"
+                                        name="app_form_cat" value="Commercial (malls, office, institution, hotel, hospital, cinema)">
+                                    <label class="custom-control-label" for="defaultUnchecked4"><h5>Commercial (malls,
+                                        office, institution, hotel, hospital, cinema)</h5></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked5"
+                                        name="app_form_cat" value="Industrial (any size, any type)">
+                                    <label class="custom-control-label" for="defaultUnchecked5"><h5>Industrial (any size,
+                                        any type)</h5></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked6"
+                                        name="app_form_cat" value="Infrastructure (bridges, flyovers, ESR etc.)">
+                                    <label class="custom-control-label" for="defaultUnchecked6"><h5>Infrastructure (bridges,
+                                        flyovers, ESR etc.)</h5></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked7"
+                                        name="app_form_cat" value="Well equipped, well mechanized site">
+                                    <label class="custom-control-label" for="defaultUnchecked7"><h5>Well equipped, well
+                                        mechanized site</h5></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked8"
+                                        name="app_form_cat" value="Government, Semi-Govt., Public Works">
+                                    <label class="custom-control-label" for="defaultUnchecked8"><h5>Government, Semi-Govt.,
+                                        Public Works</h5></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="defaultUnchecked9"
+                                        name="app_form_cat" value="Work upto Bare Shell (includes RCC, Masonry and Plaster works)">
+                                    <label class="custom-control-label" for="defaultUnchecked9"><h5>Work upto Bare Shell
+                                        (includes RCC, Masonry and Plaster works)</h5></label>
+                                </div>
                             <button class="btn btn-info my-4 btn-block" type="Submit" value="Form0">Save & Next</button>
                       </form>
                         </div>

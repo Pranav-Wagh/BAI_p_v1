@@ -209,7 +209,7 @@ class Quality(models.Model):
 
 class Category(models.Model):
     users_name = models.CharField(max_length=20, blank=True)
-    app_form_cat = models.CharField(choices=category_1_9,max_length=70,blank=True)
+    app_form_cat = models.CharField(max_length=70,blank=False)
     status = models.IntegerField(default=0,blank=True)# 0 = None.....1 = Accepted.....2 = Rejected
 
     #filled0 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')

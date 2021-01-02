@@ -644,27 +644,32 @@ def updateform0(request,user,cat_id):
     category_cat = CategoryForm(request.POST,instance=updateform0)
     if category_cat.is_valid():
         category_cat1 = category_cat.save(commit=False)
-        category_cat1.users_name = request.user.username
-        category_cat1.save()
-        obj = UserCategory.objects.filter(users_name=request.user.username)
-        obj.update(category_latest=category_cat1.app_form_cat)
-        obj[0].save()
         try:
-            Project_info_details = Project_info.objects.get(users_name=user,category_latest=cat_nm)
+            duplicate = Category.objects.get(users_name=user,app_form_cat=request.POST.get('app_form_cat'))
+            error0 = "You have already started/filled the Application for this Category!"
+            return render(request,'BAI_app_v2/editform0.html',{"error0":error0,"cat_id":cat_id,"Category":duplicate})
+        except Category.DoesNotExist:
+            category_cat1.users_name = request.user.username
+            category_cat1.save()
+            obj = UserCategory.objects.filter(users_name=request.user.username)
+            obj.update(category_latest=category_cat1.app_form_cat)
+            obj[0].save()
+            try:
+                Project_info_details = Project_info.objects.get(users_name=user,category_latest=cat_nm)
 
-            dt_stamp = Project_info_details.commencement_date
-            Project_info_details.commencement_date = dt_stamp.strftime('%Y-%m-%d')
+                dt_stamp = Project_info_details.commencement_date
+                Project_info_details.commencement_date = dt_stamp.strftime('%Y-%m-%d')
 
-            dt_stamp = Project_info_details.sched_completion_date
-            Project_info_details.sched_completion_date = dt_stamp.strftime('%Y-%m-%d')
+                dt_stamp = Project_info_details.sched_completion_date
+                Project_info_details.sched_completion_date = dt_stamp.strftime('%Y-%m-%d')
 
-            dt_stamp = Project_info_details.act_completion_date
-            Project_info_details.act_completion_date = dt_stamp.strftime('%Y-%m-%d')
+                dt_stamp = Project_info_details.act_completion_date
+                Project_info_details.act_completion_date = dt_stamp.strftime('%Y-%m-%d')
 
-            return render(request, 'BAI_app_v2/editform1_1.html',{"Project_info": Project_info_details,"cat_id":cat_id})
-        except Project_info.DoesNotExist:
-            error_string1_1 = "Sorry! You are trying to view/edit form which you have not filled!! Please fill the form first."
-            return render(request,'BAI_app_v2/form1_1.html',{"error1_1":error_string1_1})
+                return render(request, 'BAI_app_v2/editform1_1.html',{"Project_info": Project_info_details,"cat_id":cat_id})
+            except Project_info.DoesNotExist:
+                error_string1_1 = "Sorry! You are trying to view/edit form which you have not filled!! Please fill the form first."
+                return render(request,'BAI_app_v2/form1_1.html',{"error1_1":error_string1_1})
 
     else:
         print(category_cat)
