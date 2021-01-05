@@ -11,6 +11,9 @@
             {% if error1_3 %}
             <script> alert(" {{error1_3}} ")</script>
             {% endif %}
+            {% if already_filled %}
+            <script> alert(" {{already_filled}} ")</script>
+            {% endif %}
     
             <div class="col-md-12">
 
@@ -86,11 +89,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample5">
-                                <input type="radio" name="any_system_for_coordinating_of_all_drawings"value="yes" checked >YES
+                                <input type="radio" name="any_system_for_coordinating_of_all_drawings" checked >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="any_system_for_coordinating_of_all_drawings" value="no">NO
+                                <input type="radio" name="any_system_for_coordinating_of_all_drawings">NO
                               </label>
                             </div>
                           </div>
@@ -98,11 +101,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample5">
-                                <input type="radio" name="any_system_for_coordinating_of_all_drawings" value="yes" >YES
+                                <input type="radio" name="any_system_for_coordinating_of_all_drawings" >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="any_system_for_coordinating_of_all_drawings" value="no" checked>NO
+                                <input type="radio" name="any_system_for_coordinating_of_all_drawings"  checked>NO
                               </label>
                             </div>
                           </div>
@@ -130,11 +133,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="PMC" value="yes" checked>YES
+                                <input type="radio" name="PMC"checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="PMC" value="no">NO
+                                <input type="radio" name="PMC" >NO
                               </label>
                             </div>
                           </div>
@@ -142,11 +145,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="PMC" value="yes" >YES
+                                <input type="radio" name="PMC" >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="PMC" value="no" checked>NO
+                                <input type="radio" name="PMC"  checked>NO
                               </label>
                             </div>
                           </div>
@@ -162,11 +165,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="drawing_specification_assessment" value="yes" checked>YES
+                                <input type="radio" name="drawing_specification_assessment"  checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="drawing_specification_assessment" value="no">NO
+                                <input type="radio" name="drawing_specification_assessment">NO
                               </label>
                             </div>
                           </div>
@@ -174,11 +177,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="drawing_specification_assessment" value="yes" >YES
+                                <input type="radio" name="drawing_specification_assessment"  >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="drawing_specification_assessment" value="no" checked>NO
+                                <input type="radio" name="drawing_specification_assessment" checked>NO
                               </label>
                             </div>
                           </div>
@@ -203,11 +206,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample2">
-                                <input type="radio" name="Decision_recorded" value="yes" checked>YES
+                                <input type="radio" name="Decision_recorded"  checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="Decision_recorded" value="no">NO
+                                <input type="radio" name="Decision_recorded" >NO
                               </label>
                             </div>
                           </div>
@@ -215,11 +218,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample2">
-                                <input type="radio" name="Decision_recorded" value="yes">YES
+                                <input type="radio" name="Decision_recorded">YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="Decision_recorded" value="no" checked>NO
+                                <input type="radio" name="Decision_recorded" checked>NO
                               </label>
                             </div>
                           </div>
@@ -233,14 +236,31 @@
                                     meeting and/or instruction book.</b></label><br>
                               </div>
                               <div class="col-3">
-                                <div class="mt-0">
-                                  <div class="input-group">
+
+                                  <!-- <div class="input-group">
                                     <div class="custom-file">
                                       <input type="file" class="custom-file-input" name="meeting_instruction_book_minute" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                       <label class="custom-file-label" for="inputGroupFile01">{{Quality.meeting_instruction_book_minute}}</label>
                                     </div>
+                                  </div> -->
+                                  <div class="form-row mb-4">
+                                    <div class="col-8">
+                                      <label class="form-text text-muted">Upload New File</label>
+                                      <div class="input-group">
+                                        <div class="custom-file">
+                                          <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                          <label class="custom-file-label" for="inputGroupFile01">File</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <label class="form-text text-muted">Previous File</label>
+                                      <a href="{{Quality.meeting_instruction_book_minute.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                      <a href="{{Quality.meeting_instruction_book_minute.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                                    </div>
+                                    <p class="mt-1"><em>Note: Uploading new file will overwrite previous file!</em></p>
                                   </div>
-                                </div>
+                                
                               </div>
                             </div>
                           </div>
@@ -253,11 +273,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="quality_standard_tender" value="yes" checked>YES
+                                <input type="radio" name="quality_standard_tender"checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample3">
-                                <input type="radio" name="quality_standard_tender" value="no">NO
+                                <input type="radio" name="quality_standard_tender">NO
                               </label>
                             </div>
                           </div>
@@ -265,11 +285,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="quality_standard_tender" value="yes">YES
+                                <input type="radio" name="quality_standard_tender" >YES
                               </label>
                               &emsp;
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample3">
-                                <input type="radio" name="quality_standard_tender" value="no" checked>NO
+                                <input type="radio" name="quality_standard_tender" checked>NO
                               </label>
                             </div>
                           </div>
@@ -297,10 +317,10 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="in_house_team_quality_control" value="yes" checked>YES
+                                <input type="radio" name="in_house_team_quality_control"checked>YES
                               </label>
                               <label class="radio-inline">
-                                <input type="radio" name="in_house_team_quality_control" value="no">NO
+                                <input type="radio" name="in_house_team_quality_control">NO
                               </label>
                             </div>
                           </div>
@@ -308,10 +328,10 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="in_house_team_quality_control" value="yes">YES
+                                <input type="radio" name="in_house_team_quality_control" >YES
                               </label>
                               <label class="radio-inline">
-                                <input type="radio" name="in_house_team_quality_control" value="no" checked>NO
+                                <input type="radio" name="in_house_team_quality_control"  checked>NO
                               </label>
                             </div>
                           </div>
@@ -325,11 +345,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="external_team_to_control_quality" value="yes" checked>YES
+                                <input type="radio" name="external_team_to_control_quality"  checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="external_team_to_control_quality" value="no">NO
+                                <input type="radio" name="external_team_to_control_quality">NO
                               </label>
                             </div>
                           </div>
@@ -337,11 +357,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="external_team_to_control_quality" value="yes" >YES
+                                <input type="radio" name="external_team_to_control_quality"  >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="external_team_to_control_quality" value="no" checked>NO
+                                <input type="radio" name="external_team_to_control_quality" checked>NO
                               </label>
                             </div>
                           </div>
@@ -368,33 +388,68 @@
                           </div>
                         </div>
                         <div class="form-row">
-                          <div class="col-9">
                             <label for="textInput"><b>11.Submit sample Checklist followed.</b></label><br>
-                          </div>
-                          <div class="col-3">
-                            <div class="md-form mt-0">
-                              <div class="input-group">
+                            
+                              <!-- <div class="input-group">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="inputGroupFile01" name="sample_Checklist_followed" aria-describedby="inputGroupFileAddon01">
                                   <label class="custom-file-label" for="inputGroupFile01">{{Quality.sample_Checklist_followed}}</label>
                                 </div>
+                              </div> -->
+                              <div class="form-row mb-4">
+                                <div class="col-8">
+                                  <label class="form-text text-muted">Upload New File</label>
+                                  <div class="input-group">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                      <label class="custom-file-label" for="inputGroupFile01">File</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-4">
+                                  <label class="form-text text-muted">Previous File</label>
+                                  <a href="{{Quality.sample_Checklist_followed.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                  <a href="{{Quality.sample_Checklist_followed.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                                </div>
+                                <p class="mt-1"><em>Note: Uploading new file will overwrite previous file!</em></p>
                               </div>
-                            </div>
-                          </div>
+                        
+                      
                         </div>
                         <div class="form-row">
-                          <div class="col-9">
+                          <div class="col-8">
                             <label for="textInput"><b>12.Submit sample test reports.</b></label><br>
                           </div>
-                          <div class="col-3">
-                            <div class="md-form mt-0">
-                              <div class="input-group">
+                          <div class="col-4">
+                          
+                              {% if not Quality.sample_test_reports %}
+                              <div class="input-group mb-4">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="inputGroupFile01" name="sample_test_reports" aria-describedby="inputGroupFileAddon01">
-                                  <label class="custom-file-label" for="inputGroupFile01">{{Quality.sample_test_reports}}</label>
+                                  <label class="custom-file-label" for="inputGroupFile01">Test Reports</label>
                                 </div>
                               </div>
-                            </div>
+                              {% else %}
+                              <div class="form-row">
+                                <div class="col-8">
+                                  <label class="form-text text-muted">Upload New File</label>
+                                  <div class="input-group">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                      <label class="custom-file-label" for="inputGroupFile01">File</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-4">
+                                  <label class="form-text text-muted">Previous File</label>
+                                  <a href="{{Quality.sample_test_reports.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                  <a href="{{Quality.sample_test_reports.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                                </div>
+                                <p class="mt-1"><em>Note: Uploading new file will overwrite previous file!</em></p>
+                              </div>
+                              {% endif %}
+
+                      
                           </div>
                         </div>
                         <div class="form-row">
@@ -406,11 +461,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample4">
-                                <input type="radio" name="any_special_training_programs" value="yes" checked>YES
+                                <input type="radio" name="any_special_training_programs" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="any_special_training_programs" value="no">NO
+                                <input type="radio" name="any_special_training_programs">NO
                               </label>
                             </div>
                           </div>
@@ -418,11 +473,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample4">
-                                <input type="radio" name="any_special_training_programs" value="yes">YES
+                                <input type="radio" name="any_special_training_programs">YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="any_special_training_programs" value="no" checked>NO
+                                <input type="radio" name="any_special_training_programs"  checked>NO
                               </label>
                             </div>
                           </div>
@@ -450,10 +505,10 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample5">
-                                <input type="radio" name="any_special_training_programs_workers" value="yes" checked >YES
+                                <input type="radio" name="any_special_training_programs_workers" checked >YES
                               </label>
                               <label class="radio-inline">
-                                <input type="radio" name="any_special_training_programs_workers" value="no">NO
+                                <input type="radio" name="any_special_training_programs_workers" >NO
                               </label>
                             </div>
                           </div>
@@ -461,10 +516,10 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample5">
-                                <input type="radio" name="any_special_training_programs_workers" value="yes">YES
+                                <input type="radio" name="any_special_training_programs_workers">YES
                               </label>
                               <label class="radio-inline">
-                                <input type="radio" name="any_special_training_programs_workers" value="no" checked>NO
+                                <input type="radio" name="any_special_training_programs_workers" checked>NO
                               </label>
                             </div>
                           </div>
@@ -492,11 +547,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="any_Supervision_from_Client_side" value="yes" checked>YES
+                                <input type="radio" name="any_Supervision_from_Client_side"  checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="any_Supervision_from_Client_side" value="no">NO
+                                <input type="radio" name="any_Supervision_from_Client_side" >NO
                               </label>
                             </div>
                           </div>
@@ -504,11 +559,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="any_Supervision_from_Client_side" value="yes" >YES
+                                <input type="radio" name="any_Supervision_from_Client_side" >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="any_Supervision_from_Client_side" value="no" checked>NO
+                                <input type="radio" name="any_Supervision_from_Client_side"checked>NO
                               </label>
                             </div>
                           </div>

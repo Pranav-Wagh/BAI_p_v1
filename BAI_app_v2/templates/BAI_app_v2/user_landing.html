@@ -1,10 +1,10 @@
 {% extends "BAI_app_v2/base.html" %}
 {% block body_block %}
 
-<script>alert("LogIn Successful!")</script>
-
 {% if update %}
 <script>alert("Update Successful!")</script>
+{% else %}
+<script>alert("LogIn Successful!")</script>
 {% endif %}
 
 <div class="view full-page-intro"

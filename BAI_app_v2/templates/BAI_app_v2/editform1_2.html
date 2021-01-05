@@ -10,6 +10,9 @@
             {% if error1_2 %}
             <script> alert(" {{error1_2}} ")</script>
             {% endif %}
+            {% if already_filled %}
+            <script> alert(" {{already_filled}} ")</script>
+            {% endif %}
     
             <div class="col-md-12">
 
@@ -84,9 +87,10 @@
                         <input type="text" id="textInput" class="form-control mb-4" name="Interior_Designer_name" value={{Project_info_1.Interior_Designer_name}}>
                         <input type="text" id="textInput" class="form-control mb-4" name="Project_Management_Consultant_name" value={{Project_info_1.Project_Management_Consultant_name}}>
                         <input type="text" id="textInput" class="form-control mb-4" name="MoEF_Consultant_name" value={{Project_info_1.MoEF_Consultant_name}}>
-                        <label for="textInput"><b>Approvals, NOCs, certificates from PMC, PH Dept.,<br>
+                        <label for="textInput"class="mt-2"><b>Approvals, NOCs, certificates from PMC, PH Dept.,<br>
                             CFO, MoEF, GRIHA etc. (attach copies)</b></label>
-                        <div class="input-group mb-4">
+
+                        <!-- <div class="input-group mb-4">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Upload</span>
                           </div>
@@ -94,7 +98,25 @@
                             <input type="file" class="custom-file-input" id="fileInput" name="req_docs" aria-describedby="fileInput" multiple>
                             <label class="custom-file-label" for="fileInput">{{Project_info_1.req_docs}}</label>
                           </div>
+                        </div> -->
+                        <div class="form-row">
+                          <div class="col-8">
+                            <label class="form-text text-muted">Upload New File</label>
+                            <div class="input-group">
+                              <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01">File</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <label class="form-text text-muted">Previous File</label>
+                            <a href="{{Project_info_1.req_docs.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                            <a href="{{Project_info_1.req_docs.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                          </div>
+                          <p class="mt-1"><em>Note: Uploading new file will overwrite previous file!</em></p>
                         </div>
+
                         <label for="textInput"><b>Is the project rated as green project?</b></label>
 
                         {% if Project_info_1.green_proj == "no" %}
@@ -123,8 +145,8 @@
                         {% endif %}
 
 
-                        <label for="textInput"><b>If yes, give details(attach copies)</b></label>
-                        <div class="input-group mb-4">
+                        <label for="textInput" class="mt-4"><b>If yes, give details(attach copies)</b></label>
+                        <!-- <div class="input-group mb-4">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Upload</span>
                           </div>
@@ -132,8 +154,25 @@
                             <input type="file" class="custom-file-input" id="fileInput" name="green_project_details" aria-describedby="fileInput" multiple>
                             <label class="custom-file-label" for="fileInput">{{Project_info_1.green_project_details}}</label>
                           </div>
+                        </div> -->
+                        <div class="form-row">
+                          <div class="col-8">
+                            <label class="form-text text-muted">Upload New File</label>
+                            <div class="input-group">
+                              <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01">File</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <label class="form-text text-muted">Previous File</label>
+                            <a href="{{Project_info_1.green_project_details.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                            <a href="{{Project_info_1.green_project_details.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                          </div>
+                          <p class="mt-1"><em>Note: Uploading new file will overwrite previous file!</em></p>
                         </div>
-
+                        
                       </div>
 
                         <button class="btn btn-info my-4 btn-block" type="Submit">UPDATE/NEXT</button>

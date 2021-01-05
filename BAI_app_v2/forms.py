@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from BAI_app_v2.models import (ParticipantInfo, Speed, SafetynWellfare, Others, 
                                 Economy, Project_info, Project_info_1, Quality, 
-                                Category, PaymentDetails, UserCategory)
+                                Category, PaymentDetails, UserCategory, JurySignup)
 
 class SignUpForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -87,3 +87,15 @@ class UserCategoryForm(forms.ModelForm):
     class Meta():
         model = UserCategory
         fields = ('users_name', 'category_latest')
+
+class JurySignUpForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta():
+        model = User
+        fields = ('first_name','last_name','username','password','email')
+
+class JuryInfoForm(forms.ModelForm):
+    class Meta():
+        model = JurySignup
+        fields = ('designation','firm_name','address','phone_number','allotted_cat')

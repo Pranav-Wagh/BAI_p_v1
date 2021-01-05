@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from BAI_app_v2.forms import (ParticipantInfoForm,SignUpForm,SpeedForm,SafetynWellfareForm,
                                 OthersForm,EconomyForm,Project_infoForm, Project_info_1Form, 
-                                QualityForm,CategoryForm, PaymentDetailsForm, UserCategoryForm)
+                                QualityForm,CategoryForm, PaymentDetailsForm, UserCategoryForm, JurySignUpForm, JuryInfoForm)
 from BAI_app_v2.models import (UserCategory, Category, PaymentDetails, Quality, Project_info, 
-                                Project_info_1, Economy, Others,SafetynWellfare, Speed)
+                                Project_info_1, Economy, Others,SafetynWellfare, Speed, JurySignup)
 from django.contrib.auth import authenticate,login,logout,update_session_auth_hash
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
@@ -79,7 +79,55 @@ def admin_home(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def add_jury(request):
-    return render(request,'BAI_app_v2/add_jury.html')
+    if request.method == 'POST':
+        jury_signup_form = JurySignUpForm(data=request.POST)
+        # user = jury_signup_form.save(commit = False)
+        # try:
+        #     validate_password(user.password,user)
+        # except ValidationError as e:
+        #     jury_signup_form.add_error('password',e)
+
+        jury_info_form = JuryInfoForm(data=request.POST)
+        if jury_signup_form.is_valid() and jury_info_form.is_valid():
+            user = jury_signup_form.save()
+            user.email = user.username
+            user.set_password(user.password)
+            user.is_staff = True
+            user.save()
+            profile = jury_info_form.save(commit = False)
+
+
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            message = render_to_string('BAI_app_v2/active_email_jury.html',
+                                       {
+                                           'user': user,
+                                           'domain': current_site.domain,
+                                           'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                                           'token': default_token_generator.make_token(user),
+                                       }
+                                       )
+            email_subject = 'Builders Association of India Account Verification.'
+
+            to_email = user.email
+            email = EmailMessage(
+                email_subject,
+                message,
+                to=[to_email]
+            )
+            email.send(fail_silently=True)
+            profile.user = user
+            profile.save()
+
+            return HttpResponse("Correct")
+
+        else:
+            print(jury_signup_form.errors, jury_info_form.errors)
+            return HttpResponse("Wrong")
+
+    return render(request,'BAI_app_v2/add_jury.html',{'form':JuryInfoForm})
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def admin_verified(request):
@@ -154,9 +202,8 @@ def RejectForm(request,user,cat_id):
 
 @user_passes_test(lambda u: u.is_superuser)
 def view_jury(request):
-    return render(request,'BAI_app_v2/view_jury.html')
-
-
+    context = JurySignup.objects.all()
+    return render(request,'BAI_app_v2/view_jury.html',{'context':context})
 
 @login_required
 def participant_logout(request):
@@ -313,7 +360,13 @@ def form1_1(request):
             project_info_cat1.save()
 
             filled1_1 = True
-            return render(request,'BAI_app_v2/form1_2.html',{'project_info_cat':project_info_cat,'filled1_1':filled1_1})
+            try:
+                Project_info_1_details = Project_info_1.objects.get(users_name=request.user.username,category_latest=obj[0].category_latest)
+                already_filled = "You have already filled next form...Showing it in Update view."
+                return render(request,'BAI_app_v2/editform1_2.html',{"Project_info_1":Project_info_1_details,"cat_id":cat_id[obj[0].category_latest],"already_filled":already_filled})
+            
+            except Project_info_1.DoesNotExist:
+                return render(request,'BAI_app_v2/form1_2.html',{'project_info_cat':project_info_cat,'filled1_1':filled1_1})
 
         else:
             error_string1_1 = ' '.join([' '.join(x for x in l) for l in list(project_info_cat.errors.values())])
@@ -347,7 +400,12 @@ def form1_2(request):
             project_info_1_cat1.save()
 
             filled1_2 = True
-            return render(request,'BAI_app_v2/form1_3.html',{'project_info_1_cat':project_info_1_cat,'filled1_2':filled1_2})
+            try:
+                Quality_details = Quality.objects.get(users_name=request.user.username,category_latest=obj[0].category_latest)
+                already_filled = "You have already filled next form...Showing it in Update view."
+                return render(request,'BAI_app_v2/editform1_3',{"Quality":Quality_details,"cat_id":cat_id[obj[0].category_latest],"already_filled":already_filled})
+            except Quality.DoesNotExist:
+                return render(request,'BAI_app_v2/form1_3.html',{'project_info_1_cat':project_info_1_cat,'filled1_2':filled1_2})
         
         else:
             error_string1_2 = ' '.join([' '.join(x for x in l) for l in list(project_info_1_cat.errors.values())])
@@ -384,7 +442,12 @@ def form1_3(request):
             quality_cat1.save()
 
             filled1_3 = True
-            return render(request,'BAI_app_v2/form1_4.html',{'quality_cat':quality_cat,'filled1_3':filled1_3})
+            try:
+                Speed_details = Speed.objects.get(users_name=request.user.username,category_latest=obj[0].category_latest)
+                already_filled = "You have already filled next form...Showing it in Update view."
+                return render(request,'BAI_app_v2/editform1_4',{"Speed":Speed_details,"cat_id":cat_id[obj[0].category_latest],"already_filled":already_filled})
+            except Speed.DoesNotExist:
+                return render(request,'BAI_app_v2/form1_4.html',{'quality_cat':quality_cat,'filled1_3':filled1_3})
 
         else:
             error_string1_3 = ' '.join([' '.join(x for x in l) for l in list(quality_cat.errors.values())])
@@ -414,7 +477,12 @@ def form1_4(request):
             speed_cat1.save()
 
             filled1_4 = True
-            return render(request,'BAI_app_v2/form2_1.html',{'speed_cat':speed_cat,'filled1_4':filled1_4})
+            try:
+                Economy_details = Economy.objects.get(users_name=request.user.username,category_latest=obj[0].category_latest)
+                already_filled = "You have already filled next form...Showing it in Update view."
+                return render(request,'BAI_app_v2/editform2_1',{"Economy":Economy_details,"cat_id":cat_id[obj[0].category_latest],"already_filled":already_filled})
+            except Economy.DoesNotExist:
+                return render(request,'BAI_app_v2/form2_1.html',{'speed_cat':speed_cat,'filled1_4':filled1_4})
 
         else:
             error_string1_4 = ' '.join([' '.join(x for x in l) for l in list(speed_cat.errors.values())])
@@ -448,7 +516,12 @@ def form2_2(request):
             safety_cat1.save()
 
             filled2_2 = True
-            return render(request,'BAI_app_v2/form2_3.html',{'safety_cat':safety_cat,'filled2_2':filled2_2})
+            try:
+                Others_details = Others.objects.get(users_name=request.user.username,category_latest=obj[0].category_latest)
+                already_filled = "You have already filled next form...Showing it in Update view."
+                return render(request,'BAI_app_v2/editform2_3',{"Others":Others_details,"cat_id":cat_id[obj[0].category_latest],"already_filled":already_filled})
+            except Others.DoesNotExist:
+                return render(request,'BAI_app_v2/form2_3.html',{'safety_cat':safety_cat,'filled2_2':filled2_2})
 
         else:
             error_string2_2 = ' '.join([' '.join(x for x in l) for l in list(safety_cat.errors.values())])
@@ -477,7 +550,12 @@ def form2_1(request):
             economy_cat1.save()
 
             filled2_1 = True
-            return render(request,'BAI_app_v2/form2_2.html',{'economy_cat':economy_cat,'filled2_1':filled2_1})
+            try:
+                SafetynWellfare_details = SafetynWellfare.objects.get(users_name=request.user.username,category_latest=obj[0].category_latest)
+                already_filled = "You have already filled next form...Showing it in Update view."
+                return render(request,'BAI_app_v2/editform2_2',{"SafetynWellfare":SafetynWellfare_details,"cat_id":cat_id[obj[0].category_latest],"already_filled":already_filled})
+            except SafetynWellfare.DoesNotExist:
+                return render(request,'BAI_app_v2/form2_2.html',{'economy_cat':economy_cat,'filled2_1':filled2_1})
 
         else:
             error_string2_1 = ' '.join([' '.join(x for x in l) for l in list(economy_cat.errors.values())])
@@ -516,7 +594,12 @@ def form2_3(request):
             others_cat1.category_latest = obj[0].category_latest
             others_cat1.save()
             filled2_3 = True
-            return render(request,'BAI_app_v2/form3.html',{'others_cat':others_cat,'filled2_3':filled2_3})
+            try:
+                Payment_details = PaymentDetails.objects.get(users_name=request.user.username,category_latest=obj[0].category_latest)
+                already_filled = "You have already filled next form...Showing it in Update view."
+                return render(request,'BAI_app_v2/editform3',{"PaymentDetails":Payment_details,"cat_id":cat_id[obj[0].category_latest],"already_filled":already_filled})
+            except PaymentDetails.DoesNotExist:
+                return render(request,'BAI_app_v2/form3.html',{'others_cat':others_cat,'filled2_3':filled2_3})
 
         else:
             error_string2_3 = ' '.join([' '.join(x for x in l) for l in list(others_cat.errors.values())])
@@ -647,9 +730,10 @@ def updateform0(request,user,cat_id):
         try:
             duplicate = Category.objects.get(users_name=user,app_form_cat=request.POST.get('app_form_cat'))
             error0 = "You have already started/filled the Application for this Category!"
-            return render(request,'BAI_app_v2/editform0.html',{"error0":error0,"cat_id":cat_id,"Category":duplicate})
+            return render(request,'BAI_app_v2/editform0.html',{"error0":error0,"cat_id":cat_id,"Category":updateform0})
         except Category.DoesNotExist:
             category_cat1.users_name = request.user.username
+            category_cat1.app_form_cat = cat_nm
             category_cat1.save()
             obj = UserCategory.objects.filter(users_name=request.user.username)
             obj.update(category_latest=category_cat1.app_form_cat)
@@ -775,7 +859,7 @@ def updateform1_4(request,user,cat_id):
             Economy_details = Economy.objects.get(users_name=user,category_latest=cat_nm)
             return render(request,'BAI_app_v2/editform2_1.html',{"Economy":Economy_details,"cat_id":cat_id})
         except Economy.DoesNotExist:
-            error_string2_1 = "Sorry! You are trying to view/edit form which you have'nt filled!! Please fill the form first."
+            error_string2_1 = "Sorry! You are trying to view/edit form which you have not filled!! Please fill the form first."
             return render(request,'BAI_app_v2/form2_1.html',{"error2_1":error_string2_1})
     else:
         print(speed_cat.errors)

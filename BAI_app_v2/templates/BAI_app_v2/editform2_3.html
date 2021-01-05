@@ -12,6 +12,9 @@
         {% if error2_3 %}
         <script> alert(" {{error2_3}} ")</script>
         {% endif %}
+        {% if already_filled %}
+            <script> alert(" {{already_filled}} ")</script>
+            {% endif %}
 
         <div class="col-md-12">
 
@@ -77,70 +80,126 @@
                         <p class="h4 mb-4 text-center">Update Others Form</p>
                         <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
                         <div class="form-row">
-                          <div class="col-7">
+                  
                             <label for="textInput"><b>1. What arrangements were made on site for workers
                                 accommodation? <br> Provide Photographs. *</b></label><br>
-                          </div>
-                          <div class="col-5">
-                            <div class="mt-0">
-                              <div class="input-group">
+                        
+                              <!-- <div class="input-group">
                                 <div class="custom-file">
                                   <input value={{Others.accomodation}} type="file" class="custom-file-input" id="inputGroupFile01" name="accomodation" >
                                   <label class="custom-file-label" for="inputGroupFile01">{{Others.accomodation}}</label>
                                 </div>
+                              </div> -->
+                              <div class="form-row mb-4">
+                                <div class="col-8">
+                                  <label class="form-text text-muted">Upload New Photographs</label>
+                                  <div class="input-group">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                      <label class="custom-file-label" for="inputGroupFile01">Photos</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-4">
+                                  <label class="form-text text-muted">Previous Photos</label>
+                                  <a href="{{Others.accomodation.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                  <a href="{{Others.accomodation.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                                </div>
+                                <p class="mt-1"><em>Note: Uploading new Photo will overwrite previous photo!</em></p>
                               </div>
-                            </div>
-                          </div>
+                        
                         </div>
                         <div class="form-row">
-                          <div class="col-7">
+                        
                             <label for="textInput"><b>2. What sanitary arrangements were made on site for <br>
                                 workers? <br> Provide Photographs. *</b></label><br>
-                          </div>
-                          <div class="col-5">
-                            <div class="mt-0">
-                              <div class="input-group">
+                        
+                              <!-- <div class="input-group">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="inputGroupFile01" name="sanitary" >
                                   <label class="custom-file-label" for="inputGroupFile01">{{Others.sanitary}}</label>
                                 </div>
+                              </div> -->
+                              <div class="form-row mb-4">
+                                <div class="col-8">
+                                  <label class="form-text text-muted">Upload New Photographs</label>
+                                  <div class="input-group">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                      <label class="custom-file-label" for="inputGroupFile01">Photos</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-4">
+                                  <label class="form-text text-muted">Previous Photos</label>
+                                  <a href="{{Others.sanitary.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                  <a href="{{Others.sanitary.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                                </div>
+                                <p class="mt-1"><em>Note: Uploading new Photo will overwrite previous photo!</em></p>
                               </div>
-                            </div>
-                          </div>
+                    
                         </div>
                         <div class="form-row">
-                          <div class="col-7">
+                        
                             <label for="textInput"><b>3. Was Crèche and/or school provided for workers
                                 children on site?<br> Provide Photographs.</b></label><br>
-                          </div>
-                          <div class="col-5">
-                            <div class="mt-0">
-                              <div class="input-group">
+                         
+                              <!-- <div class="input-group">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="inputGroupFile01" name="school">
                                   <label class="custom-file-label" for="inputGroupFile01">{{Others.school}}</label>
                                 </div>
+                              </div> -->
+                              <div class="form-row mb-4">
+                                <div class="col-8">
+                                  <label class="form-text text-muted">Upload New Photographs</label>
+                                  <div class="input-group">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                      <label class="custom-file-label" for="inputGroupFile01">Photos</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-4">
+                                  <label class="form-text text-muted">Previous Photos</label>
+                                  <a href="{{Others.school.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                  <a href="{{Others.school.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                                </div>
+                                <p class="mt-1"><em>Note: Uploading new Photo will overwrite previous photo!</em></p>
                               </div>
-                            </div>
-                          </div>
+                            
                         </div>
                         <div class="form-row">
-                          <div class="col-7">
+                        
                             <label for="textInput"><b>4. Enlist any pollution control measures adopted <br>
                                 during construction to address sound pollution, air <br>
                                 pollution, water pollution, waste disposal. <br>
                                 Provide Photographs. *</b></label><br>
-                          </div>
-                          <div class="col-5">
-                            <div class="mt-0">
-                              <div class="input-group">
+                       
+                              <!-- <div class="input-group">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="inputGroupFile01" name="polution_measures">
                                   <label class="custom-file-label" for="inputGroupFile01">{{Others.polution_measures}}</label>
                                 </div>
+                              </div> -->
+                              <div class="form-row mb-4">
+                                <div class="col-8">
+                                  <label class="form-text text-muted">Upload New Photographs</label>
+                                  <div class="input-group">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                      <label class="custom-file-label" for="inputGroupFile01">Photos</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-4">
+                                  <label class="form-text text-muted">Previous Photos</label>
+                                  <a href="{{Others.polution_measures.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                  <a href="{{Others.polution_measures.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                                </div>
+                                <p class="mt-1"><em>Note: Uploading new Photo will overwrite previous photo!</em></p>
                               </div>
-                            </div>
-                          </div>
+                            
                         </div>
                         <div class="form-row">
                           <div class="col-9">
@@ -151,11 +210,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="ISO_accreditation" value="yes" checked>YES
+                                <input type="radio" name="ISO_accreditation" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="ISO_accreditation" value="no">NO
+                                <input type="radio" name="ISO_accreditation">NO
                               </label>
                             </div>
                           </div>
@@ -163,11 +222,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="ISO_accreditation" value="yes">YES
+                                <input type="radio" name="ISO_accreditation">YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="ISO_accreditation" value="no" checked>NO
+                                <input type="radio" name="ISO_accreditation" checked>NO
                               </label>
                             </div>
                           </div>
@@ -199,18 +258,36 @@
                         <label for="textInput"><b>7. Specify with proof what are the actions taken to <br>
                             maximize use of renewable energy resources.</b></label>
                         <div class="form-row">
-                          <div class="col-6">
+                          <div class="col-4">
                             <div class="md-form mt-0">
                               <input class="form-control" name="renewable_energy_text" type="text" value={{Others.renewable_energy_text}}>
                             </div>
                           </div>
-                          <div class="col-6">
-                            <div class="input-group">
+                          <div class="col-8">
+                            <!-- <div class="input-group">
                               <div class="custom-file">
                                 <input type="file" class="custom-file-input" name="renewable_energy_pic" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">{{Others.renewable_energy_pic}}</label>
                               </div>
+                            </div> -->
+                            <div class="form-row mb-4">
+                              <div class="col-6">
+                                <label class="form-text text-muted">Upload New File</label>
+                                <div class="input-group">
+                                  <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                    <label class="custom-file-label" for="inputGroupFile01">File</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <label class="form-text text-muted">Previous File</label>
+                                <a href="{{Others.renewable_energy_pic.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                <a href="{{Others.renewable_energy_pic.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                              </div>
+                              <p class="mt-1"><em>Note: Uploading new file will overwrite previous file!</em></p>
                             </div>
+
                           </div>
                         </div>
                         <div class="form-row">

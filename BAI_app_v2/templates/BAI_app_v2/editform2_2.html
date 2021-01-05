@@ -12,6 +12,9 @@
         {% if error2_2 %}
         <script> alert(" {{error2_2}} ")</script>
         {% endif %}
+        {% if already_filled %}
+            <script> alert(" {{already_filled}} ")</script>
+            {% endif %}
 
         <div class="col-md-12">
 
@@ -84,11 +87,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
-                                <input type="radio" name="monitered" value="yes" checked>YES
+                                <input type="radio" name="monitered" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="monitered" value="no">NO
+                                <input type="radio" name="monitered" >NO
                               </label>
                             </div>
                           </div>
@@ -96,11 +99,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
-                                <input type="radio" name="monitered" value="yes">YES
+                                <input type="radio" name="monitered">YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="monitered" value="no" checked>NO
+                                <input type="radio" name="monitered" checked>NO
                               </label>
                             </div>
                           </div>
@@ -141,11 +144,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="medical_aid" value="yes" checked>YES
+                                <input type="radio" name="medical_aid" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="medical_aid" value="no">NO
+                                <input type="radio" name="medical_aid" >NO
                               </label>
                             </div>
                           </div>
@@ -153,11 +156,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="medical_aid" value="yes">YES
+                                <input type="radio" name="medical_aid" >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="medical_aid" value="no" checked>NO
+                                <input type="radio" name="medical_aid" checked>NO
                               </label>
                             </div>
                           </div>
@@ -172,11 +175,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="incidents" value="yes" checked>YES
+                                <input type="radio" name="incidents" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="incidents" value="no">NO
+                                <input type="radio" name="incidents" >NO
                               </label>
                             </div>
                           </div>
@@ -184,31 +187,45 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="incidents" value="yes" >YES
+                                <input type="radio" name="incidents" >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="incidents" value="no" checked>NO
+                                <input type="radio" name="incidents"checked>NO
                               </label>
                             </div>
                           </div>
                           {% endif %}
                         </div>
                         <div class="form-row">
-                          <div class="col-7">
+              
                             <label for="textInput"><b>5. Provide documents showing safety audits, if done.</b></label><br>
-                          </div>
-                          <div class="col-5">
-                            <div class="mt-0">
-                              <div class="input-group">
+                      
+                              <!-- <div class="input-group">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" name="safety_audits" id="inputGroupFile01" >
                                   <label class="custom-file-label" for="inputGroupFile01">{{SafetynWellfare.safety_audits}}</label>
                                 </div>
+                              </div> -->
+                              <div class="form-row mb-4">
+                                <div class="col-8">
+                                  <label class="form-text text-muted">Upload New File</label>
+                                  <div class="input-group">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                      <label class="custom-file-label" for="inputGroupFile01">File</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-4">
+                                  <label class="form-text text-muted">Previous File</label>
+                                  <a href="{{SafetynWellfare.safety_audits.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                  <a href="{{SafetynWellfare.safety_audits.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                                </div>
+                                <p class="mt-1"><em>Note: Uploading new file will overwrite previous file!</em></p>
                               </div>
+                            
                             </div>
-                          </div>
-                        </div>
                        
                         <button class="btn btn-info my-4 btn-block" type="Submit" value="Form2">UPDATE/NEXT</button>
                         <p><em>NOTE: Please keep all relevant document ready at site for verification / inspection

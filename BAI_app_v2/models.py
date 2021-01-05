@@ -209,7 +209,7 @@ class Quality(models.Model):
 
 class Category(models.Model):
     users_name = models.CharField(max_length=20, blank=True)
-    app_form_cat = models.CharField(max_length=70,blank=False)
+    app_form_cat = models.CharField(max_length=70,blank=True)
     status = models.IntegerField(default=0,blank=True)# 0 = None.....1 = Accepted.....2 = Rejected
 
     #filled0 = models.CharField(choices=true_false,max_length=7,blank=True,default='False')
@@ -260,3 +260,11 @@ class PaymentDetails(models.Model):
 class UserCategory(models.Model):
     users_name = models.CharField(max_length=20, blank=True)
     category_latest = models.CharField(max_length=70, blank=True)
+
+class JurySignup(models.Model):
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    designation = models.CharField(max_length = 100, blank=False)
+    firm_name = models.CharField(max_length = 100, blank=False)
+    address = models.CharField(max_length = 500, blank=False)
+    phone_number = models.CharField(max_length=15, blank=False)
+    allotted_cat = models.CharField(max_length=100, blank=False, choices=category_1_9)

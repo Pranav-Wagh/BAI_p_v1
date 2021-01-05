@@ -83,15 +83,34 @@
 
                         <input class="form-control mb-4" id="textInput" type="text" name="project_address" value={{Project_info.project_address}}>
 
-                        <div class="input-group mb-4">
+                        <!-- <div class="input-group mb-4">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Upload</span>
                           </div>
                           <div class="custom-file">
                             <input type="file" class="custom-file-input" id="fileInput" name="site_map" aria-describedby="fileInput" multiple>
-                            <label class="custom-file-label" for="fileInput">{{Project_info.site_map}}</label>
+                            <label class="custom-file-label" for="fileInput"><a href="{{Project_info.site_map.url}}">{{Project_info.site_map}}</a></label>
                           </div>
+                        </div> -->
+
+                        <div class="form-row mb-4">
+                          <div class="col-8">
+                            <label class="form-text text-muted">Upload New File</label>
+                            <div class="input-group">
+                              <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01">File</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <label class="form-text text-muted">Previous File</label>
+                            <a href="{{Project_info.site_map.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                            <a href="{{Project_info.site_map.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                          </div>
+                          <p class="mt-1"><em>Note: Uploading new file will overwrite previous file!</em></p>
                         </div>
+
 
                         <input class="form-control mb-4" id="textInput" type="text" name="client_name" value={{Project_info.client_name}} >
 

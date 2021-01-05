@@ -11,6 +11,9 @@
                 {% if error2_1 %}
                 <script> alert(" {{error2_1}} ")</script>
                 {% endif %}
+                {% if already_filled %}
+            <script> alert(" {{already_filled}} ")</script>
+            {% endif %}
         <div class="col-md-12">
 
           <!-- Stepers Wrapper -->
@@ -103,11 +106,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="cost_reduction" value="yes" checked>YES
+                                <input type="radio" name="cost_reduction" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="cost_reduction" value="no">NO
+                                <input type="radio" name="cost_reduction">NO
                               </label>
                             </div>
                           </div>
@@ -115,11 +118,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="cost_reduction" value="yes" >YES
+                                <input type="radio" name="cost_reduction" >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="cost_reduction" value="no" checked>NO
+                                <input type="radio" name="cost_reduction" checked>NO
                               </label>
                             </div>
                           </div>
@@ -134,11 +137,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
-                                <input type="radio" name="tracked_e" value="yes" checked>YES
+                                <input type="radio" name="tracked_e" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="tracked_e" value="no">NO
+                                <input type="radio" name="tracked_e">NO
                               </label>
                             </div>
                           </div>
@@ -146,11 +149,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
-                                <input type="radio" name="tracked_e" value="yes">YES
+                                <input type="radio" name="tracked_e" >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="tracked_e" value="no" checked>NO
+                                <input type="radio" name="tracked_e"checked>NO
                               </label>
                             </div>
                           </div>
@@ -178,11 +181,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="PMC_appointed" value="yes" checked>YES
+                                <input type="radio" name="PMC_appointed" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="PMC_appointed" value="no">NO
+                                <input type="radio" name="PMC_appointed" >NO
                               </label>
                             </div>
                           </div>
@@ -190,11 +193,11 @@
                           <div class="col-3">
                             <div class="mt-0">
                               <label class="radio-inline">
-                                <input type="radio" name="PMC_appointed" value="yes" >YES
+                                <input type="radio" name="PMC_appointed" >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="PMC_appointed" value="no" checked>NO
+                                <input type="radio" name="PMC_appointed" checked>NO
                               </label>
                             </div>
                           </div>
@@ -233,11 +236,11 @@
                             <div class="mt-0">
 
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample2">
-                                <input type="radio" name="difficulty_e" value="yes" checked>YES
+                                <input type="radio" name="difficulty_e" checked>YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="difficulty_e" value="no">NO
+                                <input type="radio" name="difficulty_e" >NO
                               </label>
                             </div>
                           </div>
@@ -246,11 +249,11 @@
                             <div class="mt-0">
 
                               <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample2">
-                                <input type="radio" name="difficulty_e" value="yes" >YES
+                                <input type="radio" name="difficulty_e"  >YES
                               </label>
                               &emsp;
                               <label class="radio-inline">
-                                <input type="radio" name="difficulty_e" value="no" checked>NO
+                                <input type="radio" name="difficulty_e" checked>NO
                               </label>
                             </div>
                           </div>
