@@ -1,0 +1,77 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+{% load static %}
+
+
+    <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-3 mt-5">
+            <div class="sticky-top">
+              <div id="list-example" class="list-group">
+                <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:add_jury' %}">Add New Jury</a>
+                <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:view_jury' %}">View Added Juries</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9 mt-5">
+              <div class="container">
+                <form class="border border-light p-5 " style="background-color: white;" action="{% url 'BAI_app_v2:add_jury' %}" method="POST" >
+                  {% csrf_token %}
+                  <p class="h4 mb-4 text-center">Add New Jury</p>
+                  <div class="form-row">
+                    <div class="col-6">
+                      <div class="md-form mb-0">
+                        <input type="text" id="textInput1" class="form-control" name="first_name" required>
+                        <label for="textInput1">First Name* </label>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="md-form mb-0">
+                          <input type="text" id="textInput2" class="form-control" name="last_name" required>
+                          <label for="textInput2">Last Name* </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="md-form">
+                    <input type="text" id="textInput3" class="form-control mt-0 mb-4" name='designation'>
+                    <label for="textInput3">Designation of Jury * </label>
+                  </div>
+                  <div class="md-form">
+                    <input type="text" id="textInput4" class="form-control mb-4" name="firm_name">
+                    <label for="textInput4">Name of Firm / Company * </label>
+                  </div>
+                  <div class="md-form">
+                    <label for="textarea">Full Address *</label>
+                    <textarea id="textarea" class="form-control mb-4 md-textarea" name="address" placeholder=""></textarea>
+                  </div>
+
+                  <!-- <label for="textarea">Membership/s of construction related associations <br> (other than BAI)</label>
+                  <textarea id="textarea" class="form-control mb-4 md-textarea" name="other_membership" placeholder="Mention in points"></textarea> -->
+
+                  <div class="md-form">
+                    <input type="text" id="textInput5" class="form-control mb-4" name="phone_number">
+                    <label for="textInput5">Phone number</label>
+                  </div>
+                  <div class="md-form">
+                    <input type="email" id="textInput6" class="form-control mb-4" name="username">
+                    <label for="textInput6">Email</label>
+                  </div>
+                  <div class="md-form">
+                    <input type="password" id="textInput7" class="form-control mb-4" name="password" value="Jury1234" readonly >
+                    <label for="textInput7">Password</label>
+                  </div>
+                  <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">Minimal 8 characters
+                    length</small>
+                  <b>Allot a category</b>
+                  {{form.allotted_cat}}
+
+                  <!-- <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">Optional - for two step authentication</small> -->
+
+                  <button class="btn btn-info my-4 btn-block" type="submit">Add Jury</button>
+                </form>
+              </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

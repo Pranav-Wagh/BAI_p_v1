@@ -1,0 +1,242 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+{% load static %}
+
+<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+    <div class="container mt-5">
+      <main class="Site-content">
+          <!-- Horizontal Steppers -->
+          <div class="container">
+            <div class="row Site-content">
+
+                {% if error0 %}
+                <script> alert(" {{error0}} ")</script>
+                {% endif %}
+
+              <div class="col-md-12">
+  
+                <!-- Stepers Wrapper -->
+                <ul class="stepper stepper-horizontal">
+  
+                  <li class="completed">
+                    <a href="#step-home">
+                      <span class="circle">1</span>
+                      <span class="label">First step</span>
+                    </a>
+                  </li>
+  
+                  <!-- First Step -->
+                  <li class="incomplete">
+                    <a class="nav-link" href="#">
+                      <span class="circle">2</span>
+                      <span class="label">Second step</span>
+                    </a>
+                  </li>
+  
+                  <!-- Second Step -->
+                  <li class="incomplete">
+                    <a class="nav-link" href="#">
+                      <span class="circle">3</span>
+                      <span class="label">Third step</span>
+                    </a>
+                  </li>
+  
+                  <!-- Third Step -->
+                  <li class="incomplete">
+                    <a class="nav-link" href="#">
+                      <span class="circle">4</span>
+                      <span class="label">Fourth step</span>
+                    </a>
+                  </li>
+  
+                </ul>
+                <!-- /.Stepers Wrapper -->
+              </div>
+            </div>
+  
+            <div class="container">
+              <div class="mt-2">
+                <div class="row">
+                  <div class="col-3">
+                    <div class="sticky-top">
+                      <div class="list-group">
+                        <ul id="list-example">
+                          <a class="list-group-item list-group-item-action " href="#list-item-1">Application Form Category</a>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="col-9">
+  
+                       <!-- <span> Hello, {{request.user}} </span>
+                      <span> <a href="/logout">Logout</a> </span> -->
+  
+                    <div id="list-item-1">
+                        <form class="border border-light p-5" action="{% url 'BAI_app_v2:updateform0' request.user.username cat_id %}" method="POST">
+                            {% csrf_token %}
+                            <h3 class="display-5 font-weight-bold text-center mb-5">Update the Category of your Application Form</h3>
+                            <!-- Default unchecked -->
+                            <br>
+
+                                <!-- <select name="app_form_cat" class="browser-default custom-select my-4">
+                                  <option selected>{{Category.app_form_cat}}</option>
+                                  <option value="Residential (bungalow, row houses, standalone buildings)">Residential (bungalow, row houses, standalone buildings)</option>
+                                  <option value="Residential (housing complex)">Residential (housing complex)</option>
+                                  <option value="Residential ( affordable housing)">Residential ( affordable housing)</option>
+                                  <option value="Commercial (malls, office, institution, hotel, hospital, cinema)">Commercial (malls, office, institution, hotel, hospital, cinema)</option>
+                                  <option value="Industrial (any size, any type)">Industrial (any size, any type)</option>
+                                  <option value="Infrastructure (bridges, flyovers, ESR etc.)">Infrastructure (bridges, flyovers, ESR etc.)</option>
+                                  <option value="Well equipped, well mechanized site">Well equipped, well mechanized site</option>
+                                  <option value="Government, Semi-Govt., Public Works">Government, Semi-Govt., Public Works</option>
+                                  <option value="Work upto Bare Shell (includes RCC, Masonry and Plaster works)">Work upto Bare Shell (includes RCC, Masonry and Plaster works)</option>
+                                </select> -->
+                                {% if Category.app_form_cat == "Residential (bungalow, row houses, standalone buildings)" %}
+                                <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="defaultUnchecked"
+                                      value="Residential (bungalow, row houses, standalone buildings)" checked>
+                                  <label class="custom-control-label" for="defaultUnchecked"><h5>Residential (bungalow,
+                                      row houses, standalone buildings)</h5></label>
+                              </div>
+                              {% else %}
+                              <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked"
+                                    name="app_form_cat" value="Residential (bungalow, row houses, standalone buildings)">
+                                <label class="custom-control-label" for="defaultUnchecked"><h5>Residential (bungalow,
+                                    row houses, standalone buildings)</h5></label>
+                            </div>
+                            {% endif %}
+                            {% if Category.app_form_cat == "Residential (housing complex)" %}
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="defaultUnchecked2"
+                                       value="Residential (housing complex)" checked>
+                                  <label class="custom-control-label" for="defaultUnchecked2"><h5>Residential (housing
+                                      complex)</h5></label>
+                              </div>
+                            {% else %}
+                              <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked2"
+                                    name="app_form_cat" value="Residential (housing complex)">
+                                <label class="custom-control-label" for="defaultUnchecked2"><h5>Residential (housing
+                                    complex)</h5></label>
+                              </div>
+                              {% endif %}
+                              {% if Category.app_form_cat == "Residential ( affordable housing)" %}
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="defaultUnchecked3"
+                                      value="Residential ( affordable housing)" checked>
+                                  <label class="custom-control-label" for="defaultUnchecked3"><h5>Residential ( affordable
+                                      housing)</h5></label>
+                              </div>
+                              {% else %}
+                              <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked3"
+                                    name="app_form_cat" value="Residential ( affordable housing)">
+                                <label class="custom-control-label" for="defaultUnchecked3"><h5>Residential ( affordable
+                                    housing)</h5></label>
+                              </div>
+                              {% endif %}
+                              {% if Category.app_form_cat == "Commercial (malls, office, institution, hotel, hospital, cinema)" %}
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="defaultUnchecked4"
+                                      value="Commercial (malls, office, institution, hotel, hospital, cinema)" checked>
+                                  <label class="custom-control-label" for="defaultUnchecked4"><h5>Commercial (malls,
+                                      office, institution, hotel, hospital, cinema)</h5></label>
+                              </div>
+                              {% else %}
+                              <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked4"
+                                    name="app_form_cat" value="Commercial (malls, office, institution, hotel, hospital, cinema)">
+                                <label class="custom-control-label" for="defaultUnchecked4"><h5>Commercial (malls,
+                                    office, institution, hotel, hospital, cinema)</h5></label>
+                              </div>
+                              {% endif %}
+                              {% if Category.app_form_cat == "Industrial (any size, any type)" %}
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="defaultUnchecked5"
+                                      value="Industrial (any size, any type)" checked>
+                                  <label class="custom-control-label" for="defaultUnchecked5"><h5>Industrial (any size,
+                                      any type)</h5></label>
+                              </div>
+                              {% else %}
+                              <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked5"
+                                    name="app_form_cat" value="Industrial (any size, any type)">
+                                <label class="custom-control-label" for="defaultUnchecked5"><h5>Industrial (any size,
+                                    any type)</h5></label>
+                              </div>
+                              {% endif %}
+                              {% if Category.app_form_cat == "Infrastructure (bridges, flyovers, ESR etc.)" %}
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="defaultUnchecked6"
+                                       value="Infrastructure (bridges, flyovers, ESR etc.)" checked>
+                                  <label class="custom-control-label" for="defaultUnchecked6"><h5>Infrastructure (bridges,
+                                      flyovers, ESR etc.)</h5></label>
+                              </div>
+                              {% else %}
+                              <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked6"
+                                    name="app_form_cat" value="Infrastructure (bridges, flyovers, ESR etc.)">
+                                <label class="custom-control-label" for="defaultUnchecked6"><h5>Infrastructure (bridges,
+                                    flyovers, ESR etc.)</h5></label>
+                              </div>
+                              {% endif %}
+                              {% if Category.app_form_cat == "Well equipped, well mechanized site" %}
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="defaultUnchecked7"
+                                       value="Well equipped, well mechanized site" checked>
+                                  <label class="custom-control-label" for="defaultUnchecked7"><h5>Well equipped, well
+                                      mechanized site</h5></label>
+                              </div>
+                              {% else %}
+                              <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked7"
+                                    name="app_form_cat" value="Well equipped, well mechanized site">
+                                <label class="custom-control-label" for="defaultUnchecked7"><h5>Well equipped, well
+                                    mechanized site</h5></label>
+                              </div>
+                              {% endif %}
+                              {% if Category.app_form_cat == "Government, Semi-Govt., Public Works" %}
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="defaultUnchecked8"
+                                       value="Government, Semi-Govt., Public Works" checked>
+                                  <label class="custom-control-label" for="defaultUnchecked8"><h5>Government, Semi-Govt.,
+                                      Public Works</h5></label>
+                              </div>
+                              {% else %}
+                              <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked8"
+                                    name="app_form_cat" value="Government, Semi-Govt., Public Works">
+                                <label class="custom-control-label" for="defaultUnchecked8"><h5>Government, Semi-Govt.,
+                                    Public Works</h5></label>
+                              </div>
+                              {% endif %}
+                              {% if Category.app_form_cat == "Work upto Bare Shell (includes RCC, Masonry and Plaster works)" %}
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="defaultUnchecked9"
+                                      value="Work upto Bare Shell (includes RCC, Masonry and Plaster works)" checked>
+                                  <label class="custom-control-label" for="defaultUnchecked9"><h5>Work upto Bare Shell
+                                      (includes RCC, Masonry and Plaster works)</h5></label>
+                              </div>
+                              {% else %}
+                              <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked9"
+                                    name="app_form_cat" value="Work upto Bare Shell (includes RCC, Masonry and Plaster works)">
+                                <label class="custom-control-label" for="defaultUnchecked9"><h5>Work upto Bare Shell
+                                    (includes RCC, Masonry and Plaster works)</h5></label>
+                              </div>
+                              {% endif %}
+                            <button class="btn btn-info my-4 btn-block" type="Submit">UPDATE/NEXT</button>
+                      </form>
+                        </div>
+                      <!-- step 1-4 -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <!-- /.Horizontal Steppers -->
+      </main>
+  </div>
+</div>
+  
+{% endblock %}

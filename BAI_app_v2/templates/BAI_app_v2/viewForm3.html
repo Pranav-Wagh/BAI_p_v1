@@ -1,0 +1,142 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+{% load static %}
+
+    <div class="container">
+      <!-- Horizontal Steppers -->
+      <div class="row">
+        <div class="col-md-12">
+
+          <!-- Stepers Wrapper -->
+          <ul class="stepper stepper-horizontal">
+            <li class="completed">
+              <a class="nav-link" onclick="href='/BAI_app_v2/form0'">
+                <span class="circle">1</span>
+                <span class="label">First step</span>
+              </a>
+            </li>
+
+            <!-- First Step -->
+            <li class="incomplete">
+              <a href="#step-home">
+                <span class="circle">2</span>
+                <span class="label">Second step</span>
+              </a>
+            </li>
+
+            <!-- Second Step -->
+            <li class="incomplete">
+              <a class="nav-link" onclick="href='/BAI_app_v2/form2'">
+                <span class="circle">3</span>
+                <span class="label">Third step</span>
+              </a>
+            </li>
+
+            <!-- Third Step -->
+            <li class="incomplete">
+              <a class="nav-link" onclick="location.href='/BAI_app_v2/form3.html'">
+                <span class="circle">4</span>
+                <span class="label">Fourth step</span>
+              </a>
+            </li>
+
+          </ul>
+          <!-- /.Stepers Wrapper -->
+          <div class="container">
+            <div class="mt-2">
+              <div class="row">
+                <div class="col-3">
+                  <div class="sticky-top">
+                    <div id="list-example" class="list-group">
+                      <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:viewForm3' PaymentDetails.users_name cat_id %}">Payment Details</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-9">
+                  <div data-spy="scroll" data-target="#list-example" data-offset="0"
+                    class="scrollspy-example z-depth-1">
+                    <h4 id="list-item-1">
+                      <!--General Information about Project-->
+                    </h4>
+
+
+                    <div class="container">
+                      <!--Section: Contact v.2-->
+                      <section class="mb-4">
+
+                        <!--Section heading-->
+                        <h2 class="h1-responsive font-weight-bold text-center my-4">Payment Details</h2>
+                        <!--Section description-->
+
+                        <div class="row">
+
+                          <!--Grid column-->
+                          <div class="col-md-12 mb-md-0 mb-5">
+                            <form id="contact-form" name="contact-form" action="{% url 'BAI_app_v2:admin_notverified' %}">
+
+                              <!--Grid row-->
+                              <div class="row">
+                                <div class="col-sm">
+                                  <p class="h4 text-center">User: {{PaymentDetails.users_name}}</p>
+                                  <p class="h4 mb-2 text-center">Category: {{PaymentDetails.category_latest}}</p>
+                                    <br>
+                                    <div class="row" style="width:100%">
+                                      <div class="col-sm">
+                                            <label class="h5" for="">Payment Method : </label>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p class="h5">{{PaymentDetails.pay_method}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="width:100%">
+                                      <div class="col-sm">
+                                            <label class="h5" for="">Transaction Date : </label>
+                                        </div>
+                                        <div class="col-sm">
+                                          <p class="h5">{{PaymentDetails.trans_date}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="width:100%">
+                                      <div class="col-sm">
+                                            <label class="h5" for="">Transaction ID / Cheque Number : </label><br>
+                                        </div>
+                                        <div class="col-sm">
+                                          <p class="h5">{{PaymentDetails.trans_id}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="width:100%">
+                                      <div class="col-sm">
+                                            <label class="h5" for="">Bank Details : </label> <br>
+                                        </div>
+                                        <div class="col-sm">
+                                          <p class="h5">{{PaymentDetails.bank}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-center text-md-center">
+                                      <button type="submit" class="btn btn-danger">Exit</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                          </div>
+                          <!--Grid column-->
+
+
+                        </div>
+
+                      </section>
+                      <!--Section: Contact v.2-->
+                    </div>
+                    <div style="height:10px;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.Horizontal Steppers -->
+    </div>
+
+{% endblock %}

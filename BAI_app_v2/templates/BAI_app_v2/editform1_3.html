@@ -1,0 +1,611 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+{% load static %}
+<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+  <div class="container mt-5">
+    <main class="Site-content">
+        <!-- Horizontal Steppers -->
+        <div class="container ">
+          <div class="row Site-content">
+       
+            {% if error1_3 %}
+            <script> alert(" {{error1_3}} ")</script>
+            {% endif %}
+            {% if already_filled %}
+            <script> alert(" {{already_filled}} ")</script>
+            {% endif %}
+    
+            <div class="col-md-12">
+
+              <!-- Stepers Wrapper -->
+              <ul class="stepper stepper-horizontal">
+
+                <li class="completed">
+                  <a class="nav-link" href="#">
+                    <span class="circle">1</span>
+                    <span class="label">First step</span>
+                  </a>
+                </li>
+
+                <!-- First Step -->
+                <li class="incomplete">
+                  <a href="#step-home">
+                    <span class="circle">2</span>
+                    <span class="label">Second step</span>
+                  </a>
+                </li>
+
+                <!-- Second Step -->
+                <li class="incomplete">
+                  <a class="nav-link"href="#">
+                    <span class="circle">3</span>
+                    <span class="label">Third step</span>
+                  </a>
+                </li>
+
+                <!-- Third Step -->
+                <li class="incomplete">
+                  <a class="nav-link" href="#">
+                    <span class="circle">4</span>
+                    <span class="label">Fourth step</span>
+                  </a>
+                </li>
+
+              </ul>
+              <!-- /.Stepers Wrapper -->
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="mt-2">
+              <div class="row">
+                <div class="col-3">
+                  <div class="sticky-top">
+                    <div class="list-group">
+                      <ul id="list-example">
+                        <a class="list-group-item list-group-item-action " href="#list-item-1">General Information about Project</a>
+                        <a class="list-group-item list-group-item-action " href="#list-item-2">Names of Consultants appointed</a>
+                        <a class="list-group-item list-group-item-action " href="#list-item-3">Quality </a>
+                        <a class="list-group-item list-group-item-action " href="#list-item-4">Speed of construction</a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                  <div class="col-9">
+                    <div id="list-item-1">
+                      <!-- step 1-1 -->
+                      <p>
+                      <form class="border border-light p-5" action="{% url 'BAI_app_v2:updateform1_3' request.user.username cat_id %}" enctype="multipart/form-data" method="POST">
+                        {% csrf_token %}
+                       
+                      <div id="list-item-3">
+                        <p class="h4 mb-4 text-center">Update Quality Form</p>
+                        <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>1. Was there a system for coordinating of all drawings?</b></label>
+                          </div>
+                          {% if Quality.any_system_for_coordinating_of_all_drawings == "yes" %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample5">
+                                <input type="radio" name="any_system_for_coordinating_of_all_drawings" checked >YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="any_system_for_coordinating_of_all_drawings">NO
+                              </label>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample5">
+                                <input type="radio" name="any_system_for_coordinating_of_all_drawings" >YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="any_system_for_coordinating_of_all_drawings"  checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
+                        </div>
+                        <div class="collapse" id="collapseExample5">
+                          <div class="mt-3">
+                            <div class="form-row">
+                              <div class="col-9">
+                                <label><b> If yes it was done by whom?</b></label><br>
+                              </div>
+                              <div class="col-3">
+                                <div class="md-form mt-0">
+                                  <input type="text" name="drawing_coordinating_system" value={{Quality.drawing_coordinating_system}}>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>2. Was there a separate PMC for the project?</b></label>
+                          </div>
+                          {% if Quality.PMC == "yes" %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="PMC"checked>YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="PMC" >NO
+                              </label>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="PMC" >YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="PMC"  checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>3. Were the drawings and specifications assessed in-
+                                house or consultants, in terms of possible quality
+                                improvement? *</b></label>
+                          </div>
+                          {% if Quality.drawing_specification_assessment == "yes" %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="drawing_specification_assessment"  checked>YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="drawing_specification_assessment">NO
+                              </label>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="drawing_specification_assessment"  >YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="drawing_specification_assessment" checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>4. What was the frequency of Consultants’ site visit?</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              <input type="text" name="consultant_visit_frequency" value={{Quality.consultant_visit_frequency}}>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>5. Were the decisions recorded in the site instruction book
+                                or minutes of meeting? *</b></label>
+                          </div>
+                          {% if Quality.Decision_recorded == "yes" %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample2">
+                                <input type="radio" name="Decision_recorded"  checked>YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="Decision_recorded" >NO
+                              </label>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample2">
+                                <input type="radio" name="Decision_recorded">YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="Decision_recorded" checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
+                        </div>
+                        <div class="collapse" id="collapseExample2">
+                          <div class="mt-3">
+                            <div class="form-row">
+                              <div class="col-9">
+                                <label><b> If yes, please submit a sample of such minutes of
+                                    meeting and/or instruction book.</b></label><br>
+                              </div>
+                              <div class="col-3">
+
+                                  <!-- <div class="input-group">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="meeting_instruction_book_minute" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                      <label class="custom-file-label" for="inputGroupFile01">{{Quality.meeting_instruction_book_minute}}</label>
+                                    </div>
+                                  </div> -->
+                                  <div class="form-row mb-4">
+                                    <div class="col-8">
+                                      <label class="form-text text-muted">Upload New File</label>
+                                      <div class="input-group">
+                                        <div class="custom-file">
+                                          <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                          <label class="custom-file-label" for="inputGroupFile01">File</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      <label class="form-text text-muted">Previous File</label>
+                                      <a href="{{Quality.meeting_instruction_book_minute.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                      <a href="{{Quality.meeting_instruction_book_minute.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                                    </div>
+                                    <p class="mt-1"><em>Note: Uploading new file will overwrite previous file!</em></p>
+                                  </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>6. Were Quality Standards mentioned in the Tender? *</b></label>
+                          </div>
+                          {% if Quality.quality_standard_tender == "yes" %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="quality_standard_tender"checked>YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample3">
+                                <input type="radio" name="quality_standard_tender">NO
+                              </label>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="quality_standard_tender" >YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample3">
+                                <input type="radio" name="quality_standard_tender" checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
+                        </div>
+                        <div class="collapse" id="collapseExample3">
+                          <div class="mt-3">
+                            <div class="form-row">
+                              <div class="col-9">
+                                <label><b> If not, who defined the quality standards? *</b></label><br>
+                              </div>
+                              <div class="col-3">
+                                <div class="md-form mt-0">
+                                  <input type="text" name="name_of_quality_standard_approver" value={{Quality.name_of_quality_standard_approver}}>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>7.Was there an in-house team to control quality?</b></label>
+                          </div>
+                          {% if Quality.in_house_team_quality_control == "yes" %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="in_house_team_quality_control"checked>YES
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" name="in_house_team_quality_control">NO
+                              </label>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="in_house_team_quality_control" >YES
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" name="in_house_team_quality_control"  checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>8.Was there an external team to control quality?</b></label>
+                          </div>
+                          {% if Quality.external_team_to_control_quality == "yes" %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="external_team_to_control_quality"  checked>YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="external_team_to_control_quality">NO
+                              </label>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="external_team_to_control_quality"  >YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="external_team_to_control_quality" checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
+                        </div>
+                        <div class="form-row">
+                          <div class="col-8">
+                            <label for="textInput"><b>9.List quality assurance tests carried out - On the site. *</b></label><br>
+                          </div>
+                          <div class="col-4">
+                            <div class="md-form mt-0">
+                              <input class="form-control" type="text" name="list_quality_assurance_tests_OnSite" value={{Quality.list_quality_assurance_tests_OnSite}}>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-8">
+                            <label for="textInput"><b>10.List quality assurance tests carried out - Off the site. *</b></label><br>
+                          </div>
+                          <div class="col-4">
+                            <div class="md-form mt-0">
+                              <input class="form-control" type="text" name="list_quality_assurance_tests_Off_Site" value="{{Quality.list_quality_assurance_tests_Off_Site}}">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                            <label for="textInput"><b>11.Submit sample Checklist followed.</b></label><br>
+                            
+                              <!-- <div class="input-group">
+                                <div class="custom-file">
+                                  <input type="file" class="custom-file-input" id="inputGroupFile01" name="sample_Checklist_followed" aria-describedby="inputGroupFileAddon01">
+                                  <label class="custom-file-label" for="inputGroupFile01">{{Quality.sample_Checklist_followed}}</label>
+                                </div>
+                              </div> -->
+                              <div class="form-row mb-4">
+                                <div class="col-8">
+                                  <label class="form-text text-muted">Upload New File</label>
+                                  <div class="input-group">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                      <label class="custom-file-label" for="inputGroupFile01">File</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-4">
+                                  <label class="form-text text-muted">Previous File</label>
+                                  <a href="{{Quality.sample_Checklist_followed.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                  <a href="{{Quality.sample_Checklist_followed.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                                </div>
+                                <p class="mt-1"><em>Note: Uploading new file will overwrite previous file!</em></p>
+                              </div>
+                        
+                      
+                        </div>
+                        <div class="form-row">
+                          <div class="col-8">
+                            <label for="textInput"><b>12.Submit sample test reports.</b></label><br>
+                          </div>
+                          <div class="col-4">
+                          
+                              {% if not Quality.sample_test_reports %}
+                              <div class="input-group mb-4">
+                                <div class="custom-file">
+                                  <input type="file" class="custom-file-input" id="inputGroupFile01" name="sample_test_reports" aria-describedby="inputGroupFileAddon01">
+                                  <label class="custom-file-label" for="inputGroupFile01">Test Reports</label>
+                                </div>
+                              </div>
+                              {% else %}
+                              <div class="form-row">
+                                <div class="col-8">
+                                  <label class="form-text text-muted">Upload New File</label>
+                                  <div class="input-group">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="site_map" id="inputGroupFile01">
+                                      <label class="custom-file-label" for="inputGroupFile01">File</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-4">
+                                  <label class="form-text text-muted">Previous File</label>
+                                  <a href="{{Quality.sample_test_reports.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark" download>Download</a>
+                                  <a href="{{Quality.sample_test_reports.url}}" role="button" class="btn btn-link btn-outline-primary btn-sm" data-mdb-ripple-color="dark">View</a>
+                                </div>
+                                <p class="mt-1"><em>Note: Uploading new file will overwrite previous file!</em></p>
+                              </div>
+                              {% endif %}
+
+                      
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>13. Were there any special training programs for
+                                Supervisory staff during execution?</b></label>
+                          </div>
+                          {% if Quality.any_special_training_programs == "yes" %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample4">
+                                <input type="radio" name="any_special_training_programs" checked>YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="any_special_training_programs">NO
+                              </label>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample4">
+                                <input type="radio" name="any_special_training_programs">YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="any_special_training_programs"  checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
+                        </div>
+                        <div class="collapse" id="collapseExample4">
+                          <div class="mt-3">
+                            <div class="form-row">
+                              <div class="col-8">
+                                <label><b> If Yes, Provide details. *</b></label><br>
+                              </div>
+                              <div class="col-4">
+                                <div class="md-form mt-0">
+                                  <input class="form-control" type="text" name="If_Yes_Provide_details" value={{Quality.If_Yes_Provide_details}}>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>14. Were there any special training programs for workers during execution?</b></label>
+                          </div>
+                          {% if Quality.any_special_training_programs == "yes" %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample5">
+                                <input type="radio" name="any_special_training_programs_workers" checked >YES
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" name="any_special_training_programs_workers" >NO
+                              </label>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample5">
+                                <input type="radio" name="any_special_training_programs_workers">YES
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" name="any_special_training_programs_workers" checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
+                        </div>
+                        <div class="collapse" id="collapseExample5">
+                          <div class="mt-3">
+                            <div class="form-row">
+                              <div class="col-8">
+                                <label><b> If Yes, Provide details. *</b></label><br>
+                              </div>
+                              <div class="col-4">
+                                <div class="md-form mt-0">
+                                  <input class="form-control" type="text" name="If_Yes_Provide_details_workers" value={{Quality.If_Yes_Provide_details_workers}}>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>15.Was there any Supervision from Clients side directly? *</b></label>
+                          </div>
+                          {% if Quality.any_special_training_programs == "yes" %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="any_Supervision_from_Client_side"  checked>YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="any_Supervision_from_Client_side" >NO
+                              </label>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="col-3">
+                            <div class="mt-0">
+                              <label class="radio-inline">
+                                <input type="radio" name="any_Supervision_from_Client_side" >YES
+                              </label>
+                              &emsp;
+                              <label class="radio-inline">
+                                <input type="radio" name="any_Supervision_from_Client_side"checked>NO
+                              </label>
+                            </div>
+                          </div>
+                          {% endif %}
+                        </div>
+
+                        <div class="form-row">
+                          <div class="col-8">
+                            <label for="textInput"><b>16. Any other system / method / mechanism adopted for
+                                Quality improvement?<br> Provide a separate Note. **</b></label><br>
+                          </div>
+                          <div class="col-4">
+                            <div class="md-form mt-0">
+                              <input class="form-control" type="text" name="system_method_mechanism_adopted" value={{Quality.system_method_mechanism_adopted}}>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-8">
+                            <label for="textInput"><b>17. How would you rate your project in terms of quality on a
+                                scale of 1 to 10 <br> (1: Lowest, 10:Highest) *</b></label><br>
+                          </div>
+                          <div class="col-4">
+                            <div class="md-form mt-0">
+                              <input class="form-control" type="text" name="rate_your_project_in_terms_of_quality" value={{Quality.rate_your_project_in_terms_of_quality}}>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    <button class="btn btn-info my-4 btn-block" type="Submit">UPDATE/NEXT</button>
+                      </form>
+                    </div>
+                    <!-- step 1-4 -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <!-- /.Horizontal Steppers -->
+    </main>
+</div>
+{% endblock %}

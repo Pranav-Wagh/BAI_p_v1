@@ -1,0 +1,78 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+{% load static %}
+
+<div class="jumbotron mt-5">
+    <div class="container mb-5">
+      <!-- <p>{{all_entries}}</p> -->
+      <p class="h3 mt-5 text-center">List of User(Forms not Verified)</p>
+
+        <div class="row">
+          <div class="col-md-3 mt-5">
+            <div class="sticky-top">
+              <div id="list-example" class="list-group">
+                <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:admin_notverified' %}">Not Verified</a>
+                <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:admin_verified' %}">Verified</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9 mt-5">
+              <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-striped table-hover text-center" >
+                  <thead class="white-text">
+                    <tr>
+                      <th><strong>Sr No.</strong></th>
+                      <th><strong>User</strong></th>
+                      <th><strong>Category of Application Form</strong></th>
+                      <th><strong>View Form </strong></th>
+                      <th><strong>Accept Form</strong></th>
+                      <th><strong>Reject Form</strong></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for itr in all_entries %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{itr.0}}</td>
+                      <td>{{itr.2}}</td>
+                      <td><a href="{% url 'BAI_app_v2:viewForm1_1' itr.0 itr.1 %}"><i class="fas fa-eye fa-lg" style="color: #0288D1;"></i></a></td>
+                      <!-- <td><button class="btn btn-link" type="button" data-mdb-toggle="modal" data-mdb-target="#AcceptModal"><i class="fas fa-check fa-lg" style="color: lightgreen;"></i></button></td>
+                      
+                        <div class="modal fade" id="AcceptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLongTitle">Confirm Accept Application Form?</h5>
+                                  <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <img src="../../static/assets/correct.png" alt="tick" style="width:180px;height:180px;">
+                                  <h6>Once you Accept Application,and you cannot Reject the form later
+                                    <ol>
+                                      <li>Applicant will be notified about Acceptance.</li>
+                                      <li>You cannot Reject Application after Accepting!</li>
+                                      <li>Jury Assigned for this Category will be able to view Application</li>
+                                      <li>You can see Accepted Applications in "Verified" tab.</li>
+                                    </ol>
+                                  </h6>
+                                </div>
+                                <div class="modal-footer">
+                                  <a href="{% url 'BAI_app_v2:AcceptForm' itr.0 itr.1 %}" class="btn btn-primary">Accept Application</a>
+                                </div>
+                              </div>
+                            </div>
+                        </div> -->
+                      <td><a href="{% url 'BAI_app_v2:AcceptForm' itr.0 itr.1 %}"><i class="fas fa-check fa-lg" style="color: lightgreen;"></i></a></td>
+                      <td><a href="{% url 'BAI_app_v2:RejectForm' itr.0 itr.1 %}"><i class="fas fa-times fa-lg" style="color: red;"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+          </div>
+
+        </div>
+      </div>
+</div>
+
+{% endblock %}

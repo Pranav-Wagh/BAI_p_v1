@@ -1,6 +1,12 @@
 {% extends "BAI_app_v2/base.html" %}
 {% block body_block %}
 
+{% if update %}
+<script>alert("Update Successful!")</script>
+{% else %}
+<script>alert("LogIn Successful!")</script>
+{% endif %}
+
 <div class="view full-page-intro"
 style="background-image: url('https://images.unsplash.com/photo-1533281808624-e9b07b4294ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=926&q=80'); background-repeat: no-repeat; background-size: cover;">
 
@@ -22,9 +28,11 @@ style="background-image: url('https://images.unsplash.com/photo-1533281808624-e9
 
         <a href="{% url 'BAI_app_v2:form0' %}" class="btn btn btn-lg border border ">Apply for New
         </a>
-        <a href="#" class="btn btn btn-lg border border">Edit Existing
+        <a href="{% url 'BAI_app_v2:update_view' %}" class="btn btn btn-lg border border">Edit/View Applications
         </a>
         <a href="{% url 'BAI_app_v2:user_profile' %}" class="btn btn btn-lg border border">My Profile
+        </a>
+        <a href="{% url 'BAI_app_v2:change_pass' %}" class="btn btn btn-lg border border">Change Password
         </a>
       </div>
       <!--Grid column-->

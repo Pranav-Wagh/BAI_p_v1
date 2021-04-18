@@ -7,11 +7,11 @@
           <!-- Horizontal Steppers -->
           <div class="container">
             <div class="row Site-content">
-          {% if filled0 %}
+          <!-- {% if filled0 %}
 
               <div class="col-md-12 mt-5 jumbotron">
                   <div class="alert alert-success mt-5" role="alert">
-                    <!-- <p class="h2 text-center">Category selected successfully!!</p> -->
+                    <p class="h2 text-center">Category selected successfully!!</p>
                     {% if messages %}
                       <ul class="messages my-4">
                         {% for message in messages %}
@@ -25,7 +25,11 @@
                   </div>
               </div>
               
-          {% else %} 
+          {% else %}  -->
+
+                {% if error0 %}
+                  <script> alert(" {{error0}} ")</script>
+                {% endif %}
       
               <div class="col-md-12">
   
@@ -82,95 +86,83 @@
                   </div>
                     <div class="col-9">
   
-                       <span> Hello, {{request.user}} </span>
-                      <span> <a href="/logout">Logout</a> </span>
-  
-                    <div id="list-item-1">
+                       <!-- <span> Hello, {{request.user}} </span>
+                      <span> <a href="/logout">Logout</a> </span> -->
+                      <div id="list-item-1">
                         <form class="border border-light p-5" action="{% url 'BAI_app_v2:form0' %}" method="POST">
                             {% csrf_token %}
-                            <h1 class="display-5 font-weight-bold"> Select a category you <br> want to fill application
-                                for.</h1>
+                            <h3 class="display-5 font-weight-bold mb-5"> Select a Category you want to fill Application
+                                for:-</h3>
                             <!-- Default unchecked -->
                             <br>
-                            <strong>
-                                <!-- <div class="custom-control custom-radio">
+
+                                <!-- <select name="app_form_cat" class="browser-default custom-select my-4">
+                                  <option selected>Categories Avaliable</option>
+                                  <option value="Residential (bungalow, row houses, standalone buildings)">Residential (bungalow, row houses, standalone buildings)</option>
+                                  <option value="Residential (housing complex)">Residential (housing complex)</option>
+                                  <option value="Residential ( affordable housing)">Residential ( affordable housing)</option>
+                                  <option value="Commercial (malls, office, institution, hotel, hospital, cinema)">Commercial (malls, office, institution, hotel, hospital, cinema)</option>
+                                  <option value="Industrial (any size, any type)">Industrial (any size, any type)</option>
+                                  <option value="Infrastructure (bridges, flyovers, ESR etc.)">Infrastructure (bridges, flyovers, ESR etc.)</option>
+                                  <option value="Well equipped, well mechanized site">Well equipped, well mechanized site</option>
+                                  <option value="Government, Semi-Govt., Public Works">Government, Semi-Govt., Public Works</option>
+                                  <option value="Work upto Bare Shell (includes RCC, Masonry and Plaster works)">Work upto Bare Shell (includes RCC, Masonry and Plaster works)</option>
+                                </select> -->
+
+                                <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="defaultUnchecked"
-                                        name="cat1">
-                                    <label class="custom-control-label" for="defaultUnchecked">Residential (bungalow,
-                                        row houses, standalone buildings)</label>
+                                        name="app_form_cat" value="Residential (bungalow, row houses, standalone buildings)">
+                                    <label class="custom-control-label" for="defaultUnchecked"><h5>Residential (bungalow,
+                                        row houses, standalone buildings)</h5></label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="defaultUnchecked2"
-                                        name="cat2">
-                                    <label class="custom-control-label" for="defaultUnchecked2">Residential (housing
-                                        complex)</label>
+                                        name="app_form_cat" value="Residential (housing complex)">
+                                    <label class="custom-control-label" for="defaultUnchecked2"><h5>Residential (housing
+                                        complex)</h5></label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="defaultUnchecked3"
-                                        name="cat3">
-                                    <label class="custom-control-label" for="defaultUnchecked3">Residential ( affordable
-                                        housing)</label>
+                                        name="app_form_cat" value="Residential ( affordable housing)">
+                                    <label class="custom-control-label" for="defaultUnchecked3"><h5>Residential ( affordable
+                                        housing)</h5></label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="defaultUnchecked4"
-                                        name="cat4">
-                                    <label class="custom-control-label" for="defaultUnchecked4">Commercial (malls,
-                                        office, institution, hotel, hospital, cinema)</label>
+                                        name="app_form_cat" value="Commercial (malls, office, institution, hotel, hospital, cinema)">
+                                    <label class="custom-control-label" for="defaultUnchecked4"><h5>Commercial (malls,
+                                        office, institution, hotel, hospital, cinema)</h5></label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="defaultUnchecked5"
-                                        name="cat5">
-                                    <label class="custom-control-label" for="defaultUnchecked5">Industrial (any size,
-                                        any type)</label>
+                                        name="app_form_cat" value="Industrial (any size, any type)">
+                                    <label class="custom-control-label" for="defaultUnchecked5"><h5>Industrial (any size,
+                                        any type)</h5></label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="defaultUnchecked6"
-                                        name="cat6">
-                                    <label class="custom-control-label" for="defaultUnchecked6">Infrastructure (bridges,
-                                        flyovers, ESR etc.)</label>
+                                        name="app_form_cat" value="Infrastructure (bridges, flyovers, ESR etc.)">
+                                    <label class="custom-control-label" for="defaultUnchecked6"><h5>Infrastructure (bridges,
+                                        flyovers, ESR etc.)</h5></label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="defaultUnchecked7"
-                                        name="cat7">
-                                    <label class="custom-control-label" for="defaultUnchecked7">Well equipped, well
-                                        mechanized site</label>
+                                        name="app_form_cat" value="Well equipped, well mechanized site">
+                                    <label class="custom-control-label" for="defaultUnchecked7"><h5>Well equipped, well
+                                        mechanized site</h5></label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="defaultUnchecked8"
-                                        name="cat8">
-                                    <label class="custom-control-label" for="defaultUnchecked8">Government, Semi-Govt.,
-                                        Public Works</label>
+                                        name="app_form_cat" value="Government, Semi-Govt., Public Works">
+                                    <label class="custom-control-label" for="defaultUnchecked8"><h5>Government, Semi-Govt.,
+                                        Public Works</h5></label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="defaultUnchecked9"
-                                        name="cat9">
-                                    <label class="custom-control-label" for="defaultUnchecked9">Work upto Bare Shell
-                                        (includes RCC, Masonry and Plaster works)</label>
-                                </div> -->
-
-                                <select class="browser-default custom-select my-4">
-                                  <option selected>Categories Avaliable</option>
-                                  <option value="1" name="app_form_cat">Residential (bungalow, row houses, standalone buildings)</option>
-                                  <option value="2" name="app_form_cat">Residential (housing
-                                    complex)</option>
-                                  <option value="3" name="app_form_cat">Residential ( affordable
-                                    housing)</option>
-                                  <option value="4" name="app_form_cat">Commercial (malls,
-                                    office, institution, hotel, hospital, cinema)</option>
-                                  <option value="5" name="app_form_cat">Industrial (any size,
-                                    any type)</option>
-                                  <option value="6" name="app_form_cat">Infrastructure (bridges,
-                                    flyovers, ESR etc.)</option>
-                                  <option value="7" name="app_form_cat">Well equipped, well
-                                    mechanized site</option>
-                                  <option value="8" name="app_form_cat">Government, Semi-Govt.,
-                                    Public Works</option>
-                                  <option value="9" name="app_form_cat">Work upto Bare Shell
-                                    (includes RCC, Masonry and Plaster works)</option>
-                                </select>
-
-                            </strong>
-
+                                        name="app_form_cat" value="Work upto Bare Shell (includes RCC, Masonry and Plaster works)">
+                                    <label class="custom-control-label" for="defaultUnchecked9"><h5>Work upto Bare Shell
+                                        (includes RCC, Masonry and Plaster works)</h5></label>
+                                </div>
                             <button class="btn btn-info my-4 btn-block" type="Submit" value="Form0">Save & Next</button>
                       </form>
                         </div>
@@ -180,9 +172,7 @@
                 </div>
               </div>
               </div>
-  
-          {% endif %}
-  
+              {% endif %}
               <!-- /.Horizontal Steppers -->
       </main>
   </div>

@@ -1,0 +1,219 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+{% load static %}
+
+    <div class="container">
+      <!-- Horizontal Steppers -->
+      <div class="row">
+        <div class="col-md-12">
+
+          <!-- Stepers Wrapper -->
+          <ul class="stepper stepper-horizontal">
+
+            <li class="completed">
+              <a class="nav-link" onclick="href='/BAI_app_v2/form0'">
+                <span class="circle">1</span>
+                <span class="label">First step</span>
+              </a>
+            </li>
+
+            <!-- First Step -->
+            <li class="incomplete">
+              <a href="#step-home">
+                <span class="circle">2</span>
+                <span class="label">Second step</span>
+              </a>
+            </li>
+
+            <!-- Second Step -->
+            <li class="incomplete">
+              <a class="nav-link" onclick="href='/BAI_app_v2/form2'">
+                <span class="circle">3</span>
+                <span class="label">Third step</span>
+              </a>
+            </li>
+
+            <!-- Third Step -->
+            <li class="incomplete">
+              <a class="nav-link" onclick="location.href='/BAI_app_v2/form3.html'">
+                <span class="circle">4</span>
+                <span class="label">Fourth step</span>
+              </a>
+            </li>
+
+          </ul>
+          <!-- /.Stepers Wrapper -->
+          <div class="container">
+            <div class="mt-2">
+              <div class="row">
+                <div class="col-3">
+                  <div class="sticky-top">
+                    <div id="list-example" class="list-group">
+                      <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:viewForm2_1' Others.users_name cat_id %}">Economy</a>
+                      <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:viewForm2_2' Others.users_name cat_id %}">Safety/Welfare</a>
+                      <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:viewForm2_3' Others.users_name cat_id %}">Others</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-9">
+                  <div class="scrollspy-example z-depth-1">
+                    <h4 id="list-item-3">
+                      <!--Names of Consultants appointed-->
+                    </h4>
+                    <!--step 2-3-->
+                    <div>
+                      <form class="border border-light p-5" action="{% url 'BAI_app_v2:viewForm3' Others.users_name cat_id %}">
+                        <p class="h4 mb-4 text-center">Others</p>
+                        <p class="text-center">Builder / Contractor(Fill relevant information)</p>
+                        <p class="h4 text-center">User: {{Others.users_name}}</p>
+                        <p class="h4 mb-2 text-center">Category: {{Others.category_latest}}</p>
+                        <hr>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>1. What arrangements were made on site for workers
+                                accommodation? <br> Provide Photographs. *</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <p>{{Others.accomodation}}</p>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>2. What sanitary arrangements were made on site for <br>
+                                workers? <br> Provide Photographs. *</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <p>{{Others.sanitary}}</p>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>3. Was Crèche and/or school provided for workers
+                                children on site?<br> Provide Photographs.</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <p>{{Others.school}}</p>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>4. Enlist any pollution control measures adopted <br>
+                                during construction to address sound pollution, air <br>
+                                pollution, water pollution, waste disposal. <br>
+                                Provide Photographs. *</b></label><br>
+                          </div>
+                          <div class="col-3">
+                            <p>{{Others.polution_measures}}</p>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>5. Does your company have any quality accreditation
+                                such as ISO?</b></label>
+                          </div>
+                          <div class="col-3">
+                            <p>{{Others.ISO_accreditation}}</p>
+                          </div>
+                        </div>
+                        <hr>
+                        <label for="textInput"><b>6. What are the water and energy conservation
+                            measures <br> adopted thereby reducing green house
+                            gas emissions? *</b></label>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>&emsp;a. During construction</b></label>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              <p>{{Others.conseravation_A}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>&emsp;b. During occupancy</b></label>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              <p>{{Others.conseravation_B}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+                        <label for="textInput"><b>7. Specify with proof what are the actions taken to <br>
+                            maximize use of renewable energy resources.</b></label>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <div class="md-form mt-0">
+                              <p>{{Others.renewable_energy_text}}</p>
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <p>{{Others.renewable_energy_pic}}</p>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>8. Mention measures taken to follow Green Building
+                                norms.</b></label>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              <p>{{Others.green_building}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>9. How effectively you have maintained debris
+                                management at site?</b></label>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              <p>{{Others.debris_management}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                          <div class="col-9">
+                            <label for="textInput"><b>10. How many Seminars / Workshops attended by your <br>
+                                representative, arranged by BAI or any other
+                                organization?</b></label>
+                          </div>
+                          <div class="col-3">
+                            <div class="md-form mt-0">
+                              <p>{{Others.seminars}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+                        
+                        <button class="btn btn-info my-4 btn-block" type="submit">Next</button>
+
+                        <p><em>NOTE: Please keep all relevant document ready at site for verification / inspection
+                            during the visit of juries.</em> </p>
+                      </form>
+                    </div>
+                    <!--step 2-2-->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.Horizontal Steppers -->
+  </div>
+
+{% endblock %}

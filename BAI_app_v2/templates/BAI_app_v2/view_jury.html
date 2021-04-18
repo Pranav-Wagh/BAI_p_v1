@@ -1,0 +1,54 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+
+    <div class="container mb-5 mt-5">
+        <div class="row">
+          <div class="col-md-3 mt-5">
+            <div class="sticky-top">
+              <div id="list-example" class="list-group">
+                <a class="list-group-item list-group-item-action" href="{% url 'BAI_app_v2:add_jury' %}">Add New Jury</a>
+                <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:view_jury' %}">View Added Juries</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9 mt-5">
+            <p class="h4 mb-4 text-center">List of Juries Added</p>
+            <div class="row z-depth-1 blue lighten-4">
+              <!--<div class="col-sm-4 tex-center" >-->
+                  <!--<div class="flex-left col-sm" style="width: 100%; height:100%">-->
+                      <!--<h4 class="display-5 mt-3 font-weight-bold">No.[JURY]</h4>-->
+                  <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col-sm-4 tex-center" >-->
+                  <!--<div class="flex-left col-sm" style="width: 100%; height:100%">-->
+                    <!--<h5 class="display-5 mt-3"> </h5>-->
+                  <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col-sm-4">-->
+                <!--<button class="btn success-color my-2 btn-block text-white font-weight-bold hoverable" type="button"-->
+                    <!--onclick="window.location.href='submittedforms_notver.html'">Edit Details</button>-->
+              <!--</div>-->
+            <table>
+                <tr class="text-center">
+                    <th><strong>Jury No</strong></th>
+                    <th><strong>First name</strong></th>
+                    <th><strong>Email</strong></th>
+                    <th><strong>Allotted Category</strong></th>
+                    <th><strong>View Jury</strong></th>
+                </tr>
+                {% for counter in context %}
+                <tr class="text-center">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{counter.user.first_name}}</td>
+                    <td>{{counter.user.email}}</td>
+                    <td>{{counter.allotted_cat}}</td>
+                    <td><button class="btn success-color my-2 btn-block text-white font-weight-bold hoverable" type="button">Edit Details</button></td>
+                </tr>
+                {% endfor %}
+            </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

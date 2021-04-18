@@ -1,0 +1,316 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+{% load static %}
+        <!-- Horizontal Steppers -->
+        <div class="container ">
+            <div class="row Site-content">
+                <div class="col-md-12">
+
+                    <!-- Stepers Wrapper -->
+                    <ul class="stepper stepper-horizontal">
+
+                        <li class="completed">
+                            <a class="nav-link" onclick="href='/BAI_app_v2/form0'">
+                              <span class="circle">1</span>
+                              <span class="label">First step</span>
+                            </a>
+                          </li>
+              
+                          <!-- First Step -->
+                          <li class="incomplete">
+                            <a href="#step-home">
+                              <span class="circle">2</span>
+                              <span class="label">Second step</span>
+                            </a>
+                          </li>
+              
+                          <!-- Second Step -->
+                          <li class="incomplete">
+                            <a class="nav-link" onclick="href='/BAI_app_v2/form2'">
+                              <span class="circle">3</span>
+                              <span class="label">Third step</span>
+                            </a>
+                          </li>
+              
+                          <!-- Third Step -->
+                          <li class="incomplete">
+                            <a class="nav-link" onclick="location.href='/BAI_app_v2/form3.html'">
+                              <span class="circle">4</span>
+                              <span class="label">Fourth step</span>
+                            </a>
+                          </li>
+                    </ul>
+                    <!-- /.Stepers Wrapper -->
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="mt-2">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="sticky-top">
+                                <div class="list-group">
+                                    <ul id="list-example">
+                                        <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_1' Quality.users_name cat_id %}">General Information about
+                                            Project</a>
+                                          <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_2' Quality.users_name cat_id %}">Names of Consultants
+                                            appointed</a>
+                                          <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_3' Quality.users_name cat_id %}">Quality </a>
+                                          <a class="list-group-item list-group-item-action " href="{% url 'BAI_app_v2:viewForm1_4' Quality.users_name cat_id %}">Speed of construction</a>
+                                        </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div id="list-item-3">
+                                <!-- step 1-3 -->
+                                <form class="border border-light p-5" action="{% url 'BAI_app_v2:viewForm1_4' Quality.users_name cat_id %}">
+                                    <p class="h4 text-center">Quality</p>
+                                    <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+                                    <p class="h4 text-center">User: {{Quality.users_name}}</p>
+                                    <p class="h4 mb-2 text-center">Category: {{Quality.category_latest}}</p>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>1. Was there a system for coordinating of all
+                                                    drawings?</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.any_system_for_coordinating_of_all_drawings}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                          <label><b> If yes it was done by whom?</b></label><br>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.drawing_coordinating_system}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>2. Was there a separate PMC for the
+                                                    project?</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.PMC}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>3. Were the drawings and specifications assessed
+                                                    in-
+                                                    house or consultants, in terms of possible quality
+                                                    improvement? *</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.drawing_specification_assessment}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>4. What was the frequency of Consultants’ site
+                                                    visit?</b></label><br>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.consultant_visit_frequency}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>5. Were the decisions recorded in the site
+                                                    instruction book
+                                                    or minutes of meeting? *</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="mt-0">
+                                                <p class="h5">{{Quality.Decision_recorded}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                          <label><b> If yes, please submit a sample of such minutes of
+                                                  meeting and/or instruction book.</b></label><br>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="mt-0">
+                                                <p class="h5">{{Quality.meeting_instruction_book_minute}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>6. Were Quality Standards mentioned in the Tender?
+                                                    *</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.quality_standard_tender}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                          <label><b> If not, who defined the quality standards?
+                                                  *</b></label><br>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.name_of_quality_standard_approver}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>7.Was there an in-house team to control
+                                                    quality?</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.in_house_team_quality_control}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>8.Was there an external team to control
+                                                    quality?</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.external_team_to_control_quality}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>9.List quality assurance tests carried out - On
+                                                    the site. *</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.list_quality_assurance_tests_OnSite}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>10.List quality assurance tests carried out - Off
+                                                    the site. *</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.list_quality_assurance_tests_Off_Site}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>11.Submit sample Checklist
+                                                    followed.</b></label><br>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.sample_Checklist_followed}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>12.Submit sample test reports.</b></label><br>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.sample_test_reports}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>13. Were there any special training programs for
+                                                    Supervisory staff during execution?</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.any_special_training_programs}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                          <label><b> If Yes, Provide details. *</b></label><br>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.If_Yes_Provide_details}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>14. Were there any special training programs for
+                                                    workers during execution?</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.any_special_training_programs_workers}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                          <label><b> If Yes, Provide details. *</b></label><br>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.If_Yes_Provide_details_workers}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>15.Was there any Supervision from Clients side
+                                                    directly? *</b></label>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="h5">{{Quality.any_Supervision_from_Client_side}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>16. Any other system / method / mechanism adopted
+                                                    for
+                                                    Quality improvement? Provide a separate Note. **</b></label><br>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="md-form mt-0">
+                                                <p class="h5">{{Quality.Any_other_system_method_mechanism_adopted}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <label for="textInput"><b>17. How would you rate your project in terms of
+                                                    quality on a
+                                                    scale of 1 to 10 (1: Lowest, 10:Highest) *</b></label><br>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="md-form mt-0">
+                                                <p class="h5">{{Quality.rate_your_project_in_terms_of_quality}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <button class="btn btn-info my-4 btn-block" type="submit">Next</button>
+                                    <!--<button class="btn btn-info my-4 btn-block" type="button" >Next</div></button>-->
+                                </form>
+                                <!-- step 1-3 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

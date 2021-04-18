@@ -1,0 +1,310 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+
+        <!-- Horizontal Steppers -->
+        <div class="container mt-5">
+            {% if filled1_3 %}
+            <script>alert("Quality Form saved Successfully!")</script>
+            {% endif %}
+            {% if error1_4 %}
+            <script>alert("{{error1_4}}")</script>
+            {% endif %}
+            <div class="row Site-content">
+                <div class="col-md-12">
+
+                    <!-- Stepers Wrapper -->
+                    <ul class="stepper stepper-horizontal">
+
+                        <!-- First Step -->
+                        <li class="completed">
+                            <a class="nav-link" onclick="href='/BAI_app_v2/form0'">
+                              <span class="circle">1</span>
+                              <span class="label">First step</span>
+                            </a>
+                          </li>
+              
+                          <!-- First Step -->
+                          <li class="incomplete">
+                            <a href="#step-home">
+                              <span class="circle">2</span>
+                              <span class="label">Second step</span>
+                            </a>
+                          </li>
+              
+                          <!-- Second Step -->
+                          <li class="incomplete">
+                            <a class="nav-link" onclick="href='/BAI_app_v2/form2'">
+                              <span class="circle">3</span>
+                              <span class="label">Third step</span>
+                            </a>
+                          </li>
+              
+                          <!-- Third Step -->
+                          <li class="incomplete">
+                            <a class="nav-link" onclick="location.href='/BAI_app_v2/form3.html'">
+                              <span class="circle">4</span>
+                              <span class="label">Fourth step</span>
+                            </a>
+                          </li>
+
+                    </ul>
+                    <!-- /.Stepers Wrapper -->
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="mt-2">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="sticky-top">
+                                <div class="list-group">
+                                    <ul id="list-example">
+                                        <a class="list-group-item list-group-item-action " href="form1.html">General
+                                            Information about Project</a>
+                                        <a class="list-group-item list-group-item-action " href="form 1-2.html">Names of
+                                            Consultants appointed</a>
+                                        <a class="list-group-item list-group-item-action " href="form 1-3.html">Quality
+                                        </a>
+                                        <a class="list-group-item list-group-item-action " href="#list-item-4">Speed of
+                                            construction</a>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div id="list-item-4">
+                            <form class="border border-light p-5" action="{% url 'BAI_app_v2:form1_4' %}" enctype="multipart/form-data" method="POST">
+                            {% csrf_token %}
+                                <p class="h4 mb-4 text-center">Speed</p>
+                                <p class="mb-4 text-center">Builder / Contractor(Fill relevant information)</p>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>1. In case of a Tender, was the time line defined in
+                                        the Tender? *</b></label>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="mt-0">
+                                      <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample1">
+                                        <input type="radio" name="tender">YES
+                                      </label>
+                                      &emsp;
+                                      <label class="radio-inline">
+                                        <input type="radio" name="tender">NO
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="collapse" id="collapseExample1">
+                                  <div class="mt-3">
+                                    <div class="form-row">
+                                      <div class="col-9">
+                                        <label><b>If not, who determined the Project Time frame? *</b></label><br>
+                                      </div>
+                                      <div class="col-3">
+                                        <div class="md-form mt-0">
+                                          <input type="text" name="ProTimeFrame" placeholder="">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>2. Was the project being tracked in terms of time
+                                        during the progress of work?</b></label>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="mt-0">
+                                      <label class="radio-inline">
+                                        <input type="radio" name="tracked">YES
+                                      </label>
+                                      &emsp;
+                                      <label class="radio-inline">
+                                        <input type="radio" name="tracked">NO
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>3. Was there a separate PMC appointed? *</b></label>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="mt-0">
+                                      <label class="radio-inline">
+                                        <input type="radio" name="PMCappointed">YES
+                                      </label>
+                                      &emsp;
+                                      <label class="radio-inline">
+                                        <input type="radio" name="PMCappointed">NO
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>4. Were the drawings, specifications and techniques
+                                        assessed <br> in terms of possible time reduction? *</b></label>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="mt-0">
+                                      <label class="radio-inline">
+                                        <input type="radio" name="TimeReduc">YES
+                                      </label>
+                                      &emsp;
+                                      <label class="radio-inline">
+                                        <input type="radio" name="TimeReduc">NO
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>5. Was there a separate group / individual tracking
+                                        progress planned v/s actual?</b></label>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="mt-0">
+                                      <label class="radio-inline">
+                                        <input type="radio" name="trackPro">YES
+                                      </label>
+                                      &emsp;
+                                      <label class="radio-inline">
+                                        <input type="radio" name="trackPro">NO
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>6. What was the expected period of completion of the
+                                        project? *</b></label><br>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="md-form mt-0">
+                                      <input type="text" name="expectPeriod" placeholder="in months">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>7. What was the actual period of completion of the
+                                        project? *</b></label><br>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="md-form mt-0">
+                                      <input type="text" name="periodComplete" placeholder="in months">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>8. During execution, did you encounter any difficulty
+                                        that resulted in variance of work?</b></label>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="mt-0">
+                                      <label class="radio-inline" data-toggle="collapse" data-target="#collapseExample2">
+                                        <input type="radio" name="difficulty">YES
+                                      </label>
+                                      &emsp;
+                                      <label class="radio-inline">
+                                        <input type="radio" name="difficulty">NO
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="collapse" id="collapseExample2">
+                                  <div class="mt-3">
+                                    <div class="form-row">
+                                      <div class="col-9">
+                                        <label for="textInput"><b>If yes, how much time did you loose on that
+                                            account?</b></label><br>
+                                      </div>
+                                      <div class="col-3">
+                                        <div class="md-form mt-0">
+                                          <input type="text" name="timeLost" placeholder="in months">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>9. What degree of mechanization was done by you
+                                        on site?</b></label><br>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="md-form mt-0">
+                                      <input type="text" name="mechanization" placeholder="">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>10. How did it contribute to improvement in speed of
+                                        work?</b></label><br>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="md-form mt-0">
+                                      <input type="text" name="contribImprov" placeholder="">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>11. In Case of Tender, were the payments received by
+                                        you as per Tender terms? *</b></label>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="mt-0">
+                                      <label class="radio-inline">
+                                        <input type="radio" name="tenderPay">YES
+                                      </label>
+                                      &emsp;
+                                      <label class="radio-inline">
+                                        <input type="radio" name="tenderPay">NO
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+        
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>12. What suggestions were made by you to improve
+                                        the speed of the Project? *</b></label><br>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="md-form mt-0">
+                                      <input type="text" name="suggest" placeholder="">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="col-9">
+                                    <label for="textInput"><b>13. How would you rate your project in terms of Speed
+                                        on a scale of 1 to 10 <br>
+                                        (1: Lowest, 10:Highest) *</b></label><br>
+                                  </div>
+                                  <div class="col-3">
+                                    <div class="md-form mt-0">
+                                      <input type="text" name="SpeedScale" placeholder="">
+                                    </div>
+                                  </div>
+                                </div>
+        
+                                </div>
+
+                                {% if error1_4 %}
+                                    <script> alert(" {{error1_4}} ")</script>
+                                {% endif %}
+        
+                                <button class="btn btn-info my-4 btn-block" type="Submit" value="Form1">Save & Next</button>
+                              </form>
+                            <!-- step 1-4 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

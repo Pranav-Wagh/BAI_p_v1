@@ -1,5 +1,6 @@
 {% extends "BAI_app_v2/base.html" %}
 {% block body_block %}
+{% load static %}
 
 <div class="view full-page-intro" style="background-image: url('../../static/assets/background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
 
@@ -36,11 +37,11 @@
                 <button type="button" class="btn btn-indigo"><a href="{% url 'BAI_app_v2:signup' %}" class="text-white" >Sign Up</a></button>
               
                 {% if user123.is_authenticated %}
+                <strong><br>Log Out from {{request.user}} Account<br></strong>
+                <button type="button" class="btn btn-indigo"><a href="{% url 'BAI_app_v2:participant_logout' %}" class="text-white"></a>Log Out</button>
+                {% else %}
                 <strong><br>Already a Member of BAI?<br>Log In to fill up the Application Form<br></strong>
                 <button type="button" class="btn btn-indigo"><a href="{% url 'BAI_app_v2:user_login' %}" class="text-white"></a>Log In</button>
-                {% else %}
-                <strong><br>Log Out from my Account</strong>
-                <button type="button" class="btn btn-indigo"><a href="{% url 'logout' %}" class="text-white"></a>Log Out</button>
                 {% endif %}
 
               </p>
@@ -521,7 +522,7 @@
         <h3 class="my-5 h3 text-center mb-5">SCHEDULE FOR 24<sup>th</sup> WELL BUILT STRUCTURE COMPETITION 2020 </h3>
 
         <div class="table-responsive">
-          <table class="table table-striped table-hover ">
+          <table class="table table-striped table-hover">
             <thead class="white-text">
               <tr>
                 <th class="h5">Dates</th>

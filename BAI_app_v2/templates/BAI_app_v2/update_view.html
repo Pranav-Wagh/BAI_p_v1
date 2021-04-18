@@ -1,0 +1,49 @@
+{% extends "BAI_app_v2/base.html" %}
+{% block body_block %}
+
+<div class="container mt-5">
+    <p class="h3 mb-5 text-center">Edit/View Applications</p>
+    <p class="h5">You can do following things here:
+        <ol>
+            <li>View your previous applications.</li>
+            <li>Edit/Update your previous applications.</li>
+            <li>Complete your incomplete Applications.</li>
+        </ol>
+    </p>
+    <p class="h5 mt-3 mb-3">NOTE: 
+        <ol>
+            <li>If you want to just View your applications, don't change any previous responses already fetched from server 
+                and just click "UPDATE" button to go to next form.</li>
+            <li>
+                If you want to Update certain entries, click "UPDATE" till you reach the form where you want to make changes.
+                Make changes in previously fetched responses in that form ONLY! and hit "UPDATE" button.
+            </li>
+            <li>
+                If you want to Complete your incomplete applications, click "UPDATE" button without changing any previously
+                fetched data till you reach the form where you left.
+            </li>
+        </ol>
+    </p>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-bordered table-striped table-hover text-center" >
+          <thead class="white-text">
+            <tr>
+              <th><strong>Sr No.</strong></th>
+              <th><strong>Category of Application Form</strong></th>
+              <th><strong>Edit/Update Form</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for itr in all_entries %}
+            <tr>
+              <td class="h5">{{forloop.counter}}</td>
+              <td class="h5">{{itr.2}}</td>
+              <td><a role="button" class="btn btn-warning btn-rounded" href="{% url 'BAI_app_v2:show_updateform0' itr.0 itr.1 %}">Update</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
